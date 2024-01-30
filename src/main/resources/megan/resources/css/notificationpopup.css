@@ -1,0 +1,98 @@
+/*
+ * notificationpopup.css Copyright (C) 2024 Daniel H. Huson
+ *
+ *  (Some files contain contributions from other authors, who are then mentioned separately.)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+/******************************************************************************
+ *
+ * Light theme
+ *
+ *****************************************************************************/
+
+.notification-bar > .pane {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-padding: 5 5 5 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 11, 0.0, 0, 3);
+    -fx-background-insets: 0, 1, 1;
+}
+
+.notification-bar > .pane .title {
+    -fx-font-size: 1.0em; /*12px;*/
+    -fx-text-fill: #292929;
+    -fx-font-weight: bold;
+}
+
+.notification-bar > .pane .label {
+    -fx-font-size: 1.0em; /*12px;*/
+    -fx-text-fill: #292929;
+    -fx-alignment: top-left;
+}
+
+/******************************************************************************
+ *
+ * Dark theme
+ *
+ *****************************************************************************/
+
+.notification-bar.dark > .pane {
+    -fx-background-color: -fx-outer-border, -fx-inner-border, linear-gradient(#595959, #474747 37%, #343434);
+}
+
+.notification-bar.dark > .pane .title,
+.notification-bar.dark > .pane .label {
+    -fx-text-fill: #ebebeb;
+}
+
+/******************************************************************************
+ *
+ * Close button
+ *
+ *****************************************************************************/
+.notification-bar > .pane .close-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 2;
+    -fx-padding: 0 0 0 0;
+    -fx-alignment: center;
+}
+
+.notification-bar > .pane .close-button:hover {
+    -fx-background-color: linear-gradient(#a3a3a3, #8b8b8b 34%, #777777 36%, #777777 63%, #8b8b8b 65%, #adadad);
+}
+
+.notification-bar > .pane .close-button:pressed {
+    -fx-background-color: linear-gradient(#a3a3a3, #8b8b8b 34%, #777777 36%, #777777 63%, #8b8b8b 65%, #adadad);
+}
+
+.notification-bar > .pane .close-button > .graphic {
+    -fx-background-color: #949494;
+    -fx-scale-shape: false;
+    -fx-padding: 4.5 4.5 4.5 4.5; /* Graphic is 9x9 px */
+}
+
+.notification-bar > .pane .close-button:hover > .graphic {
+    -fx-background-color: #fefeff;
+}
+
+.notification-bar > .pane .close-button:pressed > .graphic {
+    -fx-background-color: #cfcfcf;
+}
+
+.notification-bar > .pane .close-button > .graphic {
+    -fx-shape: "M395.992,296.758l1.794-1.794l7.292,7.292l-1.795,1.794 L395.992,296.758z M403.256,294.992l1.794,1.794l-7.292,7.292l-1.794-1.795 L403.256,294.992z";
+}

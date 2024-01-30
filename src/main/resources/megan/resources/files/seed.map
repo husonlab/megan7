@@ -1,0 +1,961 @@
+-4	Unclassified
+-3	Low complexity
+-2	Not assigned
+-1	No hits
+1	SEED-2022
+2	Carbohydrates
+13	Photosynthesis
+107	Sulfur Metabolism
+121	Stress Response
+274	Motility and Chemotaxis
+293	Secondary Metabolism
+421	Amino Acids and Derivatives
+449	Nitrogen Metabolism
+604	Fatty Acids, Lipids, and Isoprenoids
+613	Acyl carrier protein
+667	Nucleosides and Nucleotides
+912	Metabolism of Aromatic Compounds
+991	Protein degradation
+1077	MEMBRANE TRANSPORT
+1388	Respiration
+1669	MISCELLANEOUS
+1905	Universal stress protein family
+2597	REGULATION AND CELL SIGNALING
+4927	Hydrogenases
+6426	Exosome
+6517	Nucleoside triphosphate pyrophosphohydrolase MazG
+7132	Flagellum
+8522	Integrons
+8981	Archease
+10225	D-tyrosyl-tRNA(Tyr) deacylase
+10268	Carotenoids
+10608	Iron acquisition and metabolism
+10924	Isoprenoid Biosynthesis: Interconversions
+11089	Coenzyme PQQ synthesis
+11177	Siderophore pyochelin
+11182	Phosphoenolpyruvate phosphomutase
+11187	Phospholipid and Fatty acid biosynthesis related cluster
+11288	Type 4 secretion and conjugative transfer
+11305	Plasmid replication
+11361	Signal peptidase
+11362	Phenazine biosynthesis
+11377	tRNA aminoacylation, His
+11396	Vibrioferrin synthesis
+11425	Vanillate and syringate utilization
+11554	Chlorophyll Biosynthesis in plants and prokaryotes
+11612	Poly-gamma-glutamate biosynthesis
+11740	Hydroxyaromatic decarboxylase family
+11818	Siderophore Staphylobactin
+11819	DNA repair, UvrABC system
+11884	Molybdopterin cytosine dinucleotide
+11951	Hyperosmotic potassium uptake
+11959	Sporulation Cluster III A
+11960	Purine nucleotide synthesis regulator
+11994	Nudix proteins (nucleoside triphosphate hydrolases)
+11997	Protection from Reactive Oxygen Species
+12050	Phenylacetyl-CoA catabolic pathway (core)
+12096	Glutathione: Non-redox reactions
+12099	Muconate lactonizing enzyme family
+12122	Malonate decarboxylase
+12153	Pentose phosphate pathway
+12166	Sugar-phosphate stress regulation
+12225	Bacillibactin Siderophore
+12248	Coenzyme F420 synthesis
+12294	Carbon storage regulator
+12409	Peptidyl-prolyl cis-trans isomerase
+12427	MukBEF Chromosome Condensation
+12428	DNA Repair Base Excision
+12430	Tricarballylate Utilization
+12445	tRNA aminoacylation, Phe
+12511	DNA repair, bacterial UmuCD system
+12538	Translation elongation factor G family
+12568	Hfl operon
+12645	Siderophore Desferrioxamine E
+12717	Mycobacterial gene cluster associated with resistance against FAS-II antibiotics
+12764	Fatty Acid Biosynthesis FASII
+12803	Amino acid racemase
+12810	Putative TldE-TldD proteolytic complex
+12835	Pyruvate metabolism II: acetyl-CoA, acetogenesis from pyruvate
+13011	Entner-Doudoroff Pathway
+13033	Glycerolipid and Glycerophospholipid Metabolism in Bacteria
+13034	Branched-Chain Amino Acid Biosynthesis
+13067	Folate Biosynthesis
+13079	Selenocysteine metabolism
+13088	Type 4 conjugative transfer system, IncI1 type
+13105	Aromatic amino acid interconversions with aryl acids
+13108	DNA topoisomerases, Type II, ATP-dependent
+13109	YrdC-YciO-Sua5 and associated protein families
+13116	tRNA aminoacylation, Ile
+13117	Fe-S cluster assembly
+13148	Peptide ABC transport system Sap
+13188	Menaquinone biosynthesis from chorismate via 1,4-dihydroxy-2-naphthoate
+13223	Glycogen metabolism
+13247	Siderophore Pyoverdine
+13272	ATP-dependent RNA helicases, bacterial
+13310	Molybdenum cofactor biosynthesis
+13314	D-Galacturonate and D-Glucuronate Utilization
+13374	Head-to-head olefinic hydrocarbon biosynthesis
+13406	Glycolysis and Gluconeogenesis
+13414	Adhesins in Staphylococcus
+13423	DNA repair, bacterial
+13460	Acetoin, butanediol metabolism
+13475	tRNA aminoacylation, Thr
+13480	Stringent Response, (p)ppGpp metabolism
+13612	Pyridoxin(Vitamin B6) Degradation Pathway
+13661	Biotin synthesis & utilization
+13676	Respiratory Complex I
+13701	Acetone carboxylase
+13796	Methylglyoxal Metabolism
+13801	tRNA aminoacylation, Trp
+13820	Acyl-CoA thioesterase II
+13836	Dehydrogenase complexes
+13851	Heme, hemin uptake and utilization systems in GramPositives
+13856	Cyanate hydrolysis
+13866	Threonine anaerobic catabolism gene cluster
+13934	CytR regulation
+13936	Glutamate dehydrogenases
+13972	Glycine reductase, sarcosine reductase and betaine reductase
+13985	L-fucose utilization
+13986	Nonmevalonate Branch of Isoprenoid Biosynthesis
+14008	tRNA aminoacylation, Gly
+14035	Formaldehyde assimilation: Ribulose monophosphate pathway
+14044	IbrA and IbrB: co-activators of prophage gene expression
+14063	tRNA aminoacylation, Met
+14112	Pyrroloquinoline Quinone biosynthesis
+14126	Protein chaperones
+14166	Lipid-linked oligosaccharide synthesis related cluster
+14192	Pyruvate Alanine Serine Interconversions
+14248	SpoVS protein family
+14332	Polyunsaturated Fatty Acids synthesis
+14345	Histidine Degradation
+14371	Photorespiration (oxidative C2 cycle)
+14372	Sarcosine oxidases, monomeric and heterotetrameric
+14417	Cyanophycin Metabolism
+14423	HPr catabolite repression system
+14463	Arsenic resistance
+14470	tRNA aminoacylation, Ser
+14474	DNA processing cluster
+14483	BactLuciferaseComplex
+14547	Siderophore assembly kit
+14587	Alpha-acetolactate operon
+14589	Carbon monoxide induced hydrogenase
+14592	Fermentations: Mixed acid
+14617	Phosphonate metabolism
+14680	Lactose utilization
+14795	Osmoregulation
+14802	Glutathione: Biosynthesis and gamma-glutamyl cycle
+14819	Toxin co-regulated pilus
+14848	Selenoprotein O
+14892	Glutathione: Redox cycle
+14895	Autoinducer 2 (AI-2) transport and processing (lsrACDBFGE operon)
+14909	Phenol hydroxylase
+15014	tRNA aminoacylation, Val
+15017	ABC transporter tungstate (TC 3.A.1.6.2)
+15028	Streptococcal Hyaluronic Acid Capsule
+15029	Inositol catabolism
+15031	Adenosyl nucleosidases
+15067	Ribosomal protein S5p acylation
+15087	Mycobacterial FadE proteins Acyl-CoA dehydrogenase
+15232	Siderophore Enterobactin
+15256	Menaquinone biosynthesis from chorismate via 1,4-dihydroxy-6-naphthoate
+15579	Predicted secretion system X
+15604	Bacterial light-harvesting proteins
+15615	Colicin V and Bacteriocin Production Cluster
+15624	tRNA splicing
+15625	Lysine fermentation
+15691	Outer membrane
+15750	Trans-translation by stalled ribosomes
+15764	Chlorophyll Degradation
+15778	G-protein-coupled receptor (GPCR) system in Actinobacteria
+15797	Listeria Pathogenicity Island LIPI-1 extended
+15810	tRNA aminoacylation, Cys
+15950	Proteorhodopsin
+15970	tRNA aminoacylation, Ala
+15988	Proline Synthesis
+15996	A Hypothetical Protein Related to Proline Metabolism
+15997	DNA repair, bacterial UvrD and related helicases
+16001	Periplasmic disulfide interchange
+16013	Pyruvate:ferredoxin oxidoreductase
+16022	Macromolecular synthesis operon
+16084	Histidine Biosynthesis
+16097	Cadmium resistance
+16116	Dissimilatory nitrite reductase
+16122	Pyridoxin (Vitamin B6) Biosynthesis
+16123	Quinone oxidoreductase family
+16136	ESAT-6 proteins secretion system in Mycobacteria (locus ESX-1)
+16214	Sporulation Cluster
+16234	Ribonuclease H
+16235	Biogenesis of cytochrome c oxidases
+16265	Listeria surface proteins: Internalin-like proteins
+16266	Ribonucleotide reduction
+16267	Biofilm formation in Staphylococcus
+16319	Prenylated indole derivatives in actinomycetes
+16326	Osmotic stress cluster
+16329	Metabolite repair
+16372	SecY2-SecA2 Specialized Transport System
+16419	Tryptophan synthesis
+16473	Amidase clustered with urea and nitrile hydratase functions
+16534	Mycolic acid synthesis 2
+16567	Betaine biosynthesis from glycine
+16586	Putative oxidase COG2907
+16603	DNA recombination, archaeal
+16625	2-O-alpha-mannosyl-D-glycerate utilization
+16634	p-Aminobenzoyl-Glutamate Utilization
+16689	Universal GTPases
+16726	Salmochelin-mediated Iron Acquisition
+16737	RNA processing and degradation, bacterial
+16878	Ubiquinone biosynthesis
+16943	DNA repair, bacterial RecFOR pathway
+16973	Glyoxylate bypass
+16989	Diphthamide biosynthesis
+17010	ABC-type iron transport system
+17079	Central Metabolism
+17122	Accessory colonization factor
+17136	Glycerol fermentation to 1,3-propanediol
+17145	Type IV pilus
+17150	Cyanobacterial bypass in the TCA
+17173	Murein hydrolase regulation and cell death
+17192	Peptide methionine sulfoxide reductase
+17253	Propanediol utilization
+17294	Widespread colonization island
+17309	ABC transporter of unknown substrate X
+17310	Two cell division clusters relating to chromosome partitioning
+17311	Na(+) H(+) antiporter
+17405	Ethylmalonyl-CoA pathway of C2 assimilation
+17409	Spore germination
+17410	Cobalamin synthesis
+17433	Methionine Salvage
+17513	MazEF toxin-antitoxing (programmed cell death) system
+17532	Nitrilase
+17581	Lipoic acid metabolism
+17584	Phd-Doc, YdcE-YdcD toxin-antitoxin (programmed cell death) systems
+17600	Methylthiotransferases
+17639	Biofilm Adhesin Biosynthesis
+17689	Adaptation to d-cysteine
+17698	Formate dehydrogenase
+17719	tRNA aminoacylation, Leu
+17729	tRNA nucleotidyltransferase
+17730	Cytolysin and Lipase operon in Vibrio
+17741	Polyamine Metabolism
+17851	2-phosphoglycolate salvage
+17875	De Novo Pyrimidine Synthesis
+17876	KDO2-Lipid A biosynthesis
+17888	Ferrous iron transporter EfeUOB, low-pH-induced
+17897	Glycolate, glyoxylate interconversions
+17926	Siderophore Achromobactin
+17967	Tricarboxylate transport system
+18029	Type III secretion system orphans
+18030	tRNA aminoacylation, Arg
+18039	Twin-arginine translocation system
+18045	Fermentations: Lactate
+18049	Two partner secretion pathway (TPS)
+18078	NAD and NADP cofactor biosynthesis global
+18171	Conjugative transposon, Bacteroidales
+18233	Copper homeostasis: copper tolerance
+18235	Sporulation gene orphans
+18263	Phosphate Metabolism
+18264	Soluble methane monooxygenase (sMMO)
+18281	Photosystem II
+18323	Indole-pyruvate oxidoreductase complex
+18324	ATP-dependent Nuclease
+18340	Cell envelope-associated LytR-CpsA-Psr transcriptional attenuators
+18355	Anthrose Biosynthesis
+18556	Iron siderophore sensor & receptor system
+18587	Chitobiose
+18591	General Secretion Pathway
+18622	Resistance to chromium compounds
+18673	Glycine cleavage system
+18737	Proteasome bacterial
+18738	DNA repair, bacterial photolyase
+18745	Toxin-antitoxin replicon stabilization systems
+18748	V-Type ATP synthase
+18767	Iron acquisition in Streptococcus
+18789	Ribosomal proteins, zinc requirement
+18825	Glutathione-dependent pathway of formaldehyde detoxification
+18843	Biogenesis of c-type cytochromes
+18850	Cholera toxin
+18854	Fosfomycin resistance
+18876	Sulfate reduction-associated complexes
+18885	Trans-envelope signaling system VreARI in Pseudomonas
+18911	Ergothioneine biosynthesis
+18913	Mycobacterial cell wall virulence lipid phthiocerol dimycocerosate (PDIM)
+18937	tRNA aminoacylation, Lys
+19042	RecA and RecX
+19043	Threonylcarbamoyladenosine
+19151	Sporulation-associated proteins with broader functions
+19156	D-gluconate and ketogluconates metabolism
+19194	Tetrathionate respiration
+19220	Thiamin
+19232	Programmed frameshift
+19251	Quorum sensing in Yersinia
+19348	DNA repair, bacterial RecBCD pathway
+19360	F0F1-type ATP synthase
+19367	Multiple Antibiotic Resistance MAR locus
+19463	Mycobacterial FadD proteins (fatty acid CoA- and AMP- ligases)
+19512	DNA repair, bacterial DinG and relatives
+19513	Exosporium
+19557	Acetophenone carboxylase 1
+19558	DNA Helicase of Unknown Function
+19564	HMG CoA Synthesis
+19593	Lipopolysaccharide-related cluster in Alphaproteobacteria
+19602	Sex pheromones in Enterococcus faecalis and other Firmicutes
+19603	Bacteroides capsular polysaccharide transcription antitermination proteins
+19623	Ribosomal protein S12p Asp methylthiotransferase
+19624	Siderophore Aerobactin
+19652	Proline, 4-hydroxyproline uptake and utilization
+19680	NiFe hydrogenase maturation
+19682	Ribosome activity modulation
+19683	Calvin-Benson cycle
+19897	Photosystem II-type photosynthetic reaction center
+19898	RuvABC plus a hypothetical
+19905	Anaerobic Oxidative Degradation of L-Ornithine
+19943	Glutathionylspermidine and Trypanothione
+19982	Biogenesis of cbb3-type cytochrome c oxidases
+20075	tRNA aminoacylation, Tyr
+20172	Glycolysis and Gluconeogenesis, including Archaeal enzymes
+20206	Modification of eukaryotic initiation factor 5A
+20234	Inclusion membrane proteins supporting intracellular life styles in Chlamydiales
+20381	Ethanolamine utilization
+20455	Dihydroxyacetone kinases
+20479	L-ascorbate utilization (and related gene clusters)
+20566	Bacterial pathways for dimethylsulfoniopropionate and acrylate catabolism
+20587	Gallic acid utilization
+20622	Biotin biosynthesis
+20632	Heat shock dnaK gene cluster extended
+20707	Pyruvate metabolism I: anaplerotic reactions, PEP
+20714	Iron(III) dicitrate transport system Fec
+20741	D-glucosaminate utilization
+20748	Cytolethal distending toxins
+20757	Late competence
+20784	Nitrogen fixation
+20802	Urease subunits
+20805	High affinity phosphate transporter and control of PHO regulon
+20830	Alkane synthesis in bacteria 2
+20832	Tagatose utilization
+20855	Glutamine synthetases
+20858	Dipicolinate Synthesis
+20866	One-carbon metabolism by tetrahydropterines
+20873	Control of cell elongation - division cycle in Bacilli
+20907	Betaine lipids in bactera
+20942	TCA Cycle
+20985	Transcription elongation factors, archaeal
+21009	Mycobacterial HadABC proteins ((3R)-hydroxyacyl-ACP dehydrates of FASII)
+21047	Chorismate Synthesis
+21057	Glutathione analogs: mycothiol
+21086	dTDP-rhamnose synthesis
+21094	2-aminophenol Metabolism
+21105	Biosynthesis of Arabinogalactan in Mycobacteria
+21129	Cob(I)alamin adenosyltransferase
+21132	DAP (1,3-diaminopropane) production
+21149	Galactosamine Substituent of Arabinogalactan in Mycobacteria
+21150	Glutaconate CoA-transferase or 3-oxoadipate CoA-transferase Subunits
+21156	Heme and heme d1 biosynthesis from siroheme
+21192	Metabolite damage and its repair or mitigation
+21216	tRNA aminoacylation, Pro
+22889	METABOLISM
+22890	Branched-chain amino acids
+22891	Carbonic anhydrase
+22892	Arginine; urea cycle, creatine, polyamines
+22893	Arginine biosynthesis via N-acetyl-L-citrulline
+22894	Proline and 4-hydroxyproline
+22895	Proline biosynthesis (for review)
+22896	ENERGY
+22897	Energy and Precursor Metabolites Generation
+22898	RNA PROCESSING
+22899	RNA processing and modification
+22900	ATP synthases
+22901	DNA PROCESSING
+22902	DNA repair
+22903	Clustering-based subsystems
+22904	Cell Division
+22905	Cell division related cluster
+22906	PROTEIN PROCESSING
+22907	Protein Fate (folding, modification, targeting, degradation)
+22908	Protein processing and modification
+22909	CELLULAR PROCESSES
+22910	Cell Cycle, Cell Division and Death
+22911	Cell division cluster
+22912	Protein folding
+22913	Chaperones GroEL GroES and Thermosome
+22914	STRESS RESPONSE, DEFENSE, VIRULENCE
+22915	Stress Response, Defense and Virulence
+22916	Stress Response: Heat/cold shock
+22917	CELL ENVELOPE
+22918	Cell Envelope, Capsule and Slime layer
+22919	Gram-Negative (Diderm) cell wall components
+22920	Electron donating reactions
+22921	NADH ubiquinone oxidoreductase
+22922	NADH ubiquinone oxidoreductase vs. multi-subunit cation antiporter
+22923	Programmed Cell Death and Toxin-antitoxin Systems
+22924	Toxin-Antitoxin system HigAB
+22925	Cofactors, Vitamins, Prosthetic Groups
+22926	Tetrapyrroles
+22927	Pyrimidines
+22928	Lysine Biosynthesis
+22929	Peptidase clustering with DAP
+22930	Lysine, threonine, methionine, and cysteine
+22931	"Diaminopimelate Synthesis "
+22932	Lysine DAP biosynthetic pathway
+22933	Bacterial checkpoint-control-related cluster
+22934	Biotin
+22935	Fatty acids
+22936	Protein Synthesis
+22937	Ribosome biogenesis
+22938	Ribosomal proteins, single-copy
+22939	Translation
+22940	Translation elongation factors, bacterial
+22941	Translation termination factors, bacterial
+22942	Phospholipids
+22943	Isoprenoids
+22944	Resistance to antibiotics and toxic compounds
+22945	Antibiotic targets in metabolic pathways
+22946	Aminoacyl-tRNA-synthetases
+22947	Aromatic amino acids and derivatives
+22948	Pyridoxine
+22949	DNA repair system including RecA, MutS and a hypothetical protein
+22950	DNA uptake, competence
+22951	DNA internalization-related cluster
+22952	Bacterial cell division related cluster 2
+22953	DNA replication
+22954	Antibiotic targets in DNA processing
+22955	5-methylaminomethyl-2-thiouridine
+22956	Transcription
+22957	RNA polymerase, bacterial
+22958	Translation initiation factors, bacterial
+22959	Antibiotic targets in protein synthesis
+22960	Cysteine synthesis
+22961	Chemotaxis in Escherichia coli and Bacillus subtilis
+22962	Riboflavin, FMN, FAD
+22963	Riboflavin, FMN and FAD metabolism with fusion events
+22964	Anaerobic module of TCA
+22965	Cell division initiation related cluster
+22966	C-1 compound metabolism
+22967	Folate and pterines
+22968	Phenylalanine and Tyrosine synthesis 1
+22969	Histidine Metabolism
+22970	Damaged nicotinamide nucleotide NAD(P)HX repair
+22971	RNA pseudouridine synthases
+22972	Cation transporters
+22973	Magnesium transport
+22974	Purines
+22975	DeNovo Purine Biosynthesis
+22976	Lipoic acid
+22977	"2-oxoglutarate dehydrogenase "
+22978	Lipoylated proteins
+22979	S-Adenosyl-L-homocysteine recycling
+22980	Prophages, Transposable elements, Plasmids
+22981	Pathogenicity islands
+22982	Host-pathogen interactions
+22983	Hydrolysis of sphingomyelin
+22984	Biogenesis of respiratory chain components
+22985	Fermentation
+22986	Acetolactate synthase subunits
+22987	Glutamine, glutamate, aspartate, asparagine; ammonia assimilation
+22988	Di- and oligosaccharides
+22989	Galactose utilization
+22990	Quinone cofactors
+22991	Monosaccharides
+22992	GDP-fucose to mannose-1P module
+22993	Capsule and Slime layer
+22994	O-methyl phosphoramidate modification in capsular polysaccharide
+22995	Copper transport and blue copper proteins
+22996	Aerotolerance operon
+22997	Heme Biosynthesis: protoporphyrin-, coproporphyrin- and siroheme-dependent pathways
+22998	Metal chelatases
+22999	CO2 fixation
+23000	Methylenetetrahydrofolate reductase
+23001	Aspartate to Homoserine module
+23002	Aspartate to Threonine Module
+23003	DNA recombination
+23004	Stationary phase, Dormancy, Persistence
+23005	Ribosomal hibernation related cluster
+23006	Polysaccharides
+23007	Folate biosynthesis cluster
+23008	Prokaryotic cell type differentiation
+23009	Sporulation
+23010	tRNA aminoacylation, Gln
+23011	tRNA aminoacylation, Glu
+23012	Heme O and Heme A biosynthesis
+23013	Heme O and Heme A biosynthesis (with selected terminal oxidases)
+23014	tRNA aminoacylation, Asn
+23015	Lpt lipopolysaccharide transport system
+23016	DNA repair, bacterial MutHLS system
+23017	Replication-associated recombination protein RarA
+23018	Coenzyme A
+23019	Coenzyme A Biosynthesis cluster
+23020	Peptidoglycan (Bacteria) or other polymers (Archaea)
+23021	Undecaprenyl-diphosphatases
+23022	Lipopolysaccharide transporter LptABC
+23023	Antibiotic targets in cell wall biosynthesis
+23024	Queuosine and archaeosine
+23025	GMP synthase
+23026	IMP and Xanthine conversion to XMP and GMP module
+23027	Lipoprotein transporter to outer membrane Lol
+23028	Alanine, serine, and glycine
+23029	D-3-phosphoglycerate to phosphoserine module
+23030	Polyadenylation, bacterial
+23031	Trk and Ktr potassium uptake systems
+23032	Succinate dehydrogenase and Fumarate reductase cpmlexes
+23033	Thiamin, thiazole, hydroxymethylpyrimidine salvage and uptake
+23034	Biotin synthesis cluster
+23035	Stress Response: Osmotic stress
+23036	Resistance to Daptomycin
+23037	Antibiotic targets in transcription
+23038	DNA repair, bacterial SbcCD exonuclease
+23039	Cobalamin synthesis from Cob(II)yrinate a,c diamide
+23040	Potassium-transporting ATPase
+23041	Cardiolipin biosynthesis
+23042	Copper Transport System
+23043	ABC transporters
+23044	Efflux ABC transporter YadGH
+23045	Toxin-Antitoxin MT1
+23046	tRNA aminoacylation, Asp
+23047	Cobalamin synthesis, Precorin-2 to Cob(II)yrinate a,c diamide, anaerobic
+23048	Protein targeting, sorting, translocation
+23049	"Amino sugars and nucleotide sugars "
+23050	CMP-legionaminic acid synthesis
+23051	Ribosome LSU, bacterial
+23052	Type I restriction-modification systems
+23053	Ribosomally-synthesized post-translationally modified peptides (RiPPs)
+23054	Tolerance to colicin E2 and CreBC signal transduction system
+23055	Fatty acid synthesis
+23056	Betaine, crotonobetaine, L-carnitine (trimethyl ammonium compounds)
+23057	Carnitine metabolism and transport
+23058	Multidrug efflux systems
+23059	Tripartite multidrug efflux systems (of RND type) in Pseudomonas
+23060	Multidrug Resistance, Tripartite Systems Found in Gram Negative Bacteria TEMP
+23061	Tripartite multidrug efflux systems (of MFS type) in Gram-negative bacteria
+23062	Cobalamin synthesis, Precorin-2 to Cob(II)yrinate a,c diamide, aerobic
+23063	Protein secretion system, Type I
+23064	Type I secretion systems disambiguation
+23065	NAD and NADP
+23066	NAD and NADP cofactor biosynthesis bacterial
+23067	Protein and nucleoprotein secretion system, Type IV
+23068	Fusaric acid resistance cluster
+23069	Cold shock proteins of CSP family
+23070	Multidrug resistance RND efflux system MexEFOprN
+23071	Protein secretion system, Type VI
+23072	Type VI secretion system
+23073	Homoprotocatechuate degradative cluster
+23074	Putrescine utilization
+23075	Siderophores
+23076	Nucleoside uptake and degradation cluster
+23077	Aminoglycoside modifying enzymes: O-phosphotransferases
+23078	Nickel-requiring
+23079	Inner membrane proteins of MarC family, not involved in antibiotic resistance
+23080	Threonine synthase cluster
+23081	Cysteine dioxygenase containing cluster 1
+23082	Tol-Pal Cell Envelope Complex
+23083	Polymyxin resistance
+23084	Electron accepting reactions
+23085	Cytochrome c oxidase EC 1.9.3.1
+23086	Protein secretion system, Type II
+23087	Fatty Acid Biosynthesis cluster
+23088	Choline uptake and conversion to betaine clusters
+23089	Glycine betaine synthesis from choline
+23090	Phages, Prophages
+23091	Possible RNA modification and stress response cluster
+23092	TonB-ExbBD energy transducing system
+23093	TAM transport system
+23094	Enoyl-[ACP] reductases disambiguation
+23095	Resistance to Triclosan
+23096	"Cytochrome bo ubiquinol oxidase "
+23097	BtuS-PduT gene cluster for metalloporphyrine salvage
+23098	Shikimate kinase SK3 cluster
+23099	Extracellular matrix proteins (PEL) involved in glucose-rich biofilm formation in Pseudomonas
+23100	Urea carboxylase and Allophanate hydrolase cluster
+23101	Selenoproteins
+23102	FtsEX cell-division-associated signaling system
+23103	beta-Barrel Assembly Machinery
+23104	MexXY System of Pseudomonas aeruginosa
+23105	Sodium Ion-Coupled Energetics
+23106	Na-translocating NADH-quinone oxidoreductase
+23107	Stress proteins YciF, YciE
+23108	Cluster containing Glutathione synthetase
+23109	Arginine succinyltransferase pathway
+23110	Maintenance of outer membrane lipid asymmetry
+23111	Two-component regulatory systems
+23112	BarA-UvrY(SirA) two-component regulatory system
+23113	Purine catabolism in Bacillus subtilis
+23114	Xanthine dehydrogenase subunits
+23115	Biosynthesis of antimicrobial or antitumor compounds
+23116	L-2-amino-4-methoxy-trans-3-butenoic acid synthesis
+23117	Cell division related cluster including coaD
+23118	Uni- Sym- and Antiporters
+23119	NhaA, NhaD and Sodium-dependent phosphate transporters
+23120	Microbial communities
+23121	Quorum sensing and biofilm formation
+23122	Unsaturated fatty acids
+23123	Delta(6)-desaturase containing cluster
+23124	Tripartite multidrug efflux systems (of MFS type) EmrKY-TolC and EmrAB-TolC
+23125	Fatty acid catabolic operon fadN-fadA-fadE (yusJKL)
+23126	Sulfur transfer pathway CsdAEL
+23127	Protein secretion system, Type III
+23128	Type III secretion systems
+23129	L-serine dehydratase subunits
+23130	Sulfate assimilation related cluster
+23131	Adenylylsulfate reductase
+23132	Lipid orphans
+23133	Phosphonate and phosphinate
+23134	Extracellular matrix proteins (PSL) involved in mannose-rich biofilm formation in Pseudomonas
+23135	Dpp dipeptide ABC transport system
+23136	Repair of Iron Centers
+23137	Tripartite multidrug efflux systems (of RND type) MdtABC-TolC
+23138	Protein secretion system
+23139	tRNA modification, 5-oxyacetyl uridine (cmo5U34)
+23140	EnvZ and OmpR regulon
+23141	Acyclic terpene utilization
+23142	Outer membrane porins in Pseudomonas and Acinetobacter
+23143	Cytochrome d ubiquinol oxidase operon
+23144	Beta-lactamases Ambler class C
+23145	Beta-lactamases Ambler class D
+23146	Glycyl-tRNA synthetase
+23147	Dihydropyrimidine dehydrogenase
+23148	Uridine to beta-Alanine and Thymine to 3-aminoisobutanoate module
+23149	Periplasmic nitrate reductase EC 1.7.99.4
+23150	Efflux ABC transporters BmrCD and LmrCD involved in multidrug resistance
+23151	Gram-Positive (Monoderm) cell wall components
+23152	D-alanylation of teichoic acid
+23153	Fe-S clusters
+23154	Mevalonate metabolic pathway
+23155	Tetracycline resistance, all mechanisms
+23156	Ribonuclease J family
+23157	Lipoylation-related cluster
+23158	Invasion and intracellular resistance
+23159	VraTSR and LiaFSR three-component regulatory systems
+23160	CtsR and MscAB regulation of protein degradation
+23161	EcsAB transporter affecting expression and secretion of secretory preproteins
+23162	mRNA 3-end processing factor containing cluster
+23163	Multi-subunit cation antiporter
+23164	Acetylation_deacetylation
+23165	Post-translational modification of proteins
+23166	Resistance to Ethionamide and Isoniazid
+23167	Steroids and Hopanoids
+23168	Hopanoid biosynthesis
+23169	Anaerobic dimethyl sulfoxide reductase (EC 1.8.5.3)
+23170	GlrKR two-component regulatory system
+23171	Denitrifying reductase gene clusters
+23172	RuBisCO operon
+23173	Sugar alcohols
+23174	Barnase-barstar complex
+23175	A new toxin - antitoxin system
+23176	Hydrogen-sensing hydrogenase system
+23177	Electron transport and photophosphorylation
+23178	Light-harvesting complexes
+23179	Tetracycline resistance, ribosomal protection type
+23180	S-layer
+23181	Wall polysaccharide pyruvylation
+23182	Cell wall of Mycobacteria
+23183	N-acetylneuraminate utilization
+23184	Thiamin, hydroxymethylpyrimidine selected transporters
+23185	Carboxylic acids
+23186	CoA disulfide thiol-disulfide redox system
+23187	Aminoglycoside modifying enzymes: O-nucleotidyltransferases
+23188	Efflux ABC transporter MdlAB
+23189	Protein secretion system, Type VII
+23190	ESAT-6 proteins secretion system in Firmicutes and Actinobacteria
+23191	ESAT-6 proteins secretion system in Firmicutes extended
+23192	ESAT-6 protein secretion system in Mycobacteria (locus ESX-5)
+23193	Aminoglycoside modifying enzymes: N-acetyltransferases
+23194	BOX elements in Streptococci
+23195	Programmed cell death toxin-antitoxin PezAT
+23196	PEB1, the major cell-binding factor of Campylobacter jejuni
+23197	Fet iron export system
+23198	Hyaluronate utilization
+23199	Pyruvate formate-lyase cluster
+23200	Streptolysin S
+23201	YoeB-YefM toxin-antitoxin system
+23202	Hydroxy-fatty acid production as stress response
+23203	Adhesion
+23204	Stress Response: Electrophile toxicity
+23205	Bacillithiol synthesis
+23206	Bile hydrolysis
+23207	Teicoplanin resistance in Staphylococci
+23208	Bacitracin resistance
+23209	Resistance to the fluoroquinolones norfloxacin and ciprofloxacin
+23210	Siderophore Anthrachelin
+23211	Oxygen-sensing two-component regulatory system NreABC
+23212	Vir-like type 4 secretion system
+23213	ABC transporter YxeMNO
+23214	Lysine leader peptide
+23215	HU-alpha and dsDNA mimic protein interaction
+23216	Toxins and superantigens
+23217	Homogentisate pathway
+23218	Tripartite multidrug efflux systems (of RND type) AcrAB-TolC and related transporters
+23219	Quorum-sensing related cluster
+23220	Toxins
+23221	Arginine decarboxylase and Agmatinase cluster
+23222	Bicyclomycin resistance cluster
+23223	Phage shock protein operon
+23224	Trimethylamine-N-oxide operon
+23225	ABC transporter YeiABEF
+23226	Ectoine synthesis
+23227	Possible DNA repair related cluster
+23228	Cyclic Di-GMP Turnover Proteins
+23229	Chloramphenicol resistance
+23230	Anaerobic glycerol-3-phosphate dehydrogenase subunits
+23231	Glycerol ABC transporter
+23232	Ribitol utilization
+23233	Histidine Biosynthesis -- gjo
+23234	Glycerol utilization cluster
+23235	Gene Transfer Agent
+23236	Arginine biosynthesis
+23237	Fusidic acid resistance
+23238	Coenzyme A -- gjo
+23239	Ectoine, hydroxyectoine uptake and catabolism
+23240	Cluster related to 2-thiouridine modification of tRNAs
+23241	Nucleoside ABC transporter cluster
+23242	Mupirocin resistance
+23243	Experimental Subsystems
+23244	CRISPR proteins
+23245	The Chv two-component regulatory system
+23246	dTDP-rhamnose synthesis -- gjo
+23247	Urea cycle
+23248	Twin-arginine translocation system related cluster
+23249	Branched-chain amino acids and alpha-keto acids utilization as energy sources
+23250	Degradation of branched-chain amino acids and alpha-keto acids [Leu, Val]
+23251	Sugar acids
+23252	D-threonate, L-threonate and D-erythronate utilization
+23253	Hydrocarbons
+23254	Protein-O-mannosyltransferase and 16S rRNA (cytidine(1402)-2'-O)-methyltransferase cluster
+23255	rRNA modification related cluster including tlyA
+23256	Copper uptake system CopCD
+23257	Beta-lactamases Ambler class A
+23258	AttEFGH ABC Transport System
+23259	HipAB system implicated in growth arrest, persistence and drug tolerance
+23260	Hexose phosphate transport system
+23261	Beta-lactamases Ambler class B
+23262	Sporulation proteins SigEG cluster
+23263	Mycobacterial lipid and multidrug efflux system proteins MmpL, MmpS
+23264	Sporulation proteins SpoVA cluster
+23265	S-methylmethionine
+23266	Macrolides, lincosamides, streptogramins, ketolides, oxazolidinones (MLSKO) resistance: enzymatic degradation
+23267	Macrolides, lincosamides, streptogramins, ketolides, oxazolidinones (MLSKO) resistance: efflux systems
+23268	Sporulation proteins SpoIIIAA-SpoIIIAH
+23269	Spore germinant receptors
+23270	Antibiotic anticapsin - bacilysin
+23271	Citrate uptake cluster
+23272	Macrolides, lincosamides, streptogramins, ketolides, oxazolidinones (MLSKO) resistance: rRNA methylases
+23273	Coat proteins CotJABC
+23274	Alginate biosynthesis
+23275	Conjugative transfer
+23276	"Mycobacterial multidrug efflux systems implicated in AMR "
+23277	PPE multigene family in Mycobacterium tuberculosis complex (MTBC)
+23278	Outer membrane porins in Mycobacteria
+23279	Cell invasion-related virulence operon MCE
+23280	Isoniazid inductible proteins cluster
+23281	Phosphatidylinositol mannosides biosynthesis related cluster
+23282	Inositol-containing phospholipids
+23283	Cluster related to PAS - para-aminosalicylic acid resistance
+23284	Mycobacterial signal transduction system MprAB required for persistent infections
+23285	Coenzyme F420
+23286	Actinobacterial signal transduction system MtrAB-LpqB
+23287	Sulfurtransferase and Ssec cluster
+23288	Possible stress related actinobacterial cluster
+23289	Possible new toxin-antitoxin system including DivIC
+23290	Cholesterol catabolism
+23291	Mycofactocin
+23292	Mycofactocin system cluster
+23293	Mycobacterial lipoproteins (LPR group)
+23294	Mycobacterial heme acquisition system
+23295	Resistance to Ethambutol
+23296	Dioxygenolytic carbon monoxide-forming enzymes
+23297	Activation of fatty acids as acyl-adenylates cluster subgroup FadD10
+23298	Encapsulation of DyP-type peroxidase or ferritin-like protein oligomers
+23299	Siderophore Mycobactin
+23300	Glutamate fermentation
+23301	Butyrate kinase pathway
+23302	Hyaluronic Acid-containing Cell Walls
+23303	L-fucose dissimilation cluster
+23304	Macrolides, lincosamides, streptogramins, ketolides, oxazolidinones (MLSKO) resistance: ribosomal protection
+23305	2-ketoacid oxidoreductases disambiguation
+23306	Bacteriocin resistance related cluster
+23307	Oligopeptide degradation cluster
+23308	Taurine and alkanesulfonate utilization as sulfur sources
+23309	tRNA thiolation
+23310	Sox thiosulfate oxidation system
+23311	Polymyxin resistance, lipid A modifications with 4-amino-4-deoxy-L-arabinose
+23312	Glutathione ABC transporter
+23313	Small efflux transporters of SMR family
+23314	Rcn nickel and cobalt homeostasis system
+23315	Oxygen-sensing diguanylate cyclase and phosphodiesterase couple for c-di-GMP control
+23316	Enterobacterial common antigen (LPS O-antigen)
+23317	Pyruvate formate-lyase cluster with possible role in choline utilization
+23318	Sulphoglycolysis
+23319	Outer membrane proteases (Omptins)
+23320	Carnitine operon
+23321	Gram-negative cluster
+23322	D-allose utilzation
+23323	Rcs two-component regulator of capsule synthesis
+23324	L-rhamnonate utilization cluster
+23325	ZraPRS-based zinc resistance
+23326	AaeAB efflux system for hydroxylated, aromatic carboxylic acids
+23327	L-galactonate utilization
+23328	Fructoselysine and glucoselysine
+23329	Rut pathway of pyrimidine degradation
+23330	Colanic acid synthesis
+23331	Sphingolipids
+23332	Bacterial Sphingolipids
+23333	Ribosome SSU, eukaryotic and archaeal
+23335	RNA polymerase, archaeal initiation factors
+23337	L-2-amino-adipate to lysine module
+23338	Lysine Biosynthesis via alpha-aminoadipate AAA
+23339	LysX and ArgX disambiguation
+23340	Riboflavin, FMN and FAD biosynthesis in Archaea
+23341	Box C-D RNA-guided RNA methyltransferase
+23342	Sulfur transport related cluster
+23343	Polymyxin resistance, lipid A modifications with phosphoethanolamine
+23344	Methylhydantoinase
+23345	ESAT-6 proteins secretion system in Mycobacteria (locus ESX-4)
+23346	Citrate lyase
+23347	Resistance to Vancomycin and Teicoplanin
+23348	Vancomycin resistance, D-Ala-D-Ala dipeptidases and carboxypeptidases
+23349	Vancomycin resistance, D-Ala-D-Ser, D-Ala-Lac ligases
+23350	4-hydroxybenzoyl-CoA reductase
+23351	Transcriptional regulator AfsR
+23352	alpha-glucoside ABC transporter
+23353	Sigma54-dependent transcription related gene cluster
+23354	Utilization systems for glycans and polysaccharides (PULs, SUS)
+23355	Transposable elements
+23356	Acetyl-CoA Pathway Wood-Ljungdahl
+23357	DNA sulfur modification
+23358	DNA phosphorothioation-dependent restriction system DptFGH
+23359	DNA sulfur modification cluster
+23360	Electron-bifurcating caffeyl-CoA reductase-Etf complex
+23361	Pterin synthesis related cluster
+23362	Sulfur metabolism related cluster
+23363	NAD-reducing [NiFe] hydrogenase HoxFUYH(E)
+23364	Tripartite multidrug efflux systems (of RND type) CmeABC and CmeDEF
+23365	2,3-diacetamido-2,3-dideoxy-d-mannuronic acid
+23366	Biosynthesis of 4,4'-diapolycopene dialdehyde
+23367	Thiazole.oxazole-modified microcins
+23368	Lysine fermentation to crotonoyl-CoA
+23369	Polysulfide reductase EC 1.12.98.4 and Thiosulfate reductase
+23370	Gentisate pathway
+23371	Lipopolysaccharide in K12
+23372	Nicotinic acid utilization
+23373	Sulfhydrogenase
+23374	Tripartite efflux system (of RND type) associated with Geranylgeranyl-PP synthase
+23375	Biosynthesis of thiamin antivitamin Bacimethrin
+23376	D-altritol utilization
+23377	Stress response and cell wall lysis cluster
+23378	Sox sulfur oxidation genes
+23379	PrlS-PrlR Two-Component Regulatory System of Brucella
+23380	Oxaloacetate decarboxylase Na-pump
+23381	Pore-forming cytolytic toxins
+23382	Siderophore brucebactin
+23383	D-arabinitol utilization
+23384	Lambdoid phage
+23385	Entericidin
+23386	dTDP-3-acetamido-3,6-dideoxy-alpha-D-galactose synthesis
+23387	Shiga toxin (Stx)
+23388	Iron transport system including ABC transporter
+23389	P2-like phage
+23390	Membrane bound hydrogenase Mbh -- gjo
+23391	Sodium-transporting ATPase
+23392	Resistance to Capreomycin and Viomycin
+23393	Quinolone (Fluoroquinolone) resistance via Pentapeptide repeat proteins
+23394	Translation elongation factors, eukaryotic and archaeal
+23395	Ribosome biogenesis, archaeal
+23397	D-xylose utilization
+23398	Na-driven 2-hydroxyglutarate pathway
+23399	Sucrose to levan conversions
+23400	Phosphonate (phosphite) dehydrogenase
+23401	L-Amino acid oxidases: lysine-epsilon oxidase LodA
+23402	Indoleacetamide metabolism
+23403	Fatty acid degradation
+23404	Potential DNA repair cluster
+23405	Mechanisms of PAS resistance
+23406	Transcriptional regulators implicated in bedaquiline tolerance
+23407	ESAT-6 proteins secretion system in Mycobacteria (locus ESX-3)
+23408	Forespore to mother cell channel
+23409	Vancomycin resistance, VanT serine racemases
+23410	Cell wall-associated cluster in Mycobacterium
+23411	PE multigene family in Mycobacterium tuberculosis complex (MTBC)
+23412	ESAT-6 proteins secretion system in Mycobacteria (locus ESX-2)
+23413	Thiocyanate hydrolase
+23414	Protein glycosylation in Prokaryotes
+23415	N,N'-diacetylbacillosamine
+23416	Mu-like phage
+23417	Photosystem I
+23418	Carotenogenesis related cluster
+23419	DevBCA efflux pump transporter (of ABC type) cyanobacterial
+23420	Mycosporine synthesis cluster
+23421	Plastidial (cyanobacterial) electron transport system
+23422	Respiratory complex I in plants (plastidial) and cyanobacteria
+23423	Tocopherols and tocotrienols (vitamin E) in plants and cyanobacteria
+23424	Possible heterocyst differentiation related cluster
+23425	Alkane biosynthesis in bacteria
+23426	Cytochrome b6-f complex in plants (plastidial) and cyanobacteria
+23427	Mannosylglucosylglycerate synthesis
+23428	Sigma54-dependent transcription related gene cluster 2
+23429	Carboxysome
+23430	Bacillus cannibalism system
+23431	Bacillus subtilis yydFGHIJ operon
+23432	Phr peptides - Rap phosphatases signaling
+23433	Methylglyoxal resistance in Bacillus subtilis
+23434	Teichuronic acid biosynthesis
+23435	Ribonuclease P, archaeal and eukaryal
+23436	Sulfoquinovose biosynthesis cluster
+23437	D-galacturonate utilization, oxidative pathway
+23438	M. tuberculosis complex-specific locus aprABC, adaptation to phagosome
+23439	Agrobacterium opine transport
+23440	Toluene 4-monooxygenase (T4MO)
+23441	Particulate methane monooxygenase (pMMO)
+23442	Chlorophyll a synthase and phytol kinase cluster
+23443	Photosystem I-type photosynthetic reaction center
+23445	Methanogenesis
+23446	Methanogenesis from methylated compounds
+23449	CMP-pseudaminic acid synthesis
+23450	Plasmid related functions
+23451	RSF1010 like IncQ broad-host-range plasmids
+23452	Anaerobic respiratory complex QmoABC
+23453	3-amino-5-hydroxybenzoic Acid Synthesis
+23454	Energy-conserving hydrogenase (ferredoxin)
+23456	Tmc complex
+23457	Fe(III) respiration - Shewanella type
+23458	Pertussis toxin
+23459	Phosphonoalanine utilization
+23460	Siderophore Yersiniabactin Biosynthesis
+23461	Zwittermicin A resistance
+23462	An Arabinose Sensor
+23463	Transcription factors, cyanobacterial RpoD-like sigma factors
+23464	Violacein biosynthesis
+23466	Fatty acid metabolism cluster
+23467	Siderophore [Alcaligin-like]
+23469	Diphtheria toxin
+23470	Lasso peptide maturation cluster
+23471	Coenzyme F420 hydrogenase
+23472	Pyrrolysine
+23473	tRNA aminoacylation, Pyr
+23474	5-nitroimidazole antibiotic resistance
+23475	Pentalenolactone Biosynthesis and Resistance
+23479	NADP-reducing [FeFe]-hydrogenase
+23480	Respiratory Systems - Shewanella (updated)
+23481	Heterocyst development
+23482	Heterocyst formation in cyanobacteria
+23483	Benzoyl-CoA pathway of anaerobic aromatic metabolism
+23485	Nicotinate catabolism, anaerobic
+23486	Quorum sensing regulation in Pseudomonas
+23487	Social motility and nonflagellar swimming in bacteria
+23488	Rhamnolipids in Pseudomonas
+23489	Type III secretion system
+23490	Predicted secretion system W clustering with cell division proteins
+23491	Membrane bound hydrogenase Mbh
+23492	Phosphoethanolamine transferases
+23493	Reductive Dechlorination
+23494	Agrocinopine utilization
+23495	Metabolism of polyketides
+23496	Nonribosomal peptide synthetases (NRPS) in Frankia sp. Ccl3
+23497	Chlorosome
+23498	Desulfovibrio high-molecular-weight cytochrome cluster
+23499	Iron Scavenging cluster in Thermus
+23500	Bacteriocins in Lactobacilli
+23501	DNA repair and recombination, eukaryotic
+23506	Methylenomycin synthesis
+23507	Magnetotaxis
+23508	Magnetosome
+23509	Eucaryal transcription elongation complex
+23510	Dimethylsulfide dehydrogenase
+23511	Perchlorate reduction
+23512	Anaerobic toluene and ethylbenzene degradation
