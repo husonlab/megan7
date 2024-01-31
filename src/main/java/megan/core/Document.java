@@ -50,7 +50,10 @@ import megan.viewer.SyncDataTableAndTaxonomy;
 import megan.viewer.TaxonomyData;
 
 import java.awt.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.util.List;
 import java.util.*;
 
@@ -815,14 +818,11 @@ public class Document {
 	 * load the version of some file. Assumes the file ends on .info
 	 */
 	static public void loadVersionInfo(String name, String fileName) {
-		try {
-			fileName = FileUtils.replaceFileSuffix(fileName, ".info");
-			InputStream ins = ResourceManager.getFileAsStream(fileName);
-			BufferedReader r = new BufferedReader(new InputStreamReader(ins));
-			StringBuilder buf = new StringBuilder();
-			String aLine;
-			while ((aLine = r.readLine()) != null)
-				buf.append(aLine).append("\n");
+		fileName = FileUtils.replaceFileSuffix(fileName, ".info");
+		try (var r = new BufferedReader(new InputStreamReader(ResourceManager.getFileAsStream(fileName)))) {
+			var buf = new StringBuilder();
+			while (r.ready())
+				buf.append(r.readLine()).append("\n");
 			r.close();
 			name2versionInfo.put(name, buf.toString());
 		} catch (Exception ex) {

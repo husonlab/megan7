@@ -21,6 +21,7 @@ package megan.main;
 
 import javafx.embed.swing.JFXPanel;
 import jloda.fx.util.ResourceManagerFX;
+import jloda.phylo.NewickIO;
 import jloda.swing.commands.CommandManager;
 import jloda.swing.graphview.GraphView;
 import jloda.swing.graphview.NodeView;
@@ -63,9 +64,10 @@ public class Megan7 {
         PeakMemoryUsageMonitor.start();
 
         try {
-
-            {
-                ResourceManager.insertResourceRoot(megan.resources.Resources.class);
+            NewickIO.NUMBERS_ON_INTERNAL_NODES_ARE_CONFIDENCE_VALUES = false;
+            ResourceManager.insertResourceRoot(jloda.resources.Resources.class);
+            ResourceManager.insertResourceRoot(megan.resources.Resources.class);
+            ResourceManagerFX.addResourceRoot(Megan7.class, "megan.resources");
 
                 // need to read properties so that registration can add external files directory
                 if (ProgramProperties.isMacOS())
@@ -74,7 +76,6 @@ public class Megan7 {
                     MeganProperties.initializeProperties(System.getProperty("user.home") + File.separator + ".Megan.def");
 
                 ClassificationRegistration.register(true);
-            }
 
             ensureInitFXInSwingProgram();
             NotificationsInSwing.setTitle("MEGAN7");
@@ -117,17 +118,16 @@ public class Megan7 {
 
         GraphView.defaultNodeView.setShape(NodeView.OVAL_NODE);
 
-        ResourceManager.insertResourceRoot(megan.resources.Resources.class);
-        ResourceManagerFX.addResourceRoot(Megan7.class, "megan.resources");
         CommandManager.getGlobalCommands().addAll(ClassificationCommandHelper.getGlobalCommands());
         CommandManager.getGlobalCommands().addAll(ChartCommandHelper.getChartDrawerCommands());
 
         ProgramProperties.setProgramName(Version.NAME);
         ProgramProperties.setProgramVersion(Version.SHORT_DESCRIPTION);
 
-        ProgramProperties.setProgramLicence("Copyright (C) 2024 Daniel H. Huson. This program comes with ABSOLUTELY NO WARRANTY.\n" +
-                                            "This is free software, licensed under the terms of the GNU General Public License, Version 3.\n" +
-                                            "Sources available at: https://github.com/husonlab/megan-ce");
+        ProgramProperties.setProgramLicence("""
+                Copyright (C) 2024 Daniel H. Huson. This program comes with ABSOLUTELY NO WARRANTY.
+                This is free software, licensed under the terms of the GNU General Public License, Version 3.
+                Sources available at: https://github.com/husonlab/megan-ce""");
 
         ProgramProperties.setUseGUI(true);
 

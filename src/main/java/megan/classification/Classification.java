@@ -59,7 +59,6 @@ public class Classification {
 		if (cName.equals(Taxonomy)) {
 			TaxonomyData.setTaxonomyClassification(this);
 		}
-
 	}
 
 	/**

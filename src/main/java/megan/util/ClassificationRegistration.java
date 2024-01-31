@@ -63,7 +63,7 @@ public class ClassificationRegistration {
 						mapFiles.add(mapFile.getName());
 						existingFiles.add(fileLocation);
 						if (verbose)
-							System.err.println("Loading additional classification " + classificationName + " from: " + treeFile + " and " + mapFile);
+							System.err.println("Found additional classification " + classificationName + " from: " + treeFile + " and " + mapFile);
 					}
 				}
 				if (existingFiles.size() < classificationFiles.length) {
