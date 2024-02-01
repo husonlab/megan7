@@ -372,7 +372,6 @@ public class ExportAlignedReads2GFF3Format {
 	public static String getShortName(String cName) {
 		return switch (cName.toLowerCase()) {
 			case "taxonomy" -> "tax";
-			case "interpro2go" -> "ipr";
 			case "eggnog" -> "cog";
 			default -> cName.toLowerCase();
 		};

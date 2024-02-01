@@ -2,7 +2,7 @@
 -3	Low complexity
 -2	Not assigned
 -1	No hits
-1	SEED-2022
+1	SEED
 2	Carbohydrates
 13	Photosynthesis
 107	Sulfur Metabolism
@@ -959,3 +959,20 @@
 23510	Dimethylsulfide dehydrogenase
 23511	Perchlorate reduction
 23512	Anaerobic toluene and ethylbenzene degradation
+23513	AMP to 3-phosphoglycerate
+23514	Prefoldin
+23515	Ribosome LSU, eukaryotic and archaeal
+23516	RNA polymerase, archaeal
+23517	Translation initiation factors, eukaryotic and archaeal
+23518	Methanofuran biosynthesis
+23519	Coenzyme B
+23520	Coenzyme B synthesis
+23521	Archaeal membrane bound hydrogenases
+23522	Energy conserving hydrogenase b, Methanococcales-Methanobacteriales-Methanopyrales
+23523	Mebrane bound hydrogenases
+23524	Coenzyme F420-H2 dehydrogenase (methanophenazine)
+23525	Methanophenazine hydrogenase
+23526	Ubiquitin-like archaeal modifier proteins (SAMPs)
+23527	H2:CoM-S-S-HTP oxidoreductase
+23528	D-arabinose utilization
+23529	Energy conserving hydrogenase, Methanococcales-Methanobacteriales-Methanopyrales

@@ -529,8 +529,8 @@ public class Director implements IDirectableViewer, IDirector {
 			progressDialog.setDebug(Basic.getDebugMode());
 			doc.setProgressListener(progressDialog);
 			try {
-				if (taxonomyFileName != null && taxonomyFileName.length() > 0) {
-					if (ResourceManager.fileExists(taxonomyFileName))
+				if (taxonomyFileName != null && !taxonomyFileName.isEmpty()) {
+					if (ResourceManager.fileExists(taxonomyFileName) || ResourceManager.fileExists(taxonomyFileName + ".gz"))
 						commandManager.execute("load taxonomyFile='" + taxonomyFileName + "';");
 					else
 						throw new IOException("Can't read taxonomy file: <" + taxonomyFileName + ">");
@@ -539,7 +539,7 @@ public class Director implements IDirectableViewer, IDirector {
 					StringBuilder buf = new StringBuilder();
 					for (String fileName : meganFiles) {
 						fileName = fileName.trim();
-						if (fileName.length() > 0) {
+						if (!fileName.isEmpty()) {
 							File file = new File(fileName);
 
 							if (file.canRead()) {
@@ -549,7 +549,7 @@ public class Director implements IDirectableViewer, IDirector {
 							}
 						}
 					}
-					if (buf.toString().length() > 0)
+					if (!buf.toString().isEmpty())
 						commandManager.execute(buf.toString());
 				}
 				getMainViewer().setDoReInduce(true);

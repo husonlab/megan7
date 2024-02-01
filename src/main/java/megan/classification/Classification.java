@@ -133,8 +133,6 @@ public class Classification {
 	public static String createShortTag(String cName) {
 		if (cName.equalsIgnoreCase(Taxonomy))
 			return "tax|";
-		else if (cName.equalsIgnoreCase("interpro2go"))
-			return "IPR|";
 		else if (cName.equalsIgnoreCase("eggnog"))
 			return "cog|";
 		else

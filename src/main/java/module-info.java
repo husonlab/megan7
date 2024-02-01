@@ -74,8 +74,6 @@ module megan {
 	exports megan.data;
 	exports megan.data.merge;
 
-	exports megan.dialogs.attributes;
-	exports megan.dialogs.attributes.commands;
 	exports megan.dialogs.compare;
 	exports megan.dialogs.compare.commands;
 	exports megan.dialogs.export;

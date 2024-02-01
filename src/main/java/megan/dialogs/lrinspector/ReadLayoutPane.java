@@ -730,7 +730,7 @@ public class ReadLayoutPane extends Pane {
 	 */
 	private String getClassName(int classificationId, int classId) {
 		String name = ClassificationManager.get(cNames[classificationId], true).getName2IdMap().get(classId);
-		return (name != null ? name : String.format("%s: %d", (cNames[classificationId].equals("INTERPRO2GO") ? "IPR" : cNames[classificationId]), classId));
+		return (name != null ? name : String.format("%s: %d", cNames[classificationId], classId));
 	}
 
 	/**

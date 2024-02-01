@@ -24,9 +24,7 @@ import jloda.swing.util.PopupMenu;
 import jloda.swing.util.ResourceManager;
 import jloda.util.StringUtils;
 import jloda.util.parse.NexusStreamParser;
-import megan.chart.AttributesChart;
 import megan.chart.FViewerChart;
-import megan.chart.MetadataChart;
 import megan.chart.TaxaChart;
 import megan.chart.data.ChartCommandHelper;
 import megan.chart.drawers.BarChartDrawer;
@@ -72,28 +70,6 @@ public class ShowChartCommand extends CommandBase implements ICommand {
 				getDir().addViewer(chartViewer);
 				if (drawerType.equals(BarChartDrawer.NAME) && getDir().getDocument().getNumberOfSamples() > 1)
 					chartViewer.setTranspose(true);
-				chartViewer.chooseDrawer(drawerType);
-			} else {
-				chartViewer.sync();
-				chartViewer.chooseDrawer(drawerType);
-				chartViewer.updateView(Director.ALL);
-			}
-		} else if (data.equalsIgnoreCase("attributes")) {
-			chartViewer = (AttributesChart) dir.getViewerByClass(AttributesChart.class);
-			if (chartViewer == null) {
-				chartViewer = new AttributesChart(dir);
-				getDir().addViewer(chartViewer);
-				chartViewer.chooseDrawer(drawerType);
-			} else {
-				chartViewer.sync();
-				chartViewer.chooseDrawer(drawerType);
-				chartViewer.updateView(Director.ALL);
-			}
-		} else if (data.equalsIgnoreCase("metadata")) {
-			chartViewer = (MetadataChart) dir.getViewerByClass(AttributesChart.class);
-			if (chartViewer == null) {
-				chartViewer = new MetadataChart(dir, dir.getMainViewer());
-				getDir().addViewer(chartViewer);
 				chartViewer.chooseDrawer(drawerType);
 			} else {
 				chartViewer.sync();

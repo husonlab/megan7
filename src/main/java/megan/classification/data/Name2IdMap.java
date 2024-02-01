@@ -147,6 +147,10 @@ public class Name2IdMap implements IName2IdMap {
 	 * load from file
 	 */
 	public void loadFromFile(String fileName) throws IOException {
+		if (!ResourceManager.fileExists(fileName) && !fileName.endsWith(".gz")) {
+			fileName += ".gz"; // resource file might be gzipped to fit in GitHub
+		}
+
 		System.err.print("Loading " + FileUtils.getFileNameWithoutPath(fileName) + ": ");
 		try (BufferedReader r = new BufferedReader(new InputStreamReader(ResourceManager.getFileAsStream(fileName)))) {
 			String aLine;

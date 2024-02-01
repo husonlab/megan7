@@ -80,6 +80,10 @@ public class ClassificationFullTree extends PhyloTree {
 	public void loadFromFile(String fileName) throws IOException {
 		clear();
 
+		if (!ResourceManager.fileExists(fileName) && !fileName.endsWith(".gz")) {
+			fileName += ".gz"; // resource file might be gzipped to fit in GitHub
+		}
+
 		System.err.print("Loading " + FileUtils.getFileNameWithoutPath(fileName) + ": ");
 		try (var r = new BufferedReader(new InputStreamReader(ResourceManager.getFileAsStream(fileName)))) {
 			newickIO.read(this, r);

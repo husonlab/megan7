@@ -189,8 +189,6 @@ public class CSVExporter {
 			count = ExportFunctionalClassIds2TaxonIds.export("SEED", format, dir, file, separator, progressListener);
 		} else if (format.startsWith("eggnogName_to_taxon") || format.startsWith("eggnogId_to_taxon")) {
 			count = ExportFunctionalClassIds2TaxonIds.export("EGGNOG", format, dir, file, separator, progressListener);
-		} else if (format.startsWith("interpro2goName_to_taxon") || format.startsWith("interpro2Id_to_taxon")) {
-			count = ExportFunctionalClassIds2TaxonIds.export("INTERPRO2GO", format, dir, file, separator, progressListener);
 		} else if (format.startsWith("listTaxon")) {
 			count = CSVExportCViewer.exportNames(format, dir.getMainViewer(), file, progressListener);
 		} else {

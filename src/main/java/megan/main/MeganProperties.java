@@ -44,7 +44,6 @@ public class MeganProperties {
 
 	public static final String CONTAMINANT_FILE = "ContaminantFile";
 
-	public static final String MICROBIALATTRIBUTESFILE = "MicrobialAttributesFiles";
 	private static final String MAPPINGFILE = "MappingFile";
 
 	public static final String PARSE_TAXON_NAMES = "UseParseTextTaxonomy";
@@ -87,7 +86,6 @@ public class MeganProperties {
 
 	public static final String DEFAULT_TAXONOMYFILE = "ncbi.tre";
 	private static final String DEFAULT_MAPPINGFILE = "ncbi.map";
-	private static final String DEFAULT_MICROBIALATTRIBUTESFILE = "microbialattributes.map";
 
 	public static final String TAXONOMIC_CLASSIFICATIONS = "AdditionalTaxonomyViewers";
 
@@ -109,7 +107,6 @@ public class MeganProperties {
 
 		ProgramProperties.put(TAXONOMYFILE, DEFAULT_TAXONOMYFILE);
 		ProgramProperties.put(MAPPINGFILE, DEFAULT_MAPPINGFILE);
-		ProgramProperties.put(MICROBIALATTRIBUTESFILE, DEFAULT_MICROBIALATTRIBUTESFILE);
 
 		ProgramProperties.put(BLASTFILE, "");
 		ProgramProperties.put(BLASTOUTFILE, "");
@@ -133,7 +130,6 @@ public class MeganProperties {
 			// make sure we find the initialization files:
 			ProgramProperties.put(TAXONOMYFILE, DEFAULT_TAXONOMYFILE);
 			ProgramProperties.put(MAPPINGFILE, DEFAULT_MAPPINGFILE);
-			ProgramProperties.put(MICROBIALATTRIBUTESFILE, DEFAULT_MICROBIALATTRIBUTESFILE);
 		}
 
 		ProgramProperties.put(MeganProperties.DEFAULT_PROPERTIES, "");
