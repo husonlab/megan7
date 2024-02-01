@@ -75,7 +75,7 @@ public class GUIConfiguration {
 										"Inspector Window...;Show Alignment...;|;Main Viewer...;" + ClassificationCommandHelper.getOpenViewerMenuString() + "|;Samples Viewer...;Groups Viewer...;" +
 										"|;Chart...;|;Chart Microbial Attributes...;|;Cluster Analysis...;|;Rarefaction Analysis...;|;");
 
-		menuConfig.defineMenu("Help", "About...;How to Cite...;|;Community Website...;Reference Manual...;|;Check For Updates...;");
+		menuConfig.defineMenu("Help", "About...;How to Cite...;|;Community Website...;|;Check For Updates...;");
 
 		return menuConfig;
 	}

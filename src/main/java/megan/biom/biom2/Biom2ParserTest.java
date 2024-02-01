@@ -26,6 +26,7 @@ import ch.systemsx.cisd.hdf5.IHDF5Reader;
 import jloda.seq.BlastMode;
 import jloda.util.CollectionUtils;
 import jloda.util.FileUtils;
+import jloda.util.ProgramProperties;
 import jloda.util.StringUtils;
 import megan.biom.biom1.QIIMETaxonParser;
 import megan.classification.Classification;
@@ -49,7 +50,7 @@ public class Biom2ParserTest {
 		Writer dumpWriter = new BufferedWriter(new FileWriter(FileUtils.replaceFileSuffix(inputFile, (preservePaths ? "+p" : "-p") + "-dmp.txt")));
 
 		final Document doc = new Document();
-		doc.getDataTable().setCreator("MEGAN6 Biom2 import");
+		doc.getDataTable().setCreator(ProgramProperties.getProgramName() + " Biom2 import");
 		doc.getDataTable().setCreationDate((new Date()).toString());
 
 		System.err.println("Reading file: " + inputFile);

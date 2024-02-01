@@ -24,7 +24,6 @@ module megan {
 	exports megan.alignment.commands;
 	exports megan.alignment.gui;
 	exports megan.alignment.gui.colors;
-	exports megan.fx.dialogs.decontam;
 	exports megan.assembly;
 	exports megan.assembly.alignment;
 	exports megan.assembly.commands;
@@ -136,7 +135,6 @@ module megan {
 
 	opens megan.biom.biom1;
 	opens megan.biom.biom2;
-	opens megan.fx.dialogs.decontam;
 
 	opens megan.dialogs.lrinspector;
 	opens megan.dialogs.reads;

@@ -31,10 +31,8 @@ import java.util.*;
  * Daniel Huson, 6.2010
  */
 public class DataTable {
-	public static final String MEGAN6_SUMMARY_TAG_NOT_USED_ANYMORE = "@MEGAN6"; // some early versions of MEGAN6 use this, but later versions do not
 	public static final String MEGAN4_SUMMARY_TAG = "@MEGAN4";
 	// new type of file:
-	private static final String MEGAN6SummaryFormat_NotUsedAnyMore = "Summary6";
 	private static final String MEGAN4SummaryFormat = "Summary4";
 	private static final String MEGAN3SummaryFormat = "Summary";
 
@@ -147,7 +145,7 @@ public class DataTable {
 					continue;
 				final String[] tokens = aLine.split("\t");
 
-				if (lineNumber == 1 && (aLine.equals(MEGAN6_SUMMARY_TAG_NOT_USED_ANYMORE) || aLine.equals(MEGAN4_SUMMARY_TAG) || aLine.equals("!MEGAN4")))
+				if (lineNumber == 1 && (aLine.equals(MEGAN4_SUMMARY_TAG) || aLine.equals("!MEGAN4")))
 					continue;
 
 				if (aLine.equals("BEGIN_METADATA_TABLE") || aLine.equals("END_OF_DATA_TABLE")) // everything below this token is sample attribute
@@ -160,7 +158,7 @@ public class DataTable {
 							for (var i = 1; i < tokens.length; i++)
 								buf.append(" ").append(tokens[i]);
 							contentType = buf.toString().trim();
-							if (!contentType.startsWith(MEGAN6SummaryFormat_NotUsedAnyMore) && !contentType.startsWith(MEGAN4SummaryFormat))
+							if (!contentType.startsWith(MEGAN4SummaryFormat))
 								throw new IOException("Wrong content type: " + contentType + ", expected: " + MEGAN4SummaryFormat);
 						}
 						case CREATOR -> {

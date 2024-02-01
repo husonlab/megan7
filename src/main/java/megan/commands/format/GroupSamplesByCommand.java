@@ -83,7 +83,7 @@ public class GroupSamplesByCommand extends CommandBase implements ICommand {
 
 				ChoiceDialog<String> dialog = new ChoiceDialog<>(defaultChoice, attributes);
 
-				dialog.setTitle("MEGAN6 " + getViewer().getClassName() + " choice");
+				dialog.setTitle(ProgramProperties.getProgramName() + " " + getViewer().getClassName() + " choice");
 				dialog.setHeaderText("Select attribute to group by");
 				dialog.setContentText("Choose attribute:");
 

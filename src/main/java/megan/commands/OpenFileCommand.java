@@ -254,7 +254,7 @@ public class OpenFileCommand extends CommandBase implements ICommand {
 	 * @return description
 	 */
 	public String getDescription() {
-		return "Open a MEGAN file (ending on .rma, .meg or .megan)";
+		return "Open a meganized-DAA file (suffix .daa) or MEGAN file (suffix .rma6 or .megan)";
 	}
 
 	/**

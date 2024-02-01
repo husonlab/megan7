@@ -40,7 +40,7 @@ class GUIConfiguration {
 
 		menuConfig.defineMenu("Edit", "Cut;Copy;Paste;|;From Previous Alignment;");
 
-		menuConfig.defineMenu("Help", "About...;How to Cite...;|;Community Website...;Reference Manual...;|;Check For Updates...;");
+		menuConfig.defineMenu("Help", "About...;How to Cite...;|;Community Website...;|;Check For Updates...;");
 
 		return menuConfig;
 	}

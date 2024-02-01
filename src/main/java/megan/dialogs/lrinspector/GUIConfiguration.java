@@ -50,7 +50,7 @@ class GUIConfiguration {
 		menuConfig.defineMenu("Window", "Close All Other Windows...;|;Reset Window Location;Set Window Size...;|;Message Window...;|;" +
 										"Inspector Window...;|;Main Viewer...;" + ClassificationCommandHelper.getOpenViewerMenuString() + "|;Samples Viewer...;|");
 
-		menuConfig.defineMenu("Help", "About...;How to Cite...;|;Community Website...;Reference Manual...;|;Check For Updates...;");
+		menuConfig.defineMenu("Help", "About...;How to Cite...;|;Community Website...;|;Check For Updates...;");
 		return menuConfig;
 	}
 

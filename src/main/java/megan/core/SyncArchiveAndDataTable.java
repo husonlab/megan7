@@ -136,13 +136,13 @@ public class SyncArchiveAndDataTable {
 	static public void syncAux2Summary(String fileName, byte[] bytes, DataTable table) throws IOException {
 		if (bytes != null) {
 			var string = StringUtils.toString(bytes);
-			if (string.startsWith(DataTable.MEGAN6_SUMMARY_TAG_NOT_USED_ANYMORE) || string.startsWith(DataTable.MEGAN4_SUMMARY_TAG) || string.startsWith("!MEGAN4")) {
+			if (string.startsWith(DataTable.MEGAN4_SUMMARY_TAG) || string.startsWith("!MEGAN4")) {
 				try (var r = new BufferedReader(new StringReader(string))) {
 					table.read(r, true);
 				}
 			} else if (string.startsWith("!MEGAN")) // is MEGAN3 summary
 			{
-				System.err.println("Archive is in an old format, upgrading to MEGAN6");
+				System.err.println("Archive is in an old format, upgrading to MEGAN7");
 				try (var r = new BufferedReader(new StringReader(string))) {
 					table.importMEGAN3SummaryFile(fileName, r, false);
 				}

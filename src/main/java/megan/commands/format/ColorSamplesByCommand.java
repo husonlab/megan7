@@ -97,13 +97,13 @@ public class ColorSamplesByCommand extends CommandBase implements ICommand {
 					defaultChoice = attributes.get(0);
 
 				final ChoiceDialog<String> dialog = new ChoiceDialog<>(defaultChoice, attributes);
-				dialog.setTitle("MEGAN6 " + getViewer().getClassName() + " choice");
+				dialog.setTitle(jloda.util.ProgramProperties.getProgramName() + " " + getViewer().getClassName() + " choice");
 				dialog.setHeaderText("Select attribute to color by");
 				dialog.setContentText("Choose attribute:");
 
 				if (frame != null) {
-					dialog.setX(frame.getX() + (frame.getWidth() - 200) / 2);
-					dialog.setY(frame.getY() + (frame.getHeight() - 200) / 2);
+					dialog.setX(frame.getX() + (frame.getWidth() - 200) / 2.0);
+					dialog.setY(frame.getY() + (frame.getHeight() - 200) / 2.0);
 				}
 
 				final Optional<String> result = dialog.showAndWait();

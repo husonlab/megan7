@@ -100,7 +100,7 @@ public class MeganServer {
 
 		options.done();
 
-		if (endpoint.length() == 0)
+		if (endpoint.isEmpty())
 			throw new UsageException("--endpoint: must have positive length");
 
 		final UserManager userManager = new UserManager(usersFile);
