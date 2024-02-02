@@ -82,7 +82,7 @@ public class Biom2Importer {
 			else if (classification2class2sample2count.size() > 0)
 				sizes = computeSizes(numberOfSamples, classification2class2sample2count.values().iterator().next());
 			else {
-				throw new IOException("Unsupported data, please report on megan.informatik.uni-tuebingen.de");
+				throw new IOException("Unsupported data, please report on megan7megan.cs.uni-tuebingen.de");
 			}
 
 			final float totalReads;

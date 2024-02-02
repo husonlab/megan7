@@ -406,7 +406,7 @@ public class RemoteServiceBrowser extends JFrame implements IDirectableViewer, I
 	 * @return name of length <=18
 	 */
 	private String abbreviateName(String name) {
-		name = name.replace("http://", "").replace(":8080", "").replaceAll("/megan6server$", "");
+		name = name.replace("http://", "").replace(":8080", "").replaceAll("/megan7server$", "");
 		if (name.length() <= 18)
 			return name;
 		return "..." + name.substring(name.length() - 15);

@@ -1,19 +1,20 @@
 module megan {
-	requires transitive jloda_core;
-	requires transitive jloda_swing;
-	requires transitive jloda_fx;
+	requires jloda_core;
+	requires jloda_swing;
+	requires jloda_fx;
 
-	requires transitive javafx.swing;
-	requires transitive javafx.controls;
-	requires transitive javafx.fxml;
-	requires transitive com.install4j.runtime;
-	requires transitive java.sql;
-	requires transitive jdk.httpserver;
+	requires javafx.swing;
+	requires javafx.controls;
+	requires javafx.fxml;
 
-	requires transitive java.desktop;
-	requires transitive java.net.http;
-	requires transitive org.xerial.sqlitejdbc;
-	requires transitive java.sql.rowset;
+	requires com.install4j.runtime;
+	requires java.sql;
+	requires jdk.httpserver;
+
+	requires java.desktop;
+	requires java.net.http;
+	requires org.xerial.sqlitejdbc;
+	requires java.sql.rowset;
 	requires bcrypt;
 	requires com.google.gson;
 	requires sis.jhdf5;

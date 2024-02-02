@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
  */
 public class CompareFiles {
 	/**
-	 * ComputeComparison
+	 * compare files
 	 */
 	public static void main(String[] args) {
 		try {

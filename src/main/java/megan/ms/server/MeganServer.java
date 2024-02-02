@@ -77,7 +77,7 @@ public class MeganServer {
 		final String[] inputFileExtensions = options.getOption("-x", "extensions", "Input file extensions", new String[]{".daa", ".rma", ".rma6", ".megan", ".megan.gz"});
 
 		options.comment("Server");
-		final String endpoint = options.getOption("-e", "endpoint", "Endpoint name", "megan6server");
+		final String endpoint = options.getOption("-e", "endpoint", "Endpoint name", "megan7server");
 
 		final int port = options.getOption("-p", "port", "Server port", 8001);
 

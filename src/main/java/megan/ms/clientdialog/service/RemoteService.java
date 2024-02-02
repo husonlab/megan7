@@ -51,7 +51,7 @@ public class RemoteService implements IRemoteService {
 		if (serverURL.endsWith("/help"))
 			serverURL = serverURL.substring(0, serverURL.length() - 4); // remove help
 		if (!serverURL.contains(("/")))
-			serverURL += "/megan6server";
+			serverURL += "/megan7server";
 		this.serverURL = serverURL;
 
 		clientMS = new ClientMS(this.serverURL, null, 0, user, passwordHash, 600);
