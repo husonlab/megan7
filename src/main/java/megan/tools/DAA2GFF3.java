@@ -20,7 +20,6 @@
 package megan.tools;
 
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.progress.ProgressPercentage;
 import megan.core.Document;
@@ -28,6 +27,7 @@ import megan.daa.io.DAAParser;
 import megan.dialogs.export.ExportAlignedReads2GFF3Format;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,9 +41,8 @@ public class DAA2GFF3 {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("DAA2GFF3");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new DAA2GFF3()).run(args);

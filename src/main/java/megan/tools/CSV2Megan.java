@@ -20,8 +20,8 @@
 package megan.tools;
 
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
+import megan.main.Setup;
 
 import java.io.IOException;
 
@@ -35,9 +35,8 @@ public class CSV2Megan {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("CSV2Megan");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new CSV2Megan()).run(args);

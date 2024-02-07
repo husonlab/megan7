@@ -21,7 +21,6 @@ package megan.tools;
 
 import jloda.swing.commands.CommandManager;
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.progress.ProgressListener;
 import jloda.util.progress.ProgressPercentage;
@@ -36,6 +35,7 @@ import megan.data.IConnector;
 import megan.data.IReadBlockIterator;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -57,9 +57,8 @@ public class GCAssembler {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("GCAssembler");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new GCAssembler()).run(args);

@@ -21,7 +21,6 @@
 package megan.tools;
 
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.interval.Interval;
 import jloda.util.interval.IntervalTree;
@@ -33,6 +32,7 @@ import megan.io.IInputReader;
 import megan.io.InputReader;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 
 import java.io.*;
 import java.util.*;
@@ -50,9 +50,8 @@ public class AAdderRun {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("AAdderRun");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new AAdderRun()).run(args);

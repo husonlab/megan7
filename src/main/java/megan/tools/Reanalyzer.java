@@ -21,7 +21,6 @@ package megan.tools;
 
 import jloda.swing.util.ArgsOptions;
 import jloda.swing.util.ProgramProperties;
-import jloda.swing.util.ResourceManager;
 import jloda.util.Basic;
 import jloda.util.StringUtils;
 import megan.classification.Classification;
@@ -30,6 +29,7 @@ import megan.core.Director;
 import megan.core.Document;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 
 import java.io.IOException;
 
@@ -43,9 +43,8 @@ public class Reanalyzer {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("Reanalyzer");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			long start = System.currentTimeMillis();
 			(new Reanalyzer()).run(args);

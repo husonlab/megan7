@@ -20,15 +20,12 @@
 package megan.main;
 
 import javafx.embed.swing.JFXPanel;
-import jloda.fx.util.ResourceManagerFX;
-import jloda.phylo.NewickIO;
 import jloda.swing.commands.CommandManager;
 import jloda.swing.graphview.GraphView;
 import jloda.swing.graphview.NodeView;
 import jloda.swing.message.MessageWindow;
 import jloda.swing.util.ArgsOptions;
 import jloda.swing.util.ProgramProperties;
-import jloda.swing.util.ResourceManager;
 import jloda.swing.window.About;
 import jloda.swing.window.NotificationsInSwing;
 import jloda.util.Basic;
@@ -64,10 +61,7 @@ public class Megan7 {
         PeakMemoryUsageMonitor.start();
 
         try {
-            NewickIO.NUMBERS_ON_INTERNAL_NODES_ARE_CONFIDENCE_VALUES = false;
-            ResourceManager.insertResourceRoot(jloda.resources.Resources.class);
-            ResourceManager.insertResourceRoot(megan.resources.Resources.class);
-            ResourceManagerFX.addResourceRoot(Megan7.class, "megan.resources");
+            Setup.apply();
 
                 // need to read properties so that registration can add external files directory
                 if (ProgramProperties.isMacOS())

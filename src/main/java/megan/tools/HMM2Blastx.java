@@ -21,11 +21,11 @@ package megan.tools;
 
 import jloda.seq.FastAFileIterator;
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.progress.ProgressPercentage;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -43,9 +43,8 @@ public class HMM2Blastx {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("HMM2BlastX");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			long start = System.currentTimeMillis();
 			(new HMM2Blastx()).run(args);

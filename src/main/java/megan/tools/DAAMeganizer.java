@@ -22,7 +22,6 @@ package megan.tools;
 import jloda.fx.util.ProgramExecutorService;
 import jloda.swing.commands.CommandManager;
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.progress.ProgressPercentage;
 import megan.accessiondb.AccessAccessionMappingDatabase;
@@ -36,6 +35,7 @@ import megan.core.Document;
 import megan.daa.Meganize;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 import megan.util.DAAFileFilter;
 
 import java.io.IOException;
@@ -54,9 +54,8 @@ public class DAAMeganizer {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("Meganizer");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new DAAMeganizer()).run(args);

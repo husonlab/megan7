@@ -22,7 +22,6 @@ package megan.tools;
 import jloda.fx.util.ProgramExecutorService;
 import jloda.swing.commands.CommandManager;
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.progress.ProgressListener;
 import jloda.util.progress.ProgressPercentage;
@@ -39,6 +38,7 @@ import megan.core.SampleAttributeTable;
 import megan.daa.io.DAAParser;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 import megan.parsers.blast.BlastFileFormat;
 import megan.rma6.RMA6Connector;
 import megan.rma6.RMA6FromBlastCreator;
@@ -60,9 +60,8 @@ public class DAA2RMA6 {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("DAA2RMA");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new DAA2RMA6()).run(args);
