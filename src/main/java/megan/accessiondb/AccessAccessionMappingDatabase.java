@@ -21,6 +21,7 @@
 package megan.accessiondb;
 
 
+import jloda.swing.window.NotificationsInSwing;
 import jloda.util.Basic;
 import jloda.util.FileUtils;
 import jloda.util.StringUtils;
@@ -65,9 +66,18 @@ public class AccessAccessionMappingDatabase implements Closeable {
 
 		connection = config.createConnection("jdbc:sqlite:" + dbFile);
 
-		var result = executeQueryString("SELECT info_string FROM info WHERE id = 'general';", 1);
-		if (result.size() > 0 && !fileFilter.apply(result.get(0)))
-			throw new IOException("Mapping file " + FileUtils.getFileNameWithoutPath(dbFile) + " is intended for use with MEGAN Ultimate Edition, it is not compatible with MEGAN Community Edition");
+		{
+			var result = executeQueryString("SELECT info_string FROM info WHERE id = 'MEGAN';", 1);
+			if (result.isEmpty() || !result.get(0).toUpperCase().startsWith("MEGAN 7")) {
+				NotificationsInSwing.showWarning("This does not look like a mapping database intended for MEGAN 7");
+			}
+		}
+
+		{
+			var result = executeQueryString("SELECT info_string FROM info WHERE id = 'general';", 1);
+			if (!result.isEmpty() && !fileFilter.apply(result.get(0)))
+				throw new IOException("Mapping file " + FileUtils.getFileNameWithoutPath(dbFile) + " is intended for use with MEGAN Ultimate Edition, it is not compatible with MEGAN Community Edition");
+		}
 	}
 
 	/**

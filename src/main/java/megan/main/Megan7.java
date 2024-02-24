@@ -21,7 +21,6 @@ package megan.main;
 
 import javafx.embed.swing.JFXPanel;
 import jloda.fx.util.ResourceManagerFX;
-import jloda.phylo.NewickIO;
 import jloda.swing.commands.CommandManager;
 import jloda.swing.graphview.GraphView;
 import jloda.swing.graphview.NodeView;
@@ -64,7 +63,6 @@ public class Megan7 {
         PeakMemoryUsageMonitor.start();
 
         try {
-            NewickIO.NUMBERS_ON_INTERNAL_NODES_ARE_CONFIDENCE_VALUES = false;
             ResourceManager.insertResourceRoot(jloda.resources.Resources.class);
             ResourceManager.insertResourceRoot(megan.resources.Resources.class);
             ResourceManagerFX.addResourceRoot(Megan7.class, "megan.resources");
