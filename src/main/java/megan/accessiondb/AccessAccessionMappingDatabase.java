@@ -336,7 +336,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 	 * @return ArrayList containing all query results of the specified type
 	 * @throws SQLException if something went wrong with the database
 	 */
-	private ArrayList<Integer> executeQueryInt(String query, int index) throws SQLException {
+	public ArrayList<Integer> executeQueryInt(String query, int index) throws SQLException {
 		final ResultSet rs = connection.createStatement().executeQuery(query);
 		final ArrayList<Integer> resultlist = new ArrayList<>();
 		while (rs.next()) {
@@ -353,7 +353,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 	 * @return ArrayList containing all query results of the specified type
 	 * @throws SQLException if something went wrong with the database
 	 */
-	private ArrayList<String> executeQueryString(String query, int index) throws SQLException {
+	public ArrayList<String> executeQueryString(String query, int index) throws SQLException {
 		final ResultSet rs = connection.createStatement().executeQuery(query);
 		final ArrayList<String> result = new ArrayList<>();
 		while (rs.next()) {
