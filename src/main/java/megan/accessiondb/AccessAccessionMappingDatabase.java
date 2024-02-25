@@ -415,11 +415,14 @@ public class AccessAccessionMappingDatabase implements Closeable {
 	}
 
 	private boolean isCorrectVersion() throws SQLException {
-		var rs = connection.createStatement().executeQuery("SELECT info_string FROM info WHERE id='MEGAN'");
-		if (rs.next()) {
-			var version = rs.getString(1);
-			return version.toLowerCase().startsWith("version 7");
-		} else
-			return false;
+		try {
+			var rs = connection.createStatement().executeQuery("SELECT info_string FROM info WHERE id='MEGAN'");
+			if (rs.next()) {
+				var version = rs.getString(1);
+				return version.toLowerCase().startsWith("version 7");
+			}
+		} catch (Exception ignored) {
+		}
+		return false;
 	}
 }
