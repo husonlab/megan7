@@ -172,7 +172,7 @@ public class BLAST2RMA6 {
 			class2SynonymsFile.put(cName, options.getOption("-s2" + cName.toLowerCase(), "syn2" + cName.toLowerCase(), "Synonyms-to-" + cName + " mapping file", ""));
 			final String tags = options.getOption("-t4" + cName.toLowerCase(), "tags4" + cName.toLowerCase(), "Tags for " + cName + " id parsing (must set to activate id parsing)", "").trim();
 			ProgramProperties.preset(cName + "Tags", tags);
-			ProgramProperties.preset(cName + "ParseIds", tags.length() > 0);
+			ProgramProperties.preset(cName + "ParseIds", !tags.isEmpty());
 		}
 
 		ProgramProperties.preset(IdParser.PROPERTIES_FIRST_WORD_IS_ACCESSION, options.getOption("-fwa", "firstWordIsAccession", "First word in reference header is accession number (set to 'true' for NCBI-nr downloaded Sep 2016 or later)", true));
