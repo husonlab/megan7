@@ -89,7 +89,7 @@ public interface IConnector {
 	IReadBlockGetter getReadBlockGetter(float minScore, float maxExpected, boolean wantReadSequence, boolean wantMatches) throws IOException;
 
 	/**
-	 * get array of all classification names associated with this file or db
+	 * get array of all classification names associated with this file or DB
 	 *
 	 * @return classifications
 	 */

@@ -58,7 +58,7 @@ public class SetExtendedModeCommand extends CommandBase implements ICheckBoxComm
 
 
 	public String getDescription() {
-		return "Use extended accession mapping mode, attempting to mapping all accessions in reference headers.\nCan be used with MEGAN mapping db file and all other mapping options.";
+		return "Use extended accession mapping mode, attempting to mapping all accessions in reference headers.\nCan be used with MEGAN mapping mdb-file and all other mapping options.";
 	}
 
 

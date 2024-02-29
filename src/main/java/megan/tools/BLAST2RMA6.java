@@ -150,7 +150,7 @@ public class BLAST2RMA6 {
 
 		options.comment("Classification support:");
 
-		final String mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping db (file megan-map.db)", "");
+		final String mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping DB (file megan-map.mdb)", "");
 		final Set<String> selectedClassifications = new HashSet<>(Arrays.asList(options.getOption("-on", "only", "Use only named classifications (if not set: use all)", new String[0])));
 
 		options.comment("Deprecated classification support:");
@@ -161,7 +161,7 @@ public class BLAST2RMA6 {
 		{
 			final String tags = options.getOption("-t4t", "tags4taxonomy", "Tags for taxonomy id parsing (must set to activate id parsing)", "").trim();
 			ProgramProperties.preset("TaxonomyTags", tags);
-			ProgramProperties.preset("TaxonomyParseIds", tags.length() > 0);
+			ProgramProperties.preset("TaxonomyParseIds", !tags.isEmpty());
 		}
 
 		final HashMap<String, String> class2AccessionFile = new HashMap<>();

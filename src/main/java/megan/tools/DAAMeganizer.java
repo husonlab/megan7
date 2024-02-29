@@ -138,7 +138,7 @@ public class DAAMeganizer {
 
 		options.comment("Classification support:");
 
-		final var mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping db (file megan-map.db)", "");
+		final var mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping DB (file megan-map.mdb)", "");
 		final var dbSelectedClassifications = new HashSet<>(Arrays.asList(options.getOption("-on", "only", "Use only named classifications (if not set: use all)", new String[0])));
 
 		options.comment("Deprecated classification support:");
