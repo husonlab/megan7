@@ -416,7 +416,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 
 	private boolean isCorrectVersion() throws SQLException {
 		try {
-			var rs = connection.createStatement().executeQuery("SELECT info_string FROM info WHERE id='MEGAN'");
+			var rs = connection.createStatement().executeQuery("SELECT info_string FROM info WHERE id='megan'");
 			if (rs.next()) {
 				var version = rs.getString(1);
 				return version.toLowerCase().startsWith("version 7");
