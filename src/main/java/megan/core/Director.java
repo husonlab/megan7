@@ -19,7 +19,6 @@
  */
 package megan.core;
 
-import jloda.fx.util.ProgramExecutorService;
 import jloda.swing.commands.CommandManager;
 import jloda.swing.director.*;
 import jloda.swing.message.MessageWindow;
@@ -29,6 +28,7 @@ import jloda.swing.util.ResourceManager;
 import jloda.swing.window.NotificationsInSwing;
 import jloda.util.Basic;
 import jloda.util.CanceledException;
+import jloda.util.ProgramExecutorService;
 import jloda.util.progress.ProgressCmdLine;
 import jloda.util.progress.ProgressListener;
 import jloda.util.progress.ProgressPercentage;

@@ -19,7 +19,6 @@
  */
 package megan.tools;
 
-import jloda.fx.util.ProgramExecutorService;
 import jloda.swing.commands.CommandManager;
 import jloda.swing.util.ArgsOptions;
 import jloda.swing.util.ResourceManager;

@@ -19,12 +19,12 @@
  */
 package megan.viewer;
 
-import jloda.fx.util.ProgramExecutorService;
 import jloda.graph.*;
 import jloda.phylo.PhyloTree;
 import jloda.swing.graphview.*;
 import jloda.swing.util.Cursors;
 import jloda.util.Basic;
+import jloda.util.ProgramExecutorService;
 
 import javax.swing.*;
 import java.awt.*;
