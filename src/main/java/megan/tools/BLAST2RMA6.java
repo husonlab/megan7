@@ -19,7 +19,6 @@
  */
 package megan.tools;
 
-import jloda.fx.util.ProgramExecutorService;
 import jloda.seq.BlastMode;
 import jloda.swing.commands.CommandManager;
 import jloda.swing.util.ArgsOptions;
@@ -149,7 +148,7 @@ public class BLAST2RMA6 {
 
 		options.comment("Classification support:");
 
-		final String mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping db (file megan-map.db)", "");
+		final String mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping DB (file megan-map.mdb)", "");
 		final Set<String> selectedClassifications = new HashSet<>(Arrays.asList(options.getOption("-on", "only", "Use only named classifications (if not set: use all)", new String[0])));
 
 		options.comment("Deprecated classification support:");
@@ -160,7 +159,7 @@ public class BLAST2RMA6 {
 		{
 			final String tags = options.getOption("-t4t", "tags4taxonomy", "Tags for taxonomy id parsing (must set to activate id parsing)", "").trim();
 			ProgramProperties.preset("TaxonomyTags", tags);
-			ProgramProperties.preset("TaxonomyParseIds", tags.length() > 0);
+			ProgramProperties.preset("TaxonomyParseIds", !tags.isEmpty());
 		}
 
 		final HashMap<String, String> class2AccessionFile = new HashMap<>();
@@ -171,7 +170,7 @@ public class BLAST2RMA6 {
 			class2SynonymsFile.put(cName, options.getOption("-s2" + cName.toLowerCase(), "syn2" + cName.toLowerCase(), "Synonyms-to-" + cName + " mapping file", ""));
 			final String tags = options.getOption("-t4" + cName.toLowerCase(), "tags4" + cName.toLowerCase(), "Tags for " + cName + " id parsing (must set to activate id parsing)", "").trim();
 			ProgramProperties.preset(cName + "Tags", tags);
-			ProgramProperties.preset(cName + "ParseIds", tags.length() > 0);
+			ProgramProperties.preset(cName + "ParseIds", !tags.isEmpty());
 		}
 
 		ProgramProperties.preset(IdParser.PROPERTIES_FIRST_WORD_IS_ACCESSION, options.getOption("-fwa", "firstWordIsAccession", "First word in reference header is accession number (set to 'true' for NCBI-nr downloaded Sep 2016 or later)", true));

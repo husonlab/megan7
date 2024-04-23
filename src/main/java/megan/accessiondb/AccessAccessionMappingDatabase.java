@@ -21,6 +21,7 @@
 package megan.accessiondb;
 
 
+import jloda.swing.window.NotificationsInSwing;
 import jloda.util.Basic;
 import jloda.util.FileUtils;
 import jloda.util.StringUtils;
@@ -32,10 +33,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.*;
 import java.util.function.Function;
 import java.util.function.IntUnaryOperator;
 
@@ -52,6 +50,8 @@ public class AccessAccessionMappingDatabase implements Closeable {
 	public static IntUnaryOperator accessionFilter = x -> (x > -1000 ? x : 0);
 	public static Function<String, Boolean> fileFilter = x -> !x.endsWith("_UE");
 
+	private static final Set<String> seenDatabases = new HashSet<>();
+
 	/**
 	 * constructor, opens and maintains connection to database
 	 */
@@ -65,9 +65,18 @@ public class AccessAccessionMappingDatabase implements Closeable {
 
 		connection = config.createConnection("jdbc:sqlite:" + dbFile);
 
-		var result = executeQueryString("SELECT info_string FROM info WHERE id = 'general';", 1);
-		if (result.size() > 0 && !fileFilter.apply(result.get(0)))
-			throw new IOException("Mapping file " + FileUtils.getFileNameWithoutPath(dbFile) + " is intended for use with MEGAN Ultimate Edition, it is not compatible with MEGAN Community Edition");
+		if (!seenDatabases.contains(dbFile)) {
+			if (!isCorrectVersion()) {
+				NotificationsInSwing.showWarning("This does not look like a mapping database intended for MEGAN 7");
+			}
+			seenDatabases.add(dbFile);
+		}
+
+		{
+			var result = executeQueryString("SELECT info_string FROM info WHERE id = 'general';", 1);
+			if (!result.isEmpty() && !fileFilter.apply(result.get(0)))
+				throw new IOException("Mapping file " + FileUtils.getFileNameWithoutPath(dbFile) + " is intended for use with MEGAN Ultimate Edition, it is not compatible with MEGAN Community Edition");
+		}
 	}
 
 	/**
@@ -405,4 +414,15 @@ public class AccessAccessionMappingDatabase implements Closeable {
 		return Collections.emptySet();
 	}
 
+	private boolean isCorrectVersion() throws SQLException {
+		try {
+			var rs = connection.createStatement().executeQuery("SELECT info_string FROM info WHERE id='megan'");
+			if (rs.next()) {
+				var version = rs.getString(1);
+				return version.toLowerCase().startsWith("version 7");
+			}
+		} catch (Exception ignored) {
+		}
+		return false;
+	}
 }

@@ -19,12 +19,12 @@
  */
 package megan.assembly;
 
-import jloda.fx.util.ProgramExecutorService;
 import jloda.graph.Edge;
 import jloda.graph.Node;
 import jloda.util.Basic;
 import jloda.util.CanceledException;
 import jloda.util.Pair;
+import jloda.util.ProgramExecutorService;
 import jloda.util.progress.ProgressListener;
 import jloda.util.progress.ProgressPercentage;
 

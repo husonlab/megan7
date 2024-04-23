@@ -63,6 +63,7 @@ public class ClassificationFullTree extends PhyloTree {
 		this.name2IdMap = name2IdMap;
 		this.setName(cName);
 		newickIO.setAllowMultiLabeledNodes(true);
+		newickIO.setNumbersOnInternalNodesAreConfidenceValues(false);
 	}
 
 	public void clear() {

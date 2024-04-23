@@ -82,7 +82,7 @@ public class ReferencesAnnotator {
 		options.comment("Classification support:");
 
 		final var parseTaxonNames = options.getOption("-tn", "parseTaxonNames", "Parse taxon names", true);
-		final var mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping db (file megan-map.db)", "");
+		final var mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping DB (file megan-map.mdb)", "");
 		final var acc2TaxaFile = options.getOption("-a2t", "acc2taxa", "Accession-to-Taxonomy mapping file", "");
 		final var synonyms2TaxaFile = options.getOption("-s2t", "syn2taxa", "Synonyms-to-Taxonomy mapping file", "");
 
@@ -93,9 +93,9 @@ public class ReferencesAnnotator {
 			class2AccessionFile.put(cName, options.getOption("-a2" + cName.toLowerCase(), "acc2" + cName.toLowerCase(), "Accession-to-" + cName + " mapping file", ""));
 			class2SynonymsFile.put(cName, options.getOption("-s2" + cName.toLowerCase(), "syn2" + cName.toLowerCase(), "Synonyms-to-" + cName + " mapping file", ""));
 			final var tags = options.getOption("-t4" + cName.toLowerCase(), "tags4" + cName.toLowerCase(), "Tags for " + cName + " id parsing (must set to activate id parsing)", "").trim();
-			if (tags.length() > 0)
+			if (!tags.isEmpty())
 				ProgramProperties.put(cName + "Tags", tags);
-			ProgramProperties.put(cName + "ParseIds", tags.length() > 0);
+			ProgramProperties.put(cName + "ParseIds", !tags.isEmpty());
 		}
 
 		options.comment(ArgsOptions.OTHER);

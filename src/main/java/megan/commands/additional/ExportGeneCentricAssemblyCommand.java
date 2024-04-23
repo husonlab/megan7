@@ -19,7 +19,6 @@
  */
 package megan.commands.additional;
 
-import jloda.fx.util.ProgramExecutorService;
 import jloda.seq.BlastMode;
 import jloda.swing.commands.ICommand;
 import jloda.swing.util.ChooseFileDialog;

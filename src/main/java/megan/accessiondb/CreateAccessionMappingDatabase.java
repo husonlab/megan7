@@ -99,7 +99,7 @@ public class CreateAccessionMappingDatabase {
 	/**
 	 * inserts a new classifier into the database (separate table). Merging is done in mergeTables()
 	 *
-	 * @param classificationName name of the classifier used in the db
+	 * @param classificationName name of the classifier used in the DB
 	 * @param inputFile          path to file
 	 * @param description        description string to describe the used reference
 	 */
@@ -111,7 +111,7 @@ public class CreateAccessionMappingDatabase {
 	/**
 	 * inserts a new classifier into the database (separate table). Merging is done in mergeTables()
 	 *
-	 * @param classificationName name of the classifier used in the db
+	 * @param classificationName name of the classifier used in the DB
 	 * @param inputFile          path to file
 	 * @param description        description string to describe the used reference
 	 * @param accessionColumn    accession column in input file (0-based)

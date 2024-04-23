@@ -88,7 +88,7 @@ public class AAdderBuild {
 
 		options.comment("Classification mapping:");
 
-		final String mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping db (file megan-map.db)", "");
+		final String mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping DB (file megan-map.mdb)", "");
 
 		options.comment("Deprecated classification mapping options:");
 

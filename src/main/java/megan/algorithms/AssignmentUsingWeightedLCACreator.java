@@ -19,10 +19,10 @@
  */
 package megan.algorithms;
 
-import jloda.fx.util.ProgramExecutorService;
 import jloda.util.Basic;
 import jloda.util.CanceledException;
 import jloda.util.CollectionUtils;
+import jloda.util.ProgramExecutorService;
 import jloda.util.progress.ProgressListener;
 import jloda.util.progress.ProgressPercentage;
 import megan.core.Document;

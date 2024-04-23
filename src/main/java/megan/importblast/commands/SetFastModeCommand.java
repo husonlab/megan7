@@ -72,7 +72,7 @@ public class SetFastModeCommand extends CommandBase implements ICheckBoxCommand 
 
 
 	public String getDescription() {
-		return "Use fast accession mapping mode, only bulk mapping of the first word in each reference header.\nUse MEGAN mapping db file, no other mapping files or options.";
+		return "Use fast accession mapping mode, only bulk mapping of the first word in each reference header.\nUse MEGAN mapping mdb-file, no other mapping files or options.";
 	}
 
 

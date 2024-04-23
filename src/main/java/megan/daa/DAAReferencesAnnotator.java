@@ -20,10 +20,10 @@
 package megan.daa;
 
 import javafx.beans.property.SimpleObjectProperty;
-import jloda.fx.util.ProgramExecutorService;
 import jloda.swing.util.ProgramProperties;
 import jloda.util.Basic;
 import jloda.util.CanceledException;
+import jloda.util.ProgramExecutorService;
 import jloda.util.StringUtils;
 import jloda.util.progress.ProgressListener;
 import megan.accessiondb.AccessAccessionMappingDatabase;

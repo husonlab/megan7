@@ -81,7 +81,7 @@ public class LoadMappingFile4ViewerCommand extends CommandBase implements IComma
 		if (mapType == IdMapper.MapType.Accession) {
 			suffixes.add("abin");
 		} else if (mapType == IdMapper.MapType.MeganMapDB) {
-			suffixes.add("db");
+			suffixes.add("mdb");
 		}
 
 		final File file = ChooseFileDialog.chooseFileToOpen(dialog, lastOpenFile, new TextFileFilter(suffixes.toArray(new String[0]), false),
@@ -98,7 +98,7 @@ public class LoadMappingFile4ViewerCommand extends CommandBase implements IComma
 						ClassificationManager.setMeganMapDBFile(file.toString());
 						ClassificationManager.setUseFastAccessionMappingMode(true);
 					} catch (IOException e) {
-						NotificationsInSwing.showError("Load MEGAN mapping db failed: " + e.getMessage());
+						NotificationsInSwing.showError("Load MEGAN mapping mdb-file failed: " + e.getMessage());
 						return;
 					}
 					final Collection<String> supportedClassifications = AccessAccessionMappingDatabase.getContainedClassificationsIfDBExists(file.getPath());

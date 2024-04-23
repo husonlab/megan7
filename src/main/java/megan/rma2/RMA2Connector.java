@@ -115,7 +115,7 @@ public class RMA2Connector implements IConnector {
 	}
 
 	/**
-	 * get array of all classification names associated with this file or db
+	 * get array of all classification names associated with this file or DB
 	 *
 	 * @return classifications
 	 */

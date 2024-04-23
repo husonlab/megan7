@@ -113,7 +113,7 @@ public class Blast2LCA {
 		options.comment("Classification support:");
 
 		final boolean parseTaxonNames = options.getOption("-tn", "parseTaxonNames", "Parse taxon names", true);
-		final String mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping db (file megan-map.db)", "");
+		final String mapDBFile = options.getOption("-mdb", "mapDB", "MEGAN mapping DB (file megan-map.mdb)", "");
 		final String acc2TaxaFile = options.getOption("-a2t", "acc2taxa", "Accession-to-Taxonomy mapping file", "");
 		final String synonyms2TaxaFile = options.getOption("-s2t", "syn2taxa", "Synonyms-to-Taxonomy mapping file", "");
 

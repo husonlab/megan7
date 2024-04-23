@@ -19,12 +19,8 @@
  */
 package megan.dialogs.compare;
 
-import jloda.fx.util.ProgramExecutorService;
 import jloda.seq.BlastMode;
-import jloda.util.CollectionUtils;
-import jloda.util.FileUtils;
-import jloda.util.ProgramProperties;
-import jloda.util.Single;
+import jloda.util.*;
 import jloda.util.parse.NexusStreamParser;
 import jloda.util.progress.ProgressListener;
 import megan.classification.Classification;

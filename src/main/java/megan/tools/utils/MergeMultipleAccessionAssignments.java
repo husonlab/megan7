@@ -77,7 +77,7 @@ public class MergeMultipleAccessionAssignments {
 
 		final var inputFile = options.getOptionMandatory("-i", "in", "Input file, each line containing a cluster accession followed  member accessions (stdin, .gz ok)", "");
 		var outputFile = options.getOption("-o", "out", "Output file, each line containing first accession and merged assignments (stdout or .gz ok)", "stdout");
-		final var mapDBFile = options.getOptionMandatory("-mdb", "mapDB", "MEGAN mapping db (file megan-map.db)", "");
+		final var mapDBFile = options.getOptionMandatory("-mdb", "mapDB", "MEGAN mapping DB (file megan-map.mdb)", "");
 
 		var cNames = options.getOption("-c", "classifications", "Classifications to assign (ALL or list of names)", new String[]{"ALL"});
 
