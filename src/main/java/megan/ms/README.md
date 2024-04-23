@@ -4,12 +4,12 @@
 
 ## Availability:
 
-<div align="justify">MeganServer is provided as a standalone program <i>tools/megan-server</i> in the Megan6 software suite. MEGAN6 can be downloaded from the  <a href="http://software-ab.cs.uni-tuebingen.de/download/megan6/welcome.html"><b>MEGAN6 Download Page</b></a> </div>
+<div align="justify">MeganServer is provided as a standalone program <i>tools/megan-server</i> in the Megan7 software suite. MEGAN6 can be downloaded from the  <a href="http://software-ab.cs.uni-tuebingen.de/download/megan6/welcome.html"><b>MEGAN6 Download Page</b></a> </div>
 
 ## Manual
 
 <b>MeganServer Manual:</b> Details on how to install and get started can be found in
-manual: https://software-ab.cs.uni-tuebingen.de/download/megan6/User_Manual_for_MeganServer.pdf
+manual: https://software-ab.cs.uni-tuebingen.de/download/megan7/User_Manual_for_MeganServer.pdf
 
 ## The MeganServer workflow
 
