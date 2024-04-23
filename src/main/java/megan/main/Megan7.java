@@ -192,8 +192,8 @@ public class Megan7 {
 
     public static String getDefaultPropertiesFile() {
         if (ProgramProperties.isMacOS())
-            return System.getProperty("user.home") + "/Library/Preferences/MEGAN.def";
+            return System.getProperty("user.home") + "/Library/Preferences/Megan.def";
         else
-            return System.getProperty("user.home") + File.separator + ".MEGAN.def";
+            return System.getProperty("user.home") + File.separator + ".Megan.def";
     }
 }
