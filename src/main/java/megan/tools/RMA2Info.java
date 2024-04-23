@@ -21,7 +21,6 @@ package megan.tools;
 
 import jloda.graph.Node;
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import megan.classification.Classification;
 import megan.classification.ClassificationManager;
@@ -35,6 +34,7 @@ import megan.data.Stats;
 import megan.dialogs.export.CSVExportCViewer;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 import megan.viewer.TaxonomicLevels;
 import megan.viewer.TaxonomyData;
 
@@ -52,9 +52,8 @@ public class RMA2Info {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("RMA2Info");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new RMA2Info()).run(args);

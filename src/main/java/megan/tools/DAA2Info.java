@@ -20,7 +20,6 @@
 package megan.tools;
 
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import megan.classification.ClassificationManager;
 import megan.core.Document;
@@ -29,6 +28,7 @@ import megan.daa.io.DAAHeader;
 import megan.daa.io.DAAParser;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 import megan.viewer.TaxonomyData;
 
 import java.io.BufferedWriter;
@@ -48,9 +48,8 @@ public class DAA2Info {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("DAA2Info");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new DAA2Info()).run(args);

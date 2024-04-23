@@ -20,7 +20,6 @@
 package megan.tools;
 
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.progress.ProgressPercentage;
 import megan.classification.Classification;
@@ -28,6 +27,7 @@ import megan.classification.ClassificationManager;
 import megan.core.Document;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 import megan.viewer.TaxonomicLevels;
 import megan.viewer.TaxonomyData;
 
@@ -46,9 +46,8 @@ public class Taxonomy2Function {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("Taxonomy2Function");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new Taxonomy2Function()).run(args);

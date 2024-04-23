@@ -21,7 +21,6 @@ package megan.tools;
 
 import jloda.swing.director.ProjectManager;
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.parse.NexusStreamParser;
 import jloda.util.progress.ProgressSilent;
@@ -32,6 +31,7 @@ import megan.core.Document;
 import megan.core.MeganFile;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 import megan.viewer.TaxonomyData;
 
 import java.io.File;
@@ -52,10 +52,8 @@ public class ExtractBiome {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
-
 			ProgramProperties.setProgramName("ExtractBiome");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
 			(new ExtractBiome()).run(args);

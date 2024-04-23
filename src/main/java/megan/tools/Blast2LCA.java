@@ -22,7 +22,6 @@ package megan.tools;
 
 import jloda.seq.BlastMode;
 import jloda.swing.util.ArgsOptions;
-import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.progress.ProgressPercentage;
 import megan.algorithms.ActiveMatches;
@@ -36,6 +35,7 @@ import megan.core.Document;
 import megan.data.IReadBlock;
 import megan.main.Megan7;
 import megan.main.MeganProperties;
+import megan.main.Setup;
 import megan.parsers.blast.BlastFileFormat;
 import megan.parsers.blast.BlastModeUtils;
 import megan.rma6.BlastFileReadBlockIterator;
@@ -56,9 +56,8 @@ public class Blast2LCA {
 	 */
 	public static void main(String[] args) {
 		try {
-			ResourceManager.insertResourceRoot(megan.resources.Resources.class);
 			ProgramProperties.setProgramName("Blast2LCA");
-			ProgramProperties.setProgramVersion(megan.main.Version.SHORT_DESCRIPTION);
+			Setup.apply();
 
 			long start = System.currentTimeMillis();
 			(new Blast2LCA()).run(args);
