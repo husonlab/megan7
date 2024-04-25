@@ -90,7 +90,7 @@ public class Comparer {
 
 		final var names = new String[dirs.size()];
 		final var uids = new Long[dirs.size()];
-		final var originalNumberOfReads = new float[dirs.size()];
+		final var originalNumberOfReads = new double[dirs.size()];
 		final var blastModes = new BlastMode[dirs.size()];
 
 		// lock all unlocked projects involved in the comparison
@@ -106,7 +106,7 @@ public class Comparer {
 				}
 				final var pos = pid2pos[dir.getID()];
 				names[pos] = getUniqueName(names, pos, FileUtils.getFileBaseName(dir.getDocument().getTitle()));
-				originalNumberOfReads[pos] = (int) dir.getDocument().getNumberOfReads();
+				originalNumberOfReads[pos] = dir.getDocument().getNumberOfReads();
 				blastModes[pos] = dir.getDocument().getBlastMode();
 				if (dir.getDocument().getSampleAttributeTable().getNumberOfSamples() == 1) {
 					var oSample = dir.getDocument().getSampleAttributeTable().getSampleSet().iterator().next();
@@ -287,7 +287,7 @@ public class Comparer {
 				System.err.printf("Total assigned: %,12d%n", totalAssigned.longValue());
 			}
 
-			result.setTotalReads((int) CollectionUtils.getSum(originalNumberOfReads));
+			result.setTotalReads((long) CollectionUtils.getSum(originalNumberOfReads));
 		} finally {
 			// unlock all projects involved in the comparison
 			for (var dir : myLocked) {
@@ -372,18 +372,18 @@ public class Comparer {
 	 *
 	 * @return number of reads normalized by
 	 */
-	public static int parseNormalizedTo(String parameterString) {
+	public static long parseNormalizedTo(String parameterString) {
 		if (parameterString != null) {
 			try (var np = new NexusStreamParser(new StringReader(parameterString))) {
 				while (np.peekNextToken() != NexusStreamParser.TT_EOF) {
 					if (np.peekMatchIgnoreCase("normalizedTo=")) {
 						np.matchIgnoreCase("normalizedTo=");
-						return (int) Math.round(np.getDouble());
+						return (long) Math.round(np.getDouble());
 					}
 					// for backward compatibility:
 					if (np.peekMatchIgnoreCase("normalized_to=")) {
 						np.matchIgnoreCase("normalized_to=");
-						return (int) Math.round(np.getDouble());
+						return Math.round(np.getDouble());
 					}
 					np.getWordRespectCase();
 				}

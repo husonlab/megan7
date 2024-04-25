@@ -41,7 +41,7 @@ import java.util.Set;
  */
 public class ImportCSVWindow extends JDialog {
 	private boolean ok = false;
-	private long multiplier = 1L;
+	private double multiplier = 1.0;
 
 	private boolean doReadsHits = false;
 
@@ -214,8 +214,8 @@ public class ImportCSVWindow extends JDialog {
 
 			public void changedUpdate(DocumentEvent documentEvent) {
 				String text = multiplierField.getText();
-				if (NumberUtils.isLong(text))
-					multiplier = Long.parseLong(text);
+				if (NumberUtils.isDouble(text))
+					multiplier = NumberUtils.parseDouble(text);
 			}
 		});
 		JPanel line1 = new JPanel();
@@ -283,11 +283,11 @@ public class ImportCSVWindow extends JDialog {
 		return doReadsHits;
 	}
 
-	public long getMultiplier() {
+	public double getMultiplier() {
 		return multiplier;
 	}
 
-	public void setMultiplier(long multiplier) {
+	public void setMultiplier(double multiplier) {
 		this.multiplier = multiplier;
 	}
 

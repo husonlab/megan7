@@ -48,7 +48,7 @@ public class CSVSummaryParser {
 	 * Format should be:   taxid,count[,count,...]
 	 * If the first line contains non-number tokens, then these are interpreted as the names of the datasets
 	 */
-	static public void apply(String fileName, Document doc, String[] cNames, boolean tabSeparator, long multiplier) throws IOException {
+	static public void apply(String fileName, Document doc, String[] cNames, boolean tabSeparator, double multiplier) throws IOException {
 		String separator = (tabSeparator ? "\t" : ",");
 		System.err.println("Importing summary of " + StringUtils.toString(cNames, ", ") + " assignments from CSV file");
 		System.err.println("Specified line format: classname" + separator + "count{" + separator + "count" + separator + "count...}");

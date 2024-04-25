@@ -206,10 +206,10 @@ public class BarChartDrawer extends ChartDrawerBase implements IChartDrawer {
 		Rectangle bbox = null;
 
 		double yFactor = (y0 - y1) / topY;
-		int tickStep = 0;
+		long tickStep = 0;
 
 		int minSpace = 50;
-		for (int i = 1; tickStep == 0; i *= 10) {
+		for (long i = 1; tickStep == 0; i *= 10) {
 			if (i * yFactor >= minSpace)
 				tickStep = i;
 			else if (2.5 * i * yFactor >= minSpace)
@@ -218,7 +218,7 @@ public class BarChartDrawer extends ChartDrawerBase implements IChartDrawer {
 				tickStep = 5 * i;
 		}
 
-		for (int value = 0; (value - 1) < topY; value += tickStep) {
+		for (long value = 0; (value - 1) < topY; value += tickStep) {
 			if (maxDisplayedYValue != null && value > maxDisplayedYValue)
 				break;
 			String label = String.format("%,d", value);

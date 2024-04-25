@@ -149,10 +149,10 @@ public class ImportCSVCommand extends CommandBase implements ICommand {
 			}
 		} else // csv-summary
 		{
-			long multiplier = 1;
+			var multiplier = 1.0;
 			if (np.peekMatchIgnoreCase("multiplier")) {
 				np.matchIgnoreCase("multiplier=");
-				multiplier = np.getInt(1, Integer.MAX_VALUE);
+				multiplier = np.getDouble(1.0 / 1000000.0, 1000000.0);
 			}
 			np.matchIgnoreCase(";");
 			if (!ProgramProperties.isUseGUI() || doc.neverOpenedReads) {
