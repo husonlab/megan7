@@ -184,7 +184,8 @@ public class InputReaderLittleEndian implements Closeable, IInputReader {
 	 * reads size-prefixed bytes
 	 */
 	public void readSizePrefixedBytes(ByteInputBuffer buffer) throws IOException {
-		buffer.setSize(readInt());
+		var size = readInt();
+		buffer.setSize(size);
 		read(buffer.getBytes(), 0, buffer.size());
 		buffer.rewind();
 	}

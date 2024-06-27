@@ -21,10 +21,7 @@
 package megan.daa.io;
 
 import jloda.seq.BlastMode;
-import jloda.util.Basic;
-import jloda.util.ByteInputBuffer;
-import jloda.util.ByteOutputBuffer;
-import jloda.util.Pair;
+import jloda.util.*;
 import jloda.util.interval.Interval;
 import jloda.util.interval.IntervalTree;
 import megan.io.FileInputStreamAdapter;
@@ -34,8 +31,9 @@ import megan.parsers.blast.PostProcessMatches;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.Map;
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -56,6 +54,8 @@ public class DAAParser {
 
 	private final IntervalTree<DAAMatchRecord> intervalTree = new IntervalTree<>(); // used in parsing of long reads
 	private final ArrayList<DAAMatchRecord> list = new ArrayList<>();
+	private final int MAX_ALIGNMENTS_ON_SAME_QUERY_INTERVAL = ProgramProperties.get("max-number-of-alignments-on-same-query-interval", 250);
+	private final Map<Pair<Integer, Integer>, Integer> intervalCountMap = new HashMap<>();
 
 	/**
 	 * constructor
@@ -183,6 +183,7 @@ public class DAAParser {
 				} else // parse long reads
 				{
 					intervalTree.clear();
+					intervalCountMap.clear();
 					while (inputBuffer.getPosition() < inputBuffer.size()) {
 						final DAAMatchRecord aMatchRecord = new DAAMatchRecord(queryRecord);
 						aMatchRecord.parseBuffer(inputBuffer, refIns);
@@ -250,7 +251,7 @@ public class DAAParser {
 	 * @return query and matches
 	 */
 	public Pair<DAAQueryRecord, DAAMatchRecord[]> readQueryAndMatches(InputReaderLittleEndian ins, InputReaderLittleEndian refIns, boolean wantMatches, int maxMatchesPerRead, ByteInputBuffer inputBuffer, DAAMatchRecord[] matchRecords, boolean longReads) throws IOException {
-		final DAAQueryRecord queryRecord = new DAAQueryRecord(this);
+		final var queryRecord = new DAAQueryRecord(this);
 
 		if (inputBuffer == null)
 			inputBuffer = new ByteInputBuffer();
@@ -262,16 +263,29 @@ public class DAAParser {
 
 		queryRecord.parseBuffer(inputBuffer);
 
-		int numberOfMatches = 0;
+		var numberOfMatches = 0;
 		if (wantMatches) {
 			if (!longReads) {
+				intervalCountMap.clear();
+
 				if (matchRecords == null)
 					matchRecords = new DAAMatchRecord[maxMatchesPerRead];
 
 				while (inputBuffer.getPosition() < inputBuffer.size()) {
-					DAAMatchRecord matchRecord = new DAAMatchRecord(queryRecord);
+					var matchRecord = new DAAMatchRecord(queryRecord);
 					try {
 						matchRecord.parseBuffer(inputBuffer, refIns);
+
+						if (true) { // ignore too many alignments of same query segment
+							var pair = new Pair<>(matchRecord.getQueryBegin(), matchRecord.getQueryEnd());
+							var count = intervalCountMap.getOrDefault(pair, 0) + 1;
+							if (count < MAX_ALIGNMENTS_ON_SAME_QUERY_INTERVAL) {
+								intervalCountMap.put(pair, count);
+							} else {
+								continue;
+							}
+						}
+
 						if (numberOfMatches < maxMatchesPerRead)
 							matchRecords[numberOfMatches++] = matchRecord;
 						else
@@ -282,20 +296,31 @@ public class DAAParser {
 				}
 			} else {
 				intervalTree.clear();
-				final Set<Interval<DAAMatchRecord>> alive = new HashSet<>();
+				intervalCountMap.clear();
+				final var alive = new HashSet<Interval<DAAMatchRecord>>();
 
 				while (inputBuffer.getPosition() < inputBuffer.size()) {
-					final DAAMatchRecord aMatchRecord = new DAAMatchRecord(queryRecord);
-					aMatchRecord.parseBuffer(inputBuffer, refIns);
+					final var matchRecord = new DAAMatchRecord(queryRecord);
+					matchRecord.parseBuffer(inputBuffer, refIns);
 
-					final Interval<DAAMatchRecord> interval = new Interval<>(aMatchRecord.getQueryBegin(), aMatchRecord.getQueryEnd(), aMatchRecord);
+					if (true) { // ignore too many alignments of same query segment
+						var pair = new Pair<>(matchRecord.getQueryBegin(), matchRecord.getQueryEnd());
+						var count = intervalCountMap.getOrDefault(pair, 0) + 1;
+						if (count < MAX_ALIGNMENTS_ON_SAME_QUERY_INTERVAL) {
+							intervalCountMap.put(pair, count);
+						} else {
+							continue;
+						}
+					}
 
-					if (interval.getStart() > 10 && interval.getEnd() < queryRecord.getQueryLength() - 10 && aMatchRecord.getSubjectLen() < 0.8 * aMatchRecord.getTotalSubjectLen())
+					final var interval = new Interval<>(matchRecord.getQueryBegin(), matchRecord.getQueryEnd(), matchRecord);
+
+					if (interval.getStart() > 10 && interval.getEnd() < queryRecord.getQueryLength() - 10 && matchRecord.getSubjectLen() < 0.8 * matchRecord.getTotalSubjectLen())
 						continue; // skip mini alignment that are not at the beginning or end of the read
 
-					boolean covered = false;
+					var covered = false;
 
-					for (Interval<DAAMatchRecord> other : intervalTree.getIntervals(interval)) {
+					for (var other : intervalTree.getIntervals(interval)) {
 						if (alive.contains(other)) {
 							if (interval.overlap(other) >= 0.5 * interval.length() && interval.getData().getScore() < 0.95 * other.getData().getScore()) {
 								covered = true;
@@ -319,7 +344,7 @@ public class DAAParser {
 
 				{
 					int i = 0;
-					for (Interval<DAAMatchRecord> interval : intervalTree.getAllIntervals(true)) {
+					for (var interval : intervalTree.getAllIntervals(true)) {
 						if (alive.contains(interval))
 							matchRecords[i++] = interval.getData();
 					}
@@ -328,7 +353,7 @@ public class DAAParser {
 		}
 
 		if (numberOfMatches > 0) {
-			final DAAMatchRecord[] usedMatchRecords = new DAAMatchRecord[numberOfMatches];
+			final var usedMatchRecords = new DAAMatchRecord[numberOfMatches];
 			System.arraycopy(matchRecords, 0, usedMatchRecords, 0, numberOfMatches);
 			return new Pair<>(queryRecord, usedMatchRecords);
 		} else
