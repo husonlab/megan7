@@ -32,6 +32,7 @@ import jloda.util.parse.NexusStreamParser;
 import megan.core.ClassificationType;
 import megan.core.Director;
 import megan.core.MeganFile;
+import megan.daa.io.DAAParser;
 import megan.main.MeganProperties;
 import megan.util.MeganAndRMAFileFilter;
 import megan.util.MeganizedDAAFileFilter;
@@ -124,6 +125,9 @@ public class OpenFileCommand extends CommandBase implements ICommand {
 						NotificationsInSwing.showWarning(viewer.getFrame(), "File already open: " + meganFile.getFileName() + "\nWill open read-only");
 						meganFile.setReadOnly(true);
 					}
+					if (meganFile.isDAAFile() && !meganFile.isMeganServerFile()) {
+						DAAParser.checkDaaFileMeganizedUsingCurrentMeganVersion(meganFile.getFileName());
+					}
 				}
 
 				doc.getProgressListener().setMaximum(-1);
@@ -180,9 +184,12 @@ public class OpenFileCommand extends CommandBase implements ICommand {
 			} catch (Exception ex) {
 				//NotificationsInSwing.showError(viewer.getFrame(), "Open file failed: " + ex);
 				doc.getMeganFile().setFileName(null);
-				if (doc.neverOpenedReads && ProjectManager.getNumberOfProjects() > 1) {
+				if (doc.neverOpenedReads) {
 					System.err.println("Closing window...");
+					if (ProjectManager.getNumberOfProjects() == 1)
+						dir.executeImmediately("new document;", dir.getCommandManager());
 					dir.close();
+
 				}
 				throw ex;
 			}

@@ -38,7 +38,7 @@ import java.util.List;
 public class DAAHeader {
 	public final static long MAGIC_NUMBER = 4327487858190246763L;
 	public final static long DAA_VERSION = 1L; // changed from 0 to 1 on Jan-25, 2018
-	public final static int MEGAN_VERSION = 6;
+	public final static int MEGAN_VERSION = 7;
 
 	private final String fileName;
 

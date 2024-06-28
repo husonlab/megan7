@@ -117,9 +117,43 @@ public class DAAParser {
 			int meganVersion = ins.readInt(); // reserved3
 			if (meganVersion <= 0)
 				return false;
-			if (meganVersion > DAAHeader.MEGAN_VERSION)
-				throw new IOException("DAA version requires later version of MEGAN.");
-			else return true;
+			if (meganVersion > DAAHeader.MEGAN_VERSION) {
+				throw new IOException("Meganized DAA file '" + FileUtils.getFileNameWithoutPath(fileName)
+									  + "': Can't open it because it was meganized using a new MEGAN version: " + meganVersion);
+			}
+			return true;
+		}
+	}
+
+	/**
+	 * determine whether the file is a DAA file that was meganized using the current major version of megan
+	 *
+	 * @param fileName the DAA file
+	 * @throws IOException if anything goes wrong
+	 */
+	public static void checkDaaFileMeganizedUsingCurrentMeganVersion(String fileName) throws IOException {
+		try (InputReaderLittleEndian ins = new InputReaderLittleEndian(new FileInputStreamAdapter(fileName))) {
+			long magicNumber = ins.readLong();
+			if (magicNumber != DAAHeader.MAGIC_NUMBER)
+				throw new IOException("Input file is not a DAA file.");
+			long version = ins.readLong();
+			if (version > DAAHeader.DAA_VERSION) {
+				throw new IOException("DAA file '" + FileUtils.getFileNameWithoutPath(fileName) + "': version is higher than expected: " + version);
+			}
+
+			ins.skip(76);
+
+			int meganVersion = ins.readInt(); // reserved3
+			if (meganVersion <= 0) {
+				throw new IOException("DAA file '" + FileUtils.getFileNameWithoutPath(fileName)
+									  + "': has not been meganized, please meganize before opening in MEGAN");
+			} else if (meganVersion > DAAHeader.MEGAN_VERSION) {
+				throw new IOException("DAA file '" + FileUtils.getFileNameWithoutPath(fileName)
+									  + "': Can't be opened because it was meganized using a newer MEGAN version (" + meganVersion + "), please re-meganize.");
+			} else if (meganVersion < DAAHeader.MEGAN_VERSION) {
+				throw new IOException("DAA file '" + FileUtils.getFileNameWithoutPath(fileName)
+									  + "': Was meganized using an older MEGAN version (" + meganVersion + "), please re-meganize.");
+			}
 		}
 	}
 

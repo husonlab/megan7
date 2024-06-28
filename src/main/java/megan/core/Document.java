@@ -1106,7 +1106,8 @@ public class Document {
 							System.err.println("Parameter string is null...");
 					}
 				}
-				MeganFile.removeUIdFromSetOfOpenFiles(getMeganFile().getName(), getMeganFile().getConnector().getUId());
+				if (getMeganFile() != null && getMeganFile().getFileName() != null && !getMeganFile().getFileName().isBlank() && getMeganFile().getConnector() != null)
+					MeganFile.removeUIdFromSetOfOpenFiles(getMeganFile().getName(), getMeganFile().getConnector().getUId());
 				getMeganFile().setFileName("");
 			} catch (IOException e) {
 				Basic.caught(e);
