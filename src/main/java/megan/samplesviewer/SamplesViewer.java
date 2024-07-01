@@ -156,7 +156,7 @@ public class SamplesViewer implements IDirectableViewer, IViewerWithFindToolBar 
 				List<String> list = new ArrayList<>();
 				list.addAll(sampleTableView.getSelectedAttributes());
 				list.addAll(sampleTableView.getSelectedSamples());
-				if (list.size() != 0) {
+				if (!list.isEmpty()) {
 					ProjectManager.getPreviouslySelectedNodeLabels().clear();
 					ProjectManager.getPreviouslySelectedNodeLabels().addAll(list);
 				}

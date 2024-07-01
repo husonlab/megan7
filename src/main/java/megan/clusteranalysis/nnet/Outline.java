@@ -22,7 +22,6 @@ package megan.clusteranalysis.nnet;
 
 import javafx.geometry.Point2D;
 import jloda.fx.util.GeometryUtilsFX;
-import jloda.graph.Edge;
 import jloda.graph.Node;
 import jloda.graph.NodeArray;
 import jloda.phylo.PhyloSplitsGraph;
@@ -30,7 +29,10 @@ import jloda.swing.graphview.PhyloTreeView;
 import jloda.util.BitSetUtils;
 import megan.clusteranalysis.tree.Taxa;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.function.Function;
 
 /**
@@ -49,25 +51,25 @@ public class Outline {
 
 		ntax = taxa.getBits().cardinality();
 
-		final PhyloSplitsGraph graph = (PhyloSplitsGraph) view.getGraph();
+		var graph = (PhyloSplitsGraph) view.getGraph();
 		graph.clear();
 
-		final int[] cycle = normalizeCycle(cycle0);
+		var cycle = normalizeCycle(cycle0);
 
 		splits.addAllTrivial(taxa);
 
-		for (int i = 1; i <= ntax; i++)
+		for (var i = 1; i <= ntax; i++)
 			graph.setTaxon2Cycle(cycle[i], i);
 
-		final double[] split2angle = assignAnglesToSplits(ntax, splits, cycle, 360);
+		var split2angle = assignAnglesToSplits(ntax, splits, cycle, 360);
 
 		final ArrayList<Event> events;
 		{
-			final ArrayList<Event> outbound = new ArrayList<>();
-			final ArrayList<Event> inbound = new ArrayList<>();
+			var outbound = new ArrayList<Event>();
+			var inbound = new ArrayList<Event>();
 
-			for (int s = 1; s <= splits.size(); s++) {
-				final Split split = splits.getSplit(s);
+			for (var s = 1; s <= splits.size(); s++) {
+				var split = splits.getSplit(s);
 				if (true) {
 					outbound.add(new Event(Event.Type.outbound, s, cycle, split));
 					inbound.add(new Event(Event.Type.inbound, s, cycle, split));
@@ -76,91 +78,92 @@ public class Outline {
 			events = Event.radixSort(ntax, outbound, inbound);
 		}
 
-		final BitSet currentSplits = new BitSet();
-		Point2D location = new Point2D(0, 0);
-		final Node start = graph.newNode();
+		var currentSplits = new BitSet();
+		var location = new Point2D(0, 0);
+		var start = graph.newNode();
 		view.setLocation(start, new java.awt.geom.Point2D.Double(0, 0));
 
-		final NodeArray<Point2D> node2point = new NodeArray<>(graph);
-		node2point.put(start, new Point2D(location.getX(), location.getY()));
+		try (final NodeArray<Point2D> node2point = graph.newNodeArray()) {
+			node2point.put(start, new Point2D(location.getX(), location.getY()));
 
-		final Map<BitSet, Node> splits2node = new HashMap<>();
+			var splits2node = new HashMap<BitSet, Node>();
 
-		splits2node.put(new BitSet(), start);
+			splits2node.put(new BitSet(), start);
 
-		Event previousEvent = null;
+			Event previousEvent = null;
 
-		// System.err.println("Algorithm:");
-		// System.err.println("Start: " + start.getId());
+			// System.err.println("Algorithm:");
+			// System.err.println("Start: " + start.getId());
 
-		final BitSet taxaFound = new BitSet();
+			var taxaFound = new BitSet();
 
-		Node previousNode = start;
-		for (Event event : events) {
-			// System.err.println(event);
+			var previousNode = start;
+			for (var event : events) {
+				// System.err.println(event);
 
-			if (event.isStart()) {
-				currentSplits.set(event.getS(), true);
-				location = GeometryUtilsFX.translateByAngle(location, split2angle[event.getS()], useWeights ? event.getWeight() : 1);
-			} else {
-				currentSplits.set(event.getS(), false);
-				location = GeometryUtilsFX.translateByAngle(location, split2angle[event.getS()] + 180, useWeights ? event.getWeight() : 1);
-			}
-
-			final boolean mustCreateNode = (splits2node.get(currentSplits) == null);
-			final Node v;
-			if (mustCreateNode) {
-				v = graph.newNode();
-				splits2node.put(BitSetUtils.copy(currentSplits), v);
-				node2point.put(v, new Point2D(location.getX(), location.getY()));
-				view.setLocation(v, new java.awt.geom.Point2D.Double(location.getX(), location.getY()));
-			} else {
-				v = splits2node.get(currentSplits);
-				location = node2point.get(v);
-			}
-			// System.err.println("Node: " + v.getId());
-
-			if (!v.isAdjacent(previousNode)) {
-				final Edge e = graph.newEdge(previousNode, v);
-				graph.setSplit(e, event.getS());
-				graph.setWeight(e, useWeights ? event.getWeight() : 1);
-				graph.setAngle(e, split2angle[event.getS()]);
-
-				if (!mustCreateNode) // just closed loop
-				{
-					// loops.add(createLoop(v, e));
+				if (event.isStart()) {
+					currentSplits.set(event.getS(), true);
+					location = GeometryUtilsFX.translateByAngle(location, split2angle[event.getS()], useWeights ? event.getWeight() : 1);
+				} else {
+					currentSplits.set(event.getS(), false);
+					location = GeometryUtilsFX.translateByAngle(location, split2angle[event.getS()] + 180, useWeights ? event.getWeight() : 1);
 				}
-			}
 
-			if (previousEvent != null) {
-				if (event.getS() == previousEvent.getS()) {
-					for (int t : BitSetUtils.members(splits.getSplit(event.getS()).getPartNotContaining(cycle[1]))) {
-						graph.addTaxon(previousNode, t);
-						taxaFound.set(t);
-						graph.setLabel(previousNode, taxa.getLabel(t));
+				var mustCreateNode = (splits2node.get(currentSplits) == null);
+				final Node v;
+				if (mustCreateNode) {
+					v = graph.newNode();
+					splits2node.put(BitSetUtils.copy(currentSplits), v);
+					node2point.put(v, new Point2D(location.getX(), location.getY()));
+					view.setLocation(v, new java.awt.geom.Point2D.Double(location.getX(), location.getY()));
+				} else {
+					v = splits2node.get(currentSplits);
+					location = node2point.get(v);
+				}
+				// System.err.println("Node: " + v.getId());
+
+
+				if (!v.isAdjacent(previousNode)) {
+					var e = graph.newEdge(previousNode, v);
+					graph.setSplit(e, event.getS());
+					graph.setWeight(e, useWeights ? event.getWeight() : 1);
+					graph.setAngle(e, split2angle[event.getS()]);
+
+					if (!mustCreateNode) // just closed loop
+					{
+						// loops.add(createLoop(v, e));
 					}
 				}
+
+				if (previousEvent != null) {
+					if (event.getS() == previousEvent.getS()) {
+						for (var t : BitSetUtils.members(splits.getSplit(event.getS()).getPartNotContaining(cycle[1]))) {
+							graph.addTaxon(previousNode, t);
+							taxaFound.set(t);
+							graph.setLabel(previousNode, taxa.getLabel(t));
+						}
+					}
+				}
+
+				previousNode = v;
+				previousEvent = event;
 			}
 
-			previousNode = v;
-			previousEvent = event;
-		}
-
-		for (int t = 1; t <= ntax; t++) {
-			if (!taxaFound.get(t)) {
-				graph.addTaxon(start, t);
-				graph.setLabel(start, taxa.getLabel(t));
+			for (var t = 1; t <= ntax; t++) {
+				if (!taxaFound.get(t)) {
+					graph.addTaxon(start, t);
+					graph.setLabel(start, taxa.getLabel(t));
+				}
 			}
 
-		}
-
-		if (false) {
-			for (Node v : graph.nodes()) {
-				// if (graph.getLabel(v) != null)
-				System.err.println("Node " + v.getId() + " " + graph.getLabel(v) + " point: " + node2point.get(v));
-			}
-			for (Edge e : graph.edges()) {
-				System.err.println("Edge " + e.getSource().getId() + " - " + e.getTarget().getId() + " split: " + graph.getSplit(e));
+			if (false) {
+				for (var v : graph.nodes()) {
+					// if (graph.getLabel(v) != null)
+					System.err.println("Node " + v.getId() + " " + graph.getLabel(v) + " point: " + node2point.get(v));
+				}
+				for (var e : graph.edges()) {
+					System.err.println("Edge " + e.getSource().getId() + " - " + e.getTarget().getId() + " split: " + graph.getSplit(e));
+				}
 			}
 		}
 

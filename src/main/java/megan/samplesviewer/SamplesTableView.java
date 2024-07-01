@@ -51,9 +51,10 @@ import java.util.*;
 public class SamplesTableView {
 	private static final Set<String> seenFXExceptions = new HashSet<>();
 	private static final Thread.UncaughtExceptionHandler fxExceptionHandler = (t, e) -> {
-		if (!seenFXExceptions.contains(e.getMessage())) {
-			seenFXExceptions.add(e.getMessage());
-			System.err.println("FX Exception: " + e.getMessage());
+		var text = e.toString();
+		if (!seenFXExceptions.contains(text)) {
+			seenFXExceptions.add(text);
+			System.err.println("FX Exception: " + text);
 		}
 	};
 
@@ -228,7 +229,8 @@ public class SamplesTableView {
 	private void paste(String[] lines) {
 		if (tableView != null) {
 			ensureFXThread(() -> {
-				if (lines.length > 0 && tableView.getSelectedCells().size() > 0) {
+
+				if (lines.length > 0 && !tableView.getSelectedCells().isEmpty()) {
 					final Set<Pair<Integer, Integer>> selectedPairs = new HashSet<>();
 					final BitSet rows = new BitSet();
 					final BitSet cols = new BitSet();
@@ -240,24 +242,30 @@ public class SamplesTableView {
 						cols.set(col);
 					}
 
-					int row = rows.nextSetBit(0);
-					for (String line : lines) {
-						int col = cols.nextSetBit(1);
-						String[] values = line.trim().split("\t");
-						for (String value : values) {
-							value = value.trim();
-							// move to next col that is selected in this row:
-							while (col != -1 && !selectedPairs.contains(new Pair<>(row, col)))
-								col = cols.nextSetBit(col + 1);
-							if (col != -1) {
-								tableView.setValue(row, col, value);
-								col = cols.nextSetBit(col + 1);
-							} else
+					if (lines.length == 1 && cols.cardinality() == 1) {
+						for (var pair : selectedPairs) {
+							tableView.setValue(pair.getFirst(), pair.getSecond(), lines[0]);
+						}
+					} else {
+						int row = rows.nextSetBit(0);
+						for (String line : lines) {
+							int col = cols.nextSetBit(1);
+							String[] values = line.trim().split("\t");
+							for (String value : values) {
+								value = value.trim();
+								// move to next col that is selected in this row:
+								while (col != -1 && !selectedPairs.contains(new Pair<>(row, col)))
+									col = cols.nextSetBit(col + 1);
+								if (col != -1) {
+									tableView.setValue(row, col, value);
+									col = cols.nextSetBit(col + 1);
+								} else
+									break;
+							}
+							row = rows.nextSetBit(row + 1);
+							if (row == -1)
 								break;
 						}
-						row = rows.nextSetBit(row + 1);
-						if (row == -1)
-							break;
 					}
 				}
 			});

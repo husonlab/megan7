@@ -555,7 +555,7 @@ public class DAAHeader {
 	}
 
 	/**
-	 * read the header of a DAA file and all reference names
+	 * save the header of a DAA file and all reference names
 	 */
 	public void save() throws IOException {
 		try (OutputWriterLittleEndian outs = new OutputWriterLittleEndian(new FileRandomAccessReadWriteAdapter(fileName, "rw"))) {

@@ -21,6 +21,7 @@
 package megan.daa.io;
 
 import jloda.seq.BlastMode;
+import jloda.swing.window.NotificationsInSwing;
 import jloda.util.*;
 import jloda.util.interval.Interval;
 import jloda.util.interval.IntervalTree;
@@ -132,6 +133,8 @@ public class DAAParser {
 	 * @throws IOException if anything goes wrong
 	 */
 	public static void checkDaaFileMeganizedUsingCurrentMeganVersion(String fileName) throws IOException {
+		var allowMoveToMeganSeven = jloda.swing.util.ProgramProperties.get("allow-move-to-megan-seven", false);
+		var moveToMeganSeven = false;
 		try (InputReaderLittleEndian ins = new InputReaderLittleEndian(new FileInputStreamAdapter(fileName))) {
 			long magicNumber = ins.readLong();
 			if (magicNumber != DAAHeader.MAGIC_NUMBER)
@@ -145,15 +148,27 @@ public class DAAParser {
 
 			int meganVersion = ins.readInt(); // reserved3
 			if (meganVersion <= 0) {
-				throw new IOException("DAA file '" + FileUtils.getFileNameWithoutPath(fileName)
-									  + "': has not been meganized, please meganize before opening in MEGAN");
+				throw new IOException("DAA file '" + FileUtils.getFileNameWithoutPath(fileName) + "': has not been meganized, please meganize before opening in MEGAN");
 			} else if (meganVersion > DAAHeader.MEGAN_VERSION) {
 				throw new IOException("DAA file '" + FileUtils.getFileNameWithoutPath(fileName)
-									  + "': Can't be opened because it was meganized using a newer MEGAN version (" + meganVersion + "), please re-meganize.");
+									  + "': Can't be opened because it was meganized using a newer major version of MEGAN  (" + meganVersion + "), please re-meganize.");
 			} else if (meganVersion < DAAHeader.MEGAN_VERSION) {
-				throw new IOException("DAA file '" + FileUtils.getFileNameWithoutPath(fileName)
-									  + "': Was meganized using an older MEGAN version (" + meganVersion + "), please re-meganize.");
+				if (allowMoveToMeganSeven || Basic.getDebugMode()) {
+					NotificationsInSwing.showWarning("DAA file '" + FileUtils.getFileNameWithoutPath(fileName)
+													 + "': Was meganized using an older major version of MEGAN (" + meganVersion + "), please re-meganize.");
+					if (allowMoveToMeganSeven)
+						moveToMeganSeven = true;
+				} else {
+					throw new IOException("DAA file '" + FileUtils.getFileNameWithoutPath(fileName)
+										  + "': Was meganized using an older MEGAN version (" + meganVersion + "), please re-meganize.");
+				}
 			}
+		}
+
+		if (moveToMeganSeven) {
+			var header = new DAAHeader(fileName, true);
+			header.setReserved3(DAAHeader.MEGAN_VERSION);
+			header.save();
 		}
 	}
 

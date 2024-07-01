@@ -53,6 +53,9 @@ public class SyncArchiveAndDataTable {
 		table.setTotalReads(connector.getNumberOfReads());
 		table.setAdditionalReads(additionalReads);
 
+		if (blastMode == null)
+			blastMode = BlastMode.Unknown;
+
 		table.setSamples(new String[]{dataSetName}, new Long[]{connector.getUId()}, new float[]{connector.getNumberOfReads()}, new BlastMode[]{blastMode});
 		for (String classification : classifications) {
 			IClassificationBlock classificationBlock = connector.getClassificationBlock(classification);
