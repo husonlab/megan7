@@ -597,7 +597,7 @@ public class ReadLayoutPane extends Pane {
 	 */
 	private void showLabelContextMenu(final Label label, double screenX, double screenY) {
 		final ContextMenu contextMenu = new ContextMenu();
-		final MenuItem selectAllSimilar = new MenuItem("Select Similar");
+		final MenuItem selectAllSimilar = new MenuItem("Select Same Value");
 		selectAllSimilar.setOnAction(event -> {
 			for (Group group : getVisibleGroups()) {
 				for (Node node : group.getChildren()) {

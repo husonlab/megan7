@@ -39,7 +39,7 @@ import java.util.Set;
  * * Daniel Huson, 11.2010
  */
 public class SelectAllCommand extends CommandBase implements ICommand {
-	private static final String[] legalOptions = {"all", "none", "similar", "commentLike", "numerical", "uninformative", "romPrevious", "samples"};
+	private static final String[] legalOptions = {"all", "none", "same", "commentLike", "numerical", "uninformative", "fromPrevious", "samples"};
 
 	public String getSyntax() {
 		return "select {" + StringUtils.toString(legalOptions, "|") + "} [name=<string>] [value=<string>];";
@@ -54,7 +54,7 @@ public class SelectAllCommand extends CommandBase implements ICommand {
 		final String name;
 		final String value;
 		final java.util.List<String> samples;
-		if (what.equalsIgnoreCase("similar")) {
+		if (what.equalsIgnoreCase("same")) {
 			np.matchIgnoreCase("name=");
 			name = np.getWordRespectCase();
 			if (np.peekMatchIgnoreCase("value=")) {
@@ -143,7 +143,7 @@ public class SelectAllCommand extends CommandBase implements ICommand {
 				if (count > 0)
 					System.err.println("Selected " + count + " columns");
 			}
-			case "similar" -> viewer.getSamplesTableView().selectByValue(name, value);
+			case "same" -> viewer.getSamplesTableView().selectByValue(name, value);
 			case "fromPrevious" -> {
 				String row1 = null;
 				for (String sample : viewer.getSamplesTableView().getSamples()) {

@@ -1,5 +1,5 @@
 /*
- * SelectSimilarCommand.java Copyright (C) 2024 Daniel H. Huson
+ * SelectSameValueCommand.java Copyright (C) 2024 Daniel H. Huson
  *
  *  (Some files contain contributions from other authors, who are then mentioned separately.)
  *
@@ -32,7 +32,7 @@ import java.awt.event.ActionEvent;
  * * selection command
  * * Daniel Huson, 11.2010
  */
-public class SelectSimilarCommand extends CommandBase implements ICommand {
+public class SelectSameValueCommand extends CommandBase implements ICommand {
 	public String getSyntax() {
 		return null;
 	}
@@ -47,7 +47,7 @@ public class SelectSimilarCommand extends CommandBase implements ICommand {
 		final Triplet<String, String, String> selectedCell = viewer.getSamplesTableView().getSingleSelectedCell();
 
 		if (selectedCell != null) {
-			executeImmediately("select similar name='" + selectedCell.getSecond() + "' value='" + selectedCell.getThird() + "';");
+			executeImmediately("select same name='" + selectedCell.getSecond() + "' value='" + selectedCell.getThird() + "';");
 		}
 	}
 
@@ -56,7 +56,7 @@ public class SelectSimilarCommand extends CommandBase implements ICommand {
 	}
 
 	public String getName() {
-		return "Select Similar";
+		return "Select Same Value";
 	}
 
 	public String getDescription() {

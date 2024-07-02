@@ -45,7 +45,7 @@ class GUIConfiguration {
 		menuConfig.defineMenu("Import", "Import Text (CSV) Format...;Import BIOM Format...;|;Import Metadata...;");
 
 		menuConfig.defineMenu("Edit", "Samples Viewer Cut;Samples Viewer Copy;Samples Viewer Paste;Samples Viewer Paste By Attribute;|;" +
-									  "Select All;Select None;Select Similar;From Previous Window;|;Select Comment-Like;Select Numerical;Select Uninformative;|;" +
+									  "Select All;Select None;Select Same Value;From Previous Window;|;Select Comment-Like;Select Numerical;Select Uninformative;|;" +
 									  "Find...;Find Again;Replace...;|;Colors...;");
 
 		menuConfig.defineMenu("Attributes", "List Attribute Summary...;|;New Column...;Delete Column(s)...;|;Use to Color Samples;Use to Shape Samples;Use to Label Samples;Use to Group Samples;|;" +
@@ -91,7 +91,7 @@ class GUIConfiguration {
 	 * @return configuration
 	 */
 	public static String getMainPopupConfiguration() {
-		return "|;Select All;Select None;Select Similar;From Previous Window;";
+		return "|;Select All;Select None;Select Same Value;From Previous Window;";
 	}
 }
 
