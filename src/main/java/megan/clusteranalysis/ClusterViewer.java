@@ -644,12 +644,15 @@ public class ClusterViewer extends JFrame implements IDirectableViewer, IViewerW
 								nv.setLabelBackgroundColor(color);
 						} else
 							nv.setBackgroundColor(null);
-
 					}
 				} else
 					showThisLabel = false;
 				if (!showThisLabel) {
 					nv.setLabelVisible(false);
+					nv.setWidth(1);
+					nv.setHeight(1);
+					nv.setColor(Color.BLACK);
+					nv.setBackgroundColor(Color.BLACK);
 				}
 			}
 			for (Edge e = graph.getFirstEdge(); e != null; e = e.getNext()) {

@@ -19,6 +19,7 @@
  */
 package megan.clusteranalysis.gui;
 
+import jloda.graph.EdgeSet;
 import jloda.graph.Node;
 import jloda.graph.NodeSet;
 import jloda.phylo.PhyloTree;
@@ -38,6 +39,7 @@ import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.lang.reflect.InvocationTargetException;
+import java.util.BitSet;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -123,6 +125,28 @@ public class TreeTabBase extends JPanel {
 
 			public void resetViews() {
 			}
+
+			public void setSelected(EdgeSet edges, boolean a) {
+				var splitIds = new BitSet();
+				for (var e : edges) {
+					var split = getTree().getSplit(e);
+					if (split > 0)
+						splitIds.set(split);
+				}
+				if (splitIds.cardinality() > 0) {
+					edges.addAll(getTree().edgeStream().filter(e -> splitIds.get(getTree().getSplit(e))).toList());
+				}
+
+				if (a) {
+					if (!this.selectedEdges.containsAll(edges)) {
+						this.selectedEdges.addAll(edges);
+						this.fireDoSelect(edges);
+					}
+				} else if (this.selectedEdges.intersects(edges)) {
+					this.selectedEdges.removeAll(edges);
+					this.fireDoDeselect(edges);
+				}
+			}
 		};
 		graphView.setCanvasColor(Color.WHITE);
 
@@ -157,12 +181,10 @@ public class TreeTabBase extends JPanel {
 
 		graphView.getScrollPane().addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent event) {
-				{
 					if (graphView.getScrollPane().getSize().getHeight() > 400 && graphView.getScrollPane().getSize().getWidth() > 400)
 						graphView.fitGraphToWindow();
 					else
 						graphView.trans.fireHasChanged();
-				}
 			}
 		});
 

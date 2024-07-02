@@ -169,6 +169,7 @@ public class Outline {
 
 
 		view.resetViews();
+
 	}
 
 	/**

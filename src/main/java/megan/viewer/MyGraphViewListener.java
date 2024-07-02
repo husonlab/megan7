@@ -307,7 +307,7 @@ public class MyGraphViewListener implements IGraphViewListener {
 								return true;
 						}
 						viewer.getEV(f).setLabelReferenceLocation(vp, wp, viewer.trans);
-						if (viewer.getLabel(f) != null && viewer.getLabel(f).length() > 0 && viewer.getLabelVisible(f) && viewer.getLabelRect(f) != null &&
+						if (viewer.getLabel(f) != null && !viewer.getLabel(f).isEmpty() && viewer.getLabelVisible(f) && viewer.getLabelRect(f) != null &&
 							viewer.getLabelRect(f).contains(x, y)) {
 							hitEdgeLabels.add(f);
 							hit = true;
