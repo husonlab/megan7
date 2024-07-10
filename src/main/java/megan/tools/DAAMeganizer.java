@@ -53,7 +53,7 @@ public class DAAMeganizer {
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("Meganizer");
+			ProgramProperties.setProgramName("daa-meganizer");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
@@ -74,9 +74,18 @@ public class DAAMeganizer {
 		CommandManager.getGlobalCommands().addAll(ClassificationCommandHelper.getGlobalCommands());
 
 		final var options = new ArgsOptions(args, this, "Prepares ('meganizes') a DIAMOND .daa file for use with MEGAN");
+
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
+		options.setLatexDescription("""
+				This is run on a single DAA file (or multiple files) computed by DIAMOND,
+				which contain all reads and their alignments to a protein reference database
+				such as NCBI-nr. The program analyzes the alignments and performs
+				taxonomic and functional binning of the reads. The resulting classifications
+				and indexes are attached to the end of the DAA file and the resulting
+				file is referred to as a ``meganized DAA file'' \\index{meganized DAA file}.
+				""");
 
 		options.comment("Files");
 		final var daaFiles = options.getOptionMandatory("-i", "in", "Input DAA file(s). Each is meganized separately", new String[0]);

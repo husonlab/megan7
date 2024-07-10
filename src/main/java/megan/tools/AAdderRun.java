@@ -50,7 +50,7 @@ public class AAdderRun {
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("AAdderRun");
+			ProgramProperties.setProgramName("aadder-run");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
@@ -72,7 +72,10 @@ public class AAdderRun {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-
+		options.setLatexDescription("""
+				This is used to add functional assignments to DNA alignments, using an index created using
+				\\verb^aadder-build^.
+				""");
 		options.comment("Input Output");
 		final String[] inputFiles = options.getOptionMandatory("-i", "input", "Input SAM file(s) (.gz ok)", new String[0]);
 		final String indexDirectory = options.getOptionMandatory("-d", "index", "AAdd index directory", "");

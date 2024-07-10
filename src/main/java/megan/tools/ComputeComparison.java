@@ -1,5 +1,5 @@
 /*
- * CompareFiles.java Copyright (C) 2024 Daniel H. Huson
+ * ComputeComparison.java Copyright (C) 2024 Daniel H. Huson
  *
  *  (Some files contain contributions from other authors, who are then mentioned separately.)
  *
@@ -40,17 +40,17 @@ import java.util.stream.Collectors;
  * compares multiple samples
  * Daniel Huson, 8.2018
  */
-public class CompareFiles {
+public class ComputeComparison {
 	/**
 	 * compare files
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("CompareFiles");
+			ProgramProperties.setProgramName("compute-comparison");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
-			(new CompareFiles()).run(args);
+			(new ComputeComparison()).run(args);
 			System.err.println("Total time:  " + PeakMemoryUsageMonitor.getSecondsSinceStartString());
 			System.err.println("Peak memory: " + PeakMemoryUsageMonitor.getPeakUsageString());
 			System.exit(0);
@@ -68,6 +68,10 @@ public class CompareFiles {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
+		options.setLatexDescription("""
+				This is run on a collection of RMA files, MEGAN files and/or meganized DAA files, to obtain a MEGAN file
+				that contains a comparison of the data in the input files.
+				""");
 
 		options.comment("Input and Output:");
 		final var inputFiles = new ArrayList<>(Arrays.asList(options.getOptionMandatory("-i", "in", "Input RMA and/or meganized DAA files (single directory ok)", new String[0])));

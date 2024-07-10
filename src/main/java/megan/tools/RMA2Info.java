@@ -52,7 +52,7 @@ public class RMA2Info {
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("RMA2Info");
+			ProgramProperties.setProgramName("rma2info");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
@@ -74,6 +74,10 @@ public class RMA2Info {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
+		options.setLatexDescription("""
+				This is run on a single RMA file to obtain information or to extract data such as reads, alignments or
+				classifications.
+				""");
 
 		options.comment("Input and Output");
 		final var daaFile = options.getOptionMandatory("-i", "in", "Input RMA file", "");
@@ -139,15 +143,15 @@ public class RMA2Info {
 					outs.write(doc.getDataTable().getSummary().replaceAll("^", "## ").replaceAll("\n", "\n## ") + "\n");
 				}
 			}
-			if (listClass2Count.size() > 0) {
+			if (!listClass2Count.isEmpty()) {
 				reportClass2Count(doc, listGeneralInfo, listMoreStuff, reportPaths, reportNames, prefixRank, ignoreUnassigned, majorRanksOnly, listClass2Count, taxonomyRoot, useSummarized, outs);
 			}
 
-			if (listRead2Class.size() > 0) {
+			if (!listRead2Class.isEmpty()) {
 				reportRead2Count(doc, listGeneralInfo, listMoreStuff, reportPaths, reportNames, prefixRank, ignoreUnassigned, majorRanksOnly, listRead2Class, taxonomyRoot, outs);
 			}
 		}
-		if (extractSummaryFile.length() > 0) {
+		if (!extractSummaryFile.isEmpty()) {
 			try (var w = new FileWriter(extractSummaryFile)) {
 				doc.getDataTable().write(w);
 				doc.getSampleAttributeTable().write(w, false, true);

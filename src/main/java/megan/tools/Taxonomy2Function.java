@@ -46,7 +46,7 @@ public class Taxonomy2Function {
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("Taxonomy2Function");
+			ProgramProperties.setProgramName("taxonomy2function");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
@@ -67,6 +67,9 @@ public class Taxonomy2Function {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
+		options.setLatexDescription("""
+				This is used to extract taxonomy-by-function classifications.
+				""");
 
 		options.comment("Input and Output");
 		final var inputFiles = options.getOptionMandatory("-i", "in", "Input file(s)", new String[0]);

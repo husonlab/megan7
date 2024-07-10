@@ -64,8 +64,11 @@ public class Reanalyzer {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
+		options.setLatexDescription("""
+				This is used to rerun taxonomic and functional binning on an RMA or meganized DAA file.
+				""");
 
-		final String[] inputFiles = options.getOptionMandatory("-i", "input", "Input  file (stdin ok)", new String[0]);
+		final String[] inputFiles = options.getOptionMandatory("-i", "input", "Input  file", new String[0]);
 
 		options.comment("Parameters");
 		final boolean longReads = options.getOption("-lg", "longReads", "Parse and analyse as long reads", Document.DEFAULT_LONG_READS);

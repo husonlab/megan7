@@ -1,5 +1,5 @@
 /*
- * ReadExtractorTool.java Copyright (C) 2024 Daniel H. Huson
+ * ReadExtractor.java Copyright (C) 2024 Daniel H. Huson
  *
  *  (Some files contain contributions from other authors, who are then mentioned separately.)
  *
@@ -44,17 +44,17 @@ import java.util.TreeSet;
  * extracts reads from a DAA or RMA file, by taxa
  * Daniel Huson, 1.2019
  */
-public class ReadExtractorTool {
+public class ReadExtractor {
 	/**
-	 * ReadExtractorTool
+	 * ReadExtractor
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("ReadExtractorTool");
+			ProgramProperties.setProgramName("read-extractor");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
-			(new ReadExtractorTool()).run(args);
+			(new ReadExtractor()).run(args);
 			PeakMemoryUsageMonitor.report();
 			System.exit(0);
 		} catch (Exception ex) {
@@ -71,6 +71,11 @@ public class ReadExtractorTool {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
+		options.setLatexDescription("""
+				This can be used to extract reads from meganized DAA files or RMA files
+				based on their assignment to taxonomic or functional classes. In the case of long reads or contigs,
+				it can also be used to extract frame-shift corrected versions of the sequences \\citep{Arumugametal2019}.
+				""");
 
 		options.comment("Input and Output");
 		final var inputFiles = new ArrayList<>(Arrays.asList(options.getOptionMandatory("-i", "input", "Input DAA and/or RMA file(s)", new String[0])));
@@ -93,13 +98,13 @@ public class ReadExtractorTool {
 
 		MeganProperties.initializeProperties(propertiesFile);
 
-		if (classificationName.equals("") != all)
+		if (classificationName.isEmpty() != all)
 			throw new UsageException("Must specific either option --classification or --all, but not both");
 
 		if (allBelow && all)
 			throw new UsageException("Must specific either option --allBelow or --all, but not both");
 
-		if (allBelow && classNames.size() == 0)
+		if (allBelow && classNames.isEmpty())
 			throw new UsageException("When using --allBelow, must specify --classNames");
 
 		if (allBelow && extractCorrectedReads)
@@ -122,7 +127,7 @@ public class ReadExtractorTool {
 			throw new UsageException("Number of input and output files must be equal, or output must be 'stdout' or a directory");
 		}
 
-		int totalReads = 0;
+		var totalReads = 0L;
 
 		for (int i = 0; i < inputFiles.size(); i++) {
 			final var inputFile = inputFiles.get(i);
@@ -175,7 +180,7 @@ public class ReadExtractorTool {
 			final var classification = ClassificationManager.get(classificationName, true);
 			final var classificationBlock = connector.getClassificationBlock(classificationName);
 
-			if (classNames.size() == 0)// no class names given, use all
+			if (classNames.isEmpty())// no class names given, use all
 			{
 				for (Integer classId : classificationBlock.getKeySet()) {
 					if (classId > 0)

@@ -48,7 +48,7 @@ public class DAA2Info {
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("DAA2Info");
+			ProgramProperties.setProgramName("daa2info");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
@@ -69,6 +69,10 @@ public class DAA2Info {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
+		options.setLatexDescription("""
+				This is run on a single DAA file computed by DIAMOND and possibly meganized, to obtain information or to
+				 extract data such as reads, alignments or classifications.
+				""");
 
 		options.comment("Input and Output");
 		final var daaFile = options.getOptionMandatory("-i", "in", "Input DAA file", "");

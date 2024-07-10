@@ -47,7 +47,7 @@ public class PopupMenuFX extends ContextMenu {
 	 */
 	public PopupMenuFX(String configuration, CommandManagerFX commandManager, boolean showApplicableOnly) {
 		super();
-		if (configuration != null && configuration.length() > 0) {
+		if (configuration != null && !configuration.isEmpty()) {
 			String[] tokens = configuration.split(";");
 
 			for (String token : tokens) {
@@ -77,7 +77,7 @@ public class PopupMenuFX extends ContextMenu {
 			}
 		}
 		if (ProgramProperties.get("showtex", false)) {
-			System.out.println(TeXGenerator.getPopupMenuLaTeX(configuration, commandManager));
+			System.out.println(TeXGenerator.getPopupMenuLaTeX("", configuration, commandManager));
 		}
 		try {
 			commandManager.updateEnableState();

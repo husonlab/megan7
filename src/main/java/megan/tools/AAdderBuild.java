@@ -59,7 +59,7 @@ public class AAdderBuild {
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("AAdderBuild");
+			ProgramProperties.setProgramName("aadder-build");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
@@ -81,6 +81,11 @@ public class AAdderBuild {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
+		options.setLatexDescription("""
+				This is used to build an index that can be used to perform functional binning of reads
+				that have been aligned against genomic sequence. It parses files in GFF3 format and creates an index
+				to be used with the \\verb^aadder-run^ program.
+				""");
 
 		options.comment("Input Output");
 		final List<String> gffFiles = options.getOptionMandatory("-igff", "inputGFF", "Input GFF3 files or directory (.gz ok)", new LinkedList<>());

@@ -57,7 +57,7 @@ public class GCAssembler {
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("GCAssembler");
+			ProgramProperties.setProgramName("gc-assembler");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
@@ -81,11 +81,18 @@ public class GCAssembler {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
+		options.setLatexDescription("""
+				This can be used to perform gene-centric
+				assembly, also called protein-alignment-guided assembly \\citep{Huson2017}. Genes are assembled
+				on-the-fly, based on the alignment of all reads against a protein reference database such as NCBI-nr.
+				Specifically, the user selects a gene family based on a classification such as KEGG and all reads binned
+				 to that gene family are assembled.
+				""");
 
 		options.comment("Input and output");
 		final var inputFile = options.getOptionMandatory("-i", "input", "Input DAA or RMA6 file", "");
 		final var outputFileTemplate = options.getOption("-o", "output", "Output filename template, use %d or %s to represent class id or name, respectively",
-				FileUtils.replaceFileSuffix(inputFile.length() == 0 ? "input" : inputFile, "-%d.fasta"));
+				FileUtils.replaceFileSuffix(inputFile.isEmpty() ? "input" : inputFile, "-%d.fasta"));
 
 		options.comment("Classification");
 
@@ -174,7 +181,7 @@ public class GCAssembler {
 		if (options.isVerbose())
 			System.err.println("Number of classes to assemble: " + classIdsList.size());
 
-		if (classIdsList.size() == 0)
+		if (classIdsList.isEmpty())
 			throw new UsageException("No valid classes specified");
 
 		final var numberOfThreads = Math.min(classIdsList.size(), desiredNumberOfThreads);
