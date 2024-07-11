@@ -41,4 +41,4 @@ modulepath="$jars_dir:$jars2_dir"
 
 java_flags="-server -Duser.language=en -Duser.region=US $vmOptions"
 
-$java $java_flags --module-path=$modulepath --add-modules=megan megan.tools.DAA2GFF3  $options
+$java $java_flags --module-path=$modulepath --add-modules=megan megan.tools.Daa2Gff3  $options

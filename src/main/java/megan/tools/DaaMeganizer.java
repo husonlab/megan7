@@ -1,5 +1,5 @@
 /*
- * DAAMeganizer.java Copyright (C) 2024 Daniel H. Huson
+ * DaaMeganizer.java Copyright (C) 2024 Daniel H. Huson
  *
  *  (Some files contain contributions from other authors, who are then mentioned separately.)
  *
@@ -47,7 +47,7 @@ import java.util.HashSet;
  * prepares a DAA file for use with MEGAN
  * Daniel Huson, 8.2015
  */
-public class DAAMeganizer {
+public class DaaMeganizer {
 	/**
 	 * meganizes a DAA file
 	 */
@@ -57,7 +57,7 @@ public class DAAMeganizer {
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
-			(new DAAMeganizer()).run(args);
+			(new DaaMeganizer()).run(args);
 			System.err.println("Total time:  " + PeakMemoryUsageMonitor.getSecondsSinceStartString());
 			System.err.println("Peak memory: " + PeakMemoryUsageMonitor.getPeakUsageString());
 			System.exit(0);

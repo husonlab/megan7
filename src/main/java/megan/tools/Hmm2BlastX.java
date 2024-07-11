@@ -1,5 +1,5 @@
 /*
- * HMM2Blastx.java Copyright (C) 2024 Daniel H. Huson
+ * Hmm2BlastX.java Copyright (C) 2024 Daniel H. Huson
  *
  *  (Some files contain contributions from other authors, who are then mentioned separately.)
  *
@@ -35,7 +35,7 @@ import java.util.*;
 /**
  * converts HMM output to BLASTX-like output
  */
-public class HMM2Blastx {
+public class Hmm2BlastX {
 	public enum EXPECTING {NextRefOrQuery, NextReference, NextQuery, Score, DomainAlignment}
 
 	/**
@@ -47,7 +47,7 @@ public class HMM2Blastx {
 			Setup.apply();
 
 			long start = System.currentTimeMillis();
-			(new HMM2Blastx()).run(args);
+			(new Hmm2BlastX()).run(args);
 			System.err.println("Time: " + ((System.currentTimeMillis() - start) / 1000) + "s");
 			System.exit(0);
 		} catch (Exception ex) {

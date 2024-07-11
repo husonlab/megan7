@@ -1,5 +1,5 @@
 /*
- * DAA2GFF3.java Copyright (C) 2024 Daniel H. Huson
+ * Daa2Gff3.java Copyright (C) 2024 Daniel H. Huson
  *
  *  (Some files contain contributions from other authors, who are then mentioned separately.)
  *
@@ -35,17 +35,17 @@ import java.io.IOException;
 /**
  * computes GFF3 file from DAA file
  */
-public class DAA2GFF3 {
+public class Daa2Gff3 {
 	/**
 	 * computes GFF3 file from DAA file
 	 */
 	public static void main(String[] args) {
 		try {
-			ProgramProperties.setProgramName("DAA2GFF3");
+			ProgramProperties.setProgramName("Daa2Gff3");
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
-			(new DAA2GFF3()).run(args);
+			(new Daa2Gff3()).run(args);
 			PeakMemoryUsageMonitor.report();
 			System.exit(0);
 		} catch (Exception ex) {

@@ -1,5 +1,5 @@
 /*
- * DAA2Info.java Copyright (C) 2024 Daniel H. Huson
+ * Daa2Info.java Copyright (C) 2024 Daniel H. Huson
  *
  *  (Some files contain contributions from other authors, who are then mentioned separately.)
  *
@@ -42,7 +42,7 @@ import java.util.HashSet;
  * provides info on a DAA files
  * Daniel Huson, 11.2016
  */
-public class DAA2Info {
+public class Daa2Info {
 	/**
 	 * DAA 2 info
 	 */
@@ -52,7 +52,7 @@ public class DAA2Info {
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
-			(new DAA2Info()).run(args);
+			(new Daa2Info()).run(args);
 			PeakMemoryUsageMonitor.report();
 			System.exit(0);
 		} catch (Exception ex) {
@@ -145,14 +145,14 @@ public class DAA2Info {
 
 			if (!listClass2Count.isEmpty()) {
 				if (isMeganized)
-					RMA2Info.reportClass2Count(doc, listGeneralInfo, listMoreStuff, reportPaths, reportNames, prefixRank, ignoreUnassigned, majorRanksOnly, listClass2Count, taxonomyRoot, useSummary, w);
+					Rma2Info.reportClass2Count(doc, listGeneralInfo, listMoreStuff, reportPaths, reportNames, prefixRank, ignoreUnassigned, majorRanksOnly, listClass2Count, taxonomyRoot, useSummary, w);
 				else
 					System.err.println("Can't list class-to-count: file has not been meganized");
 			}
 
 			if (!listRead2Class.isEmpty()) {
 				if (isMeganized)
-					RMA2Info.reportRead2Count(doc, listGeneralInfo, listMoreStuff, reportPaths, reportNames, prefixRank, ignoreUnassigned, majorRanksOnly, listRead2Class, taxonomyRoot, w);
+					Rma2Info.reportRead2Count(doc, listGeneralInfo, listMoreStuff, reportPaths, reportNames, prefixRank, ignoreUnassigned, majorRanksOnly, listRead2Class, taxonomyRoot, w);
 				else
 					System.err.println("Can't list read-to-count: file has not been meganized");
 			}

@@ -1,5 +1,5 @@
 /*
- * RMA2Info.java Copyright (C) 2024 Daniel H. Huson
+ * Rma2Info.java Copyright (C) 2024 Daniel H. Huson
  *
  *  (Some files contain contributions from other authors, who are then mentioned separately.)
  *
@@ -46,7 +46,7 @@ import java.util.function.Function;
  * provides info on a RMA files
  * Daniel Huson, 11.2016
  */
-public class RMA2Info {
+public class Rma2Info {
 	/**
 	 * RMA 2 info
 	 */
@@ -56,7 +56,7 @@ public class RMA2Info {
 			Setup.apply();
 
 			PeakMemoryUsageMonitor.start();
-			(new RMA2Info()).run(args);
+			(new Rma2Info()).run(args);
 			System.err.println("Total time:  " + PeakMemoryUsageMonitor.getSecondsSinceStartString());
 			System.err.println("Peak memory: " + PeakMemoryUsageMonitor.getPeakUsageString());
 			System.exit(0);

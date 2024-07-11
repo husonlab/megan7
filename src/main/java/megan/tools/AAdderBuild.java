@@ -77,7 +77,7 @@ public class AAdderBuild {
 	 * run the program
 	 */
 	private void run(String[] args) throws CanceledException, IOException, UsageException, SQLException {
-		final ArgsOptions options = new ArgsOptions(args, this, "Build the index for AAdd");
+		final ArgsOptions options = new ArgsOptions(args, this, "Build the index for AAdder");
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");

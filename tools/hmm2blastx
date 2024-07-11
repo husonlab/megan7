@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# hmm2blast Copyright (C) 2022 Daniel H. Huson
+# hmm2blastx Copyright (C) 2022 Daniel H. Huson
 #
 # (Some files contain contributions from other authors, who are then mentioned separately.)
 #
@@ -43,4 +43,4 @@ modulepath="$jars_dir:$jars2_dir"
 java_flags="-server -Duser.language=en -Duser.region=US $vmOptions"
 
 
-$java $java_flags --module-path=$modulepath --add-modules=megan megan.tools.HMM2Blastx  $options
+$java $java_flags --module-path=$modulepath --add-modules=megan megan.tools.Hmm2BlastX  $options
