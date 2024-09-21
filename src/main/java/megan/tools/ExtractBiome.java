@@ -125,7 +125,7 @@ public class ExtractBiome {
 		else
 			selectedSamples.addAll(Arrays.asList(samplesToUseOption));
 
-		if (selectedSamples.size() == 0)
+		if (selectedSamples.isEmpty())
 			throw new UsageException("No valid samples-to-use specified");
 
 		final ComputeBiomeCommand computeBiomeCommand = new ComputeBiomeCommand();
