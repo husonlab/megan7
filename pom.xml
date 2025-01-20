@@ -116,10 +116,11 @@
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/cisd/jhdf5 -->
         <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>sis-jhdf5</artifactId>
-            <version>1.0</version>
+            <groupId>cisd</groupId>
+            <artifactId>jhdf5</artifactId>
+            <version>19.04.1</version>
         </dependency>
         <!--
         <dependency>
@@ -197,6 +198,10 @@
         <repository>
             <id>maven2</id>
             <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>scijava</id>
+            <url>https://maven.scijava.org/content/repositories/public/</url>
         </repository>
     </repositories>
 </project>

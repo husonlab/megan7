@@ -5,25 +5,26 @@ module megan {
 
 	requires com.install4j.runtime;
 	requires java.sql;
-    requires jdk.httpserver;
+	requires jdk.httpserver;
 
-    requires java.desktop;
-    requires java.net.http;
-    requires org.xerial.sqlitejdbc;
-    requires java.sql.rowset;
-    requires bcrypt;
-    requires com.google.gson;
-    requires sis.jhdf5;
+	requires java.desktop;
+	requires java.net.http;
+	requires org.xerial.sqlitejdbc;
+	requires java.sql.rowset;
+	requires bcrypt;
+	requires com.google.gson;
+	requires jhdf5;
+	requires base;
 
-    requires jloda_swing;
-    requires jloda_core;
-    requires jloda_fx;
+	requires jloda_swing;
+	requires jloda_core;
+	requires jloda_fx;
 
-    exports megan.accessiondb;
-    exports megan.algorithms;
-    exports megan.alignment;
-    exports megan.alignment.commands;
-    exports megan.alignment.gui;
+	exports megan.accessiondb;
+	exports megan.algorithms;
+	exports megan.alignment;
+	exports megan.alignment.commands;
+	exports megan.alignment.gui;
     exports megan.alignment.gui.colors;
     exports megan.assembly;
     exports megan.assembly.alignment;
