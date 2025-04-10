@@ -100,16 +100,16 @@ public class OpenRemoteServerCommand extends CommandBase implements ICommand {
 			String passwordHash = remoteServiceBrowser.getPasswordHash();
 
 			String command = "openServer url='" + url + "'";
-			if (user.length() > 0)
+			if (!user.isEmpty())
 				command += " user='" + user + "'";
-			if (passwordHash.length() > 0) {
+			if (!passwordHash.isEmpty()) {
 				synchronized (syncObject) {
 					OpenRemoteServerCommand.hiddenPassword = passwordHash;
 				}
 				command += " password='" + HIDDEN_PASSWORD + "'";
 			}
 			command += ";";
-			if (url.length() > 0) {
+			if (!url.isEmpty()) {
 				execute(command);
 			}
 		}
@@ -169,10 +169,8 @@ public class OpenRemoteServerCommand extends CommandBase implements ICommand {
 	 * @return true, if command can be applied
 	 */
 	public boolean isApplicable() {
-		if (getViewer() == null || !(getViewer() instanceof RemoteServiceBrowser))
+		if (getViewer() == null || !(getViewer() instanceof RemoteServiceBrowser remoteServiceBrowser))
 			return false;
-		final RemoteServiceBrowser remoteServiceBrowser = (RemoteServiceBrowser) getViewer();
-
-		return !remoteServiceBrowser.isServiceSelected() && remoteServiceBrowser.getURL().length() > 0;
+		return !remoteServiceBrowser.isServiceSelected() && !remoteServiceBrowser.getURL().isEmpty();
 	}
 }

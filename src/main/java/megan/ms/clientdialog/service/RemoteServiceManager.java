@@ -188,7 +188,7 @@ public class RemoteServiceManager {
 
 		var toDelete = new ArrayList<String>();
 		for (var server : server2Credentials.keySet()) {
-			if (server.toLowerCase().contains("informatik.uni-tuebingen.de")) {
+			if (server.toLowerCase().contains("informatik.uni-tuebingen.de") || server.toLowerCase().contains("megan6server")) {
 				System.err.println("Removed defunct server address: " + server);
 				toDelete.add(server);
 			}

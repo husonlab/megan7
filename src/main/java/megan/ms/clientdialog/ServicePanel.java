@@ -326,8 +326,10 @@ public class ServicePanel extends JPanel {
 					if (fileName != null) {
 						var about = service.getDescription(fileName);
 						if (about != null && !about.isBlank()) {
-							MessageWindow.getInstance().getFrame().setVisible(true);
-							MessageWindow.getInstance().getFrame().toFront();
+							if (false) {
+								MessageWindow.getInstance().getFrame().setVisible(true);
+								MessageWindow.getInstance().getFrame().toFront();
+							}
 							System.err.println("\n" + node.toString().replaceAll("<.*?>", "") + ":\n" + about.trim());
 							System.err.flush();
 						}
