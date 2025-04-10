@@ -67,7 +67,7 @@ public class Daa2Info {
 	private void run(String[] args) throws UsageException, IOException, CanceledException {
 		final var options = new ArgsOptions(args, this, "Analyses a DIAMOND file");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 		options.setLatexDescription("""
 				This is run on a single DAA file computed by DIAMOND and possibly meganized, to obtain information or to

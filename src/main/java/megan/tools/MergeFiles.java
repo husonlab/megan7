@@ -64,7 +64,7 @@ public class MergeFiles {
 	public void run(String[] args) throws Exception {
 		final ArgsOptions options = new ArgsOptions(args, this, "Computes the comparison of multiple megan, RMA or meganized DAA files");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 		options.setLatexDescription("""
 				This takes multiple RMA or meganized DAA files as input and produces a single MEGAN file as output that

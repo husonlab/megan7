@@ -622,8 +622,9 @@ public class ClusterViewer extends JFrame implements IDirectableViewer, IViewerW
 						else if (pcoaTab.isTriplotNode(v))
 							showThisLabel = pcoaTab.isShowTriPlot();
 					}
-					if (showThisLabel) {
-						nv.setLabelVisible(true);
+
+					nv.setLabelVisible(showThisLabel);
+
 						if (nv.getHeight() <= 3)
 							nv.setHeight(nodeRadius);
 						if (nv.getWidth() <= 3)
@@ -644,15 +645,10 @@ public class ClusterViewer extends JFrame implements IDirectableViewer, IViewerW
 								nv.setLabelBackgroundColor(color);
 						} else
 							nv.setBackgroundColor(null);
-					}
-				} else
-					showThisLabel = false;
-				if (!showThisLabel) {
-					nv.setLabelVisible(false);
-					nv.setWidth(1);
+				} else {
 					nv.setHeight(1);
-					nv.setColor(Color.BLACK);
-					nv.setBackgroundColor(Color.BLACK);
+					nv.setWidth(1);
+
 				}
 			}
 			for (Edge e = graph.getFirstEdge(); e != null; e = e.getNext()) {

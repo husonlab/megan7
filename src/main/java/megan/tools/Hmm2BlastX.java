@@ -62,7 +62,7 @@ public class Hmm2BlastX {
 	private void run(String[] args) throws Exception {
 		final ArgsOptions options = new ArgsOptions(args, this, "Converts HMM output to BLASTX");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 
 		final String[] inputFiles = options.getOptionMandatory("-i", "input", "HMM  files", new String[0]);

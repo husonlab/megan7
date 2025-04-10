@@ -70,7 +70,7 @@ public class AAdderRun {
 	private void run(String[] args) throws CanceledException, IOException, UsageException {
 		final ArgsOptions options = new ArgsOptions(args, this, "Adds functional accessions to DNA alignments");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 		options.setLatexDescription("""
 				This is used to add functional assignments to DNA alignments, using an index created using

@@ -68,7 +68,7 @@ public class MeganServer {
 
 		final ArgsOptions options = new ArgsOptions(args, this, "Serves MEGAN files over the web via HTTP");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 		options.setLatexDescription("""
 				This can serve files that are hosted on a
@@ -96,9 +96,9 @@ public class MeganServer {
 		options.comment(ArgsOptions.OTHER);
 		String defaultPreferenceFile;
 		if (ProgramProperties.isMacOS())
-			defaultPreferenceFile = System.getProperty("user.home") + "/Library/Preferences/MeganServerUsers.def";
+			defaultPreferenceFile = System.getProperty("user.home") + "/Library/Preferences/MeganServer7.def";
 		else
-			defaultPreferenceFile = System.getProperty("user.home") + File.separator + ".MeganServerUsers.def";
+			defaultPreferenceFile = System.getProperty("user.home") + File.separator + ".MeganServer7.def";
 
 		final String usersFile = options.getOption("-u", "usersFile", "File containing list of users", defaultPreferenceFile);
 		final int backlog = options.getOption("-bl", "backlog", "Set the socket backlog", 100);

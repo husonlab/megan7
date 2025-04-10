@@ -72,7 +72,7 @@ public class MergeMultipleAccessionAssignments {
 
 		final var options = new ArgsOptions(args, this, "Merge multiple accession assignments");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 
 		final var inputFile = options.getOptionMandatory("-i", "in", "Input file, each line containing a cluster accession followed  member accessions (stdin, .gz ok)", "");

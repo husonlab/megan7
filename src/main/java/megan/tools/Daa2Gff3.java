@@ -60,7 +60,7 @@ public class Daa2Gff3 {
 	private void run(String[] args) throws UsageException, IOException, CanceledException {
 		final ArgsOptions options = new ArgsOptions(args, this, "Extracts a GFF3 annotation file from a meganized DAA file");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 		options.setLatexDescription("""
 				This produces an annotation of long reads or contigs, given a meganized DAA file as input. The output

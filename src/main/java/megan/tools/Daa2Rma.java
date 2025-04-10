@@ -81,7 +81,7 @@ public class Daa2Rma {
 
 		final ArgsOptions options = new ArgsOptions(args, this, "Computes a MEGAN .rma6 file from a DIAMOND .daa file");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 		options.setLatexDescription("""
 				This takes a DAA alignment file produced by DIAMOND, performs taxonomic and classification of reads

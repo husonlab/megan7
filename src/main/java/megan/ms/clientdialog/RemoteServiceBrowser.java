@@ -447,7 +447,7 @@ public class RemoteServiceBrowser extends JFrame implements IDirectableViewer, I
 		if (isPasswordHash())
 			return String.valueOf(passwordTextField.getPassword());
 		else {
-			return Utilities.computeBCryptHash(new String(passwordTextField.getPassword()).getBytes());
+			return Utilities.computeHash(new String(passwordTextField.getPassword()));
 		}
 	}
 

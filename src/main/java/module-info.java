@@ -11,7 +11,6 @@ module megan {
 	requires java.net.http;
 	requires org.xerial.sqlitejdbc;
 	requires java.sql.rowset;
-	requires bcrypt;
 	requires com.google.gson;
 	requires jhdf5;
 	requires base;
@@ -19,6 +18,7 @@ module megan {
 	requires jloda_swing;
 	requires jloda_core;
 	requires jloda_fx;
+	requires de.mkammerer.argon2.nolibs;
 
 	exports megan.accessiondb;
 	exports megan.algorithms;

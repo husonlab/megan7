@@ -72,7 +72,7 @@ public class Rma2Info {
 	private void run(String[] args) throws UsageException, IOException {
 		final var options = new ArgsOptions(args, this, "Analyses an RMA file");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 		options.setLatexDescription("""
 				This is run on a single RMA file to obtain information or to extract data such as reads, alignments or

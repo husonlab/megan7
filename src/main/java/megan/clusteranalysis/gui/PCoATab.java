@@ -207,6 +207,8 @@ public class PCoATab extends JPanel implements ITab {
 			}
 
 			public void paint(Graphics g) {
+				if (false) for (var v : graph.nodes()) graphView.getNV(v).setNodeShape(NodeShape.Oval);
+
 				super.paint(g);
 
 				g.setColor(getGroupsColor());

@@ -123,7 +123,7 @@ public class Megan7 {
         ProgramProperties.setProgramVersion(Version.SHORT_DESCRIPTION);
 
         ProgramProperties.setProgramLicence("""
-                Copyright (C) 2024 Daniel H. Huson. This program comes with ABSOLUTELY NO WARRANTY.
+				Copyright (C) 2025 Daniel H. Huson. This program comes with ABSOLUTELY NO WARRANTY.
                 This is free software, licensed under the terms of the GNU General Public License, Version 3.
                 Sources available at: https://github.com/husonlab/megan7""");
 

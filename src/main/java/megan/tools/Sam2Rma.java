@@ -81,7 +81,7 @@ public class Sam2Rma {
 
 		final ArgsOptions options = new ArgsOptions(args, this, "Computes a MEGAN RMA (.rma) file from a SAM (.sam) file that was created by DIAMOND or MALT");
 		options.setVersion(ProgramProperties.getProgramVersion());
-		options.setLicense("Copyright (C) 2024. This program comes with ABSOLUTELY NO WARRANTY.");
+		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
 		options.setLatexDescription("""
 				This takes an alignment file in SAM format, produced by MALT,

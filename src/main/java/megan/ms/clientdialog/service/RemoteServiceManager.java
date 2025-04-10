@@ -216,7 +216,7 @@ public class RemoteServiceManager {
 
 	public static void ensureDefaultService() {
 		var user = "guest";
-		var passwordHash = Utilities.computeBCryptHash("guest".getBytes());
+		var passwordHash = Utilities.computeHash("guest");
 		saveCredentials(DEFAULT_MEGAN_SERVER, user, passwordHash);
 	}
 }
