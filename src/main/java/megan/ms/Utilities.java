@@ -20,7 +20,8 @@
 
 package megan.ms;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
+
+import de.mkammerer.argon2.Argon2Factory;
 import megan.daa.connector.ClassificationBlockDAA;
 import megan.daa.io.ByteInputStream;
 import megan.daa.io.ByteOutputStream;
@@ -29,6 +30,7 @@ import megan.daa.io.OutputWriterLittleEndian;
 import megan.data.IClassificationBlock;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -37,8 +39,6 @@ import java.util.TreeMap;
  * Daniel Huson, 8.2020
  */
 public class Utilities {
-	private static final byte[] SALT = "7DFjUnE9p2uDeDu0".getBytes();
-
 	public static final String SERVER_ERROR = "401 Error:";
 
 	/**
@@ -119,11 +119,14 @@ public class Utilities {
 		return new byte[]{(byte) a, (byte) (a >> 8), (byte) (a >> 16), (byte) (a >> 24), (byte) (a >> 32), (byte) (a >> 40), (byte) (a >> 48), (byte) (a >> 56)};
 	}
 
-	public static String computeBCryptHash(byte[] password) {
-		return new String(BCrypt.withDefaults().hash(6, SALT, password));
+	private static final byte[] SALT = "megan7server".getBytes(StandardCharsets.UTF_8);
+
+	public static String computeHash(String password) {
+		var argon2 = Argon2Factory.createAdvanced(Argon2Factory.Argon2Types.ARGON2id);
+		return argon2.hash(3, 65536, 1, password.toCharArray(), StandardCharsets.UTF_8, SALT);
 	}
 
-	public static boolean verify(char[] password, String bcryptHash) {
-		return BCrypt.verifyer().verify(password, bcryptHash).verified;
+	public static boolean verify(String password, String providedHash) {
+		return computeHash(password).equals(providedHash);
 	}
 }

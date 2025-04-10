@@ -56,19 +56,22 @@ public class UserManager {
 		if (FileUtils.fileExistsAndIsNonEmpty(fileName)) {
 			if (true) {
 				if (FileUtils.getLinesFromFile(fileName).stream().filter(line -> line.startsWith("#")).anyMatch(line -> line.contains("password-md5"))) {
-					throw new IOException("Users file '" + fileName + "' contains md5 hashes, no longer supported, please delete and setup new file");
+					throw new IOException("Users file '" + fileName + "' contains md5 hashes, not supported, please delete and setup new file");
+				}
+				if (FileUtils.getLinesFromFile(fileName).stream().filter(line -> !line.startsWith("#")).anyMatch(line -> !line.contains("$argon2id$"))) {
+					throw new IOException("Users file '" + fileName + "' does not use argon2 hashes, not supported, please delete and setup new file");
 				}
 			}
 
-			FileUtils.getLinesFromFile(fileName).stream().filter(line -> line.length() > 0 && !line.startsWith("#"))
+			FileUtils.getLinesFromFile(fileName).stream().filter(line -> !line.isEmpty() && !line.startsWith("#"))
 					.map(line -> line.contains("\t") ? line : line.replaceAll("\\s+", "\t"))
 					.map(line -> StringUtils.split(line, '\t'))
-					.filter(tokens -> tokens.length >= 2 && tokens[0].length() > 0 && tokens[1].length() > 0)
+					.filter(tokens -> tokens.length >= 2 && !tokens[0].isEmpty() && !tokens[1].isEmpty())
 					.forEach(tokens -> {
 						user2passwordHash.put(tokens[0], tokens[1]);
 						final Set<String> roles = new TreeSet<>();
 						user2roles.put(tokens[0], roles);
-						if (tokens.length == 3 && tokens[2].length() > 0)
+						if (tokens.length == 3 && !tokens[2].isEmpty())
 							roles.addAll(Arrays.asList(StringUtils.split(tokens[2], ',')));
 					});
 		}
@@ -87,10 +90,10 @@ public class UserManager {
 	public void addUser(String name, String password, boolean allowReplace, String... roles) throws IOException {
 		if (!allowReplace && user2passwordHash.containsKey(name))
 			throw new IOException("User exists: " + name);
-		user2passwordHash.put(name, Utilities.computeBCryptHash(password.getBytes()));
+		user2passwordHash.put(name, Utilities.computeHash(password));
 		user2roles.put(name, new TreeSet<>());
-		final List<String> nonNullRoles = Arrays.stream(roles).filter(Objects::nonNull).map(String::trim).filter(r -> r.length() > 0).toList();
-		if (nonNullRoles.size() > 0)
+		var nonNullRoles = Arrays.stream(roles).filter(Objects::nonNull).map(String::trim).filter(r -> !r.isEmpty()).toList();
+		if (!nonNullRoles.isEmpty())
 			user2roles.get(name).addAll(nonNullRoles);
 		writeFile();
 	}
@@ -153,7 +156,7 @@ public class UserManager {
 			} else {
 				password = new String(console.readPassword());
 			}
-			if (password == null || password.length() == 0)
+			if (password == null || password.isEmpty())
 				break;
 			else if (password.length() < 8)
 				System.err.println("Too short, enter a longer password (at least 8 characters):");
@@ -163,14 +166,14 @@ public class UserManager {
 				break;
 
 		}
-		if (password == null || password.length() == 0)
+		if (password == null || password.isEmpty())
 			throw new IOException("Failed to input admin password");
 		addUser(ADMIN, password, true, UserManager.ADMIN);
 	}
 
 	public boolean checkCredentials(String requiredRole, String user, String passwordHash) {
 		boolean result = user2passwordHash.containsKey(user) && passwordHash.equals(user2passwordHash.get(user)) && (requiredRole == null || user2roles.get(user).contains(requiredRole) || user2roles.get(user).contains(ADMIN));
-		if (!result && requiredRole != null && requiredRole.contains("/") && requiredRole.replaceAll(".*/", "").length() > 0) {
+		if (!result && requiredRole != null && requiredRole.contains("/") && !requiredRole.replaceAll(".*/", "").isEmpty()) {
 			return checkCredentials(requiredRole.replaceAll(".*/", ""), user, passwordHash);
 		} else
 			return result;
@@ -198,7 +201,7 @@ public class UserManager {
 
 		@Override
 		public boolean checkCredentials(String username, String password) {
-			return UserManager.this.checkCredentials(role, username, password) || UserManager.this.checkCredentials(role, username, Utilities.computeBCryptHash(password.getBytes()));
+			return UserManager.this.checkCredentials(role, username, password) || UserManager.this.checkCredentials(role, username, Utilities.computeHash(password));
 		}
 	}
 }
