@@ -26,7 +26,6 @@ import jloda.swing.util.ResourceManager;
 import jloda.util.FileUtils;
 import jloda.util.parse.NexusStreamParser;
 import megan.biom.biom1.BIOM1Importer;
-import megan.biom.biom2.Biom2Importer;
 import megan.core.Director;
 import megan.core.Document;
 import megan.inspector.InspectorWindow;
@@ -83,7 +82,7 @@ public class ImportBIOMCommand extends CommandBase implements ICommand {
 			if (BiomFileFilter.isBiom1File(fileName))
 				BIOM1Importer.apply(fileName, doc, type, taxonomyIgnorePath);
 			else if (BiomFileFilter.isBiom2File(fileName))
-				Biom2Importer.apply(fileName, doc, type, taxonomyIgnorePath);
+				throw new IOException("Biom2 format not supported: " + fileName);
 
 			if (dir.getViewerByClass(InspectorWindow.class) != null)
 				((InspectorWindow) dir.getViewerByClass(InspectorWindow.class)).clear();
@@ -164,11 +163,11 @@ public class ImportBIOMCommand extends CommandBase implements ICommand {
 	}
 
 	public String getName() {
-		return "BIOM Format...";
+		return "BIOM1 Format...";
 	}
 
 	public String getAltName() {
-		return "Import BIOM Format...";
+		return "Import BIOM1 Format...";
 	}
 
 	public ImageIcon getIcon() {

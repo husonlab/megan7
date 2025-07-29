@@ -12,13 +12,12 @@ module megan {
 	requires org.xerial.sqlitejdbc;
 	requires java.sql.rowset;
 	requires com.google.gson;
-	requires jhdf5;
-	requires base;
 
 	requires jloda_swing;
 	requires jloda_core;
 	requires jloda_fx;
 	requires de.mkammerer.argon2.nolibs;
+	requires java.smartcardio;
 
 	exports megan.accessiondb;
 	exports megan.algorithms;
@@ -30,7 +29,6 @@ module megan {
     exports megan.assembly.alignment;
     exports megan.assembly.commands;
 	exports megan.biom.biom1;
-	exports megan.biom.biom2;
 	exports megan.blastclient;
 	exports megan.chart;
 	exports megan.chart.cluster;
@@ -136,7 +134,6 @@ module megan {
 	opens megan.resources.files.ms;
 
 	opens megan.biom.biom1;
-	opens megan.biom.biom2;
 
 	opens megan.dialogs.lrinspector;
 	opens megan.dialogs.reads;

@@ -42,7 +42,7 @@ class GUIConfiguration {
 
 		menuConfig.defineMenu("Open Recent", ";");
 		menuConfig.defineMenu("Export", "Text (CSV) Format...;BIOM1 Format...;STAMP Format...;|;Metadata...;|;Reads...;Matches...;Alignments...;|;All Individual Samples...;MEGAN Summary File...;");
-		menuConfig.defineMenu("Import", "Import Text (CSV) Format...;Import BIOM Format...;|;Import Metadata...;");
+		menuConfig.defineMenu("Import", "Import Text (CSV) Format...;Import BIOM1 Format...;|;Import Metadata...;");
 
 		menuConfig.defineMenu("Edit", "Samples Viewer Cut;Samples Viewer Copy;Samples Viewer Paste;Samples Viewer Paste By Attribute;|;" +
 									  "Select All;Select None;Select Same Value;From Previous Window;|;Select Comment-Like;Select Numerical;Select Uninformative;|;" +

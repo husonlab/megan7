@@ -47,7 +47,7 @@ public class GUIConfiguration {
 										ProgramProperties.getIfEnabled("enable-taxon-parent-mapping", "Taxon-Parent Mapping...;|;") +
 										"Annotations in GFF Format...;Export Read Lengths and Coverage...;Export Frame-Shift Corrected Reads...;"
 										+ "Export Segmentation of Reads...;|;Reads...;Matches...;Alignments...;Overlap Graph...;Gene-Centric Assembly...;|;All Individual Samples...;MEGAN Summary File...;");
-		menuConfig.defineMenu("Import", "Import Text (CSV) Format...;Import BIOM Format...;|;Import Metadata...;");
+		menuConfig.defineMenu("Import", "Import Text (CSV) Format...;Import BIOM1 Format...;|;Import Metadata...;");
 
 		menuConfig.defineMenu("Edit", "Cut;Copy;Copy Image;Copy Legend;Paste;|;Edit Node Label;Edit Edge Label;Description...;|;Format...;|;Find...;Find Again;|;Colors...;|;@Preferences;");
 
