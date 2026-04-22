@@ -27,7 +27,8 @@ import jloda.util.*;
 import jloda.util.interval.Interval;
 import jloda.util.progress.ProgressListener;
 import jloda.util.progress.ProgressPercentage;
-import megan.accessiondb.AccessAccessionMappingDatabase;
+import megan.accessiondb.AccessionMappingDB;
+import megan.accessiondb.AccessionMappingDBFactory;
 import megan.classification.Classification;
 import megan.classification.ClassificationManager;
 import megan.classification.IdMapper;
@@ -113,7 +114,7 @@ public class AAdderBuild {
 
 		MeganProperties.initializeProperties(propertiesFile);
 
-		final Collection<String> mapDBClassifications = AccessAccessionMappingDatabase.getContainedClassificationsIfDBExists(mapDBFile);
+		final Collection<String> mapDBClassifications = AccessionMappingDB.getContainedClassificationsIfDBExists(mapDBFile);
 		if (!mapDBClassifications.isEmpty() && StringUtils.hasPositiveLengthValue(class2AccessionFile))
 			throw new UsageException("Illegal to use both --mapDB and ---acc2... options");
 
@@ -157,13 +158,13 @@ public class AAdderBuild {
 	}
 
 	public static GeneItemCreator setupCreator(String mapDBFile) throws IOException, SQLException {
-		final AccessAccessionMappingDatabase database = new AccessAccessionMappingDatabase(mapDBFile);
+		final var accessionDB = AccessionMappingDBFactory.open(mapDBFile);
 		final ArrayList<String> classificationNames = new ArrayList<>();
 		for (String cName : ClassificationManager.getAllSupportedClassifications()) {
-			if (database.getSize(cName) > 0)
+			if (accessionDB.getSize(cName) > 0)
 				classificationNames.add(cName);
 		}
-		return new GeneItemCreator(classificationNames.toArray(new String[0]), database);
+		return new GeneItemCreator(classificationNames.toArray(new String[0]), accessionDB);
 	}
 
 	/**

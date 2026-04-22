@@ -25,7 +25,7 @@ import jloda.swing.util.ArgsOptions;
 import jloda.swing.util.ResourceManager;
 import jloda.util.*;
 import jloda.util.progress.ProgressPercentage;
-import megan.accessiondb.AccessAccessionMappingDatabase;
+import megan.accessiondb.AccessionMappingDB;
 import megan.classification.Classification;
 import megan.classification.ClassificationManager;
 import megan.classification.IdMapper;
@@ -109,7 +109,7 @@ public class ReferencesAnnotator {
 
 		FileUtils.checkFileReadableNonEmpty(inputFile);
 
-		final var mapDBClassifications = AccessAccessionMappingDatabase.getContainedClassificationsIfDBExists(mapDBFile);
+		final var mapDBClassifications = AccessionMappingDB.getContainedClassificationsIfDBExists(mapDBFile);
 		if (mapDBClassifications.size() > 0 && (StringUtils.hasPositiveLengthValue(class2AccessionFile) || StringUtils.hasPositiveLengthValue(class2SynonymsFile)))
 			throw new UsageException("Illegal to use both --mapDB and ---acc2... or --syn2... options");
 

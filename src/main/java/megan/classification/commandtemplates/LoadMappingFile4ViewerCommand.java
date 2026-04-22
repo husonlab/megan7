@@ -27,7 +27,8 @@ import jloda.swing.util.ResourceManager;
 import jloda.swing.util.TextFileFilter;
 import jloda.swing.window.NotificationsInSwing;
 import jloda.util.parse.NexusStreamParser;
-import megan.accessiondb.AccessAccessionMappingDatabase;
+import megan.accessiondb.AccessAccessionAdapter;
+import megan.accessiondb.AccessionMappingDB;
 import megan.classification.ClassificationManager;
 import megan.classification.IdMapper;
 import megan.importblast.ImportBlastDialog;
@@ -82,9 +83,19 @@ public class LoadMappingFile4ViewerCommand extends CommandBase implements IComma
 			suffixes.add("abin");
 		} else if (mapType == IdMapper.MapType.MeganMapDB) {
 			suffixes.add("mdb");
+			suffixes.add("m7db");
 		}
 
-		final File file = ChooseFileDialog.chooseFileToOpen(dialog, lastOpenFile, new TextFileFilter(suffixes.toArray(new String[0]), false),
+		var filter = new TextFileFilter(suffixes.toArray(new String[0]), false) {
+			@Override
+			public boolean accept(File dir, String name) {
+				if (AccessAccessionAdapter.FILE_FILTER.apply(name))
+					return super.accept(dir, name);
+				else return false;
+			}
+		};
+
+		final File file = ChooseFileDialog.chooseFileToOpen(dialog, lastOpenFile, filter,
 				new TextFileFilter(suffixes.toArray(new String[0]), true), ev, "Open " + mapType + " File");
 		getDir().notifyUnlockInput();
 
@@ -101,7 +112,7 @@ public class LoadMappingFile4ViewerCommand extends CommandBase implements IComma
 						NotificationsInSwing.showError("Load MEGAN mapping mdb-file failed: " + e.getMessage());
 						return;
 					}
-					final Collection<String> supportedClassifications = AccessAccessionMappingDatabase.getContainedClassificationsIfDBExists(file.getPath());
+					final Collection<String> supportedClassifications = AccessionMappingDB.getContainedClassificationsIfDBExists(file.getPath());
 					for (String name : cNames) {
 						if (supportedClassifications.contains(name)) {
 							ProgramProperties.put(ClassificationManager.getMapFileKey(name, mapType), file);

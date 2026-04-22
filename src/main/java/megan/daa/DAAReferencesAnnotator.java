@@ -26,7 +26,7 @@ import jloda.util.CanceledException;
 import jloda.util.ProgramExecutorService;
 import jloda.util.StringUtils;
 import jloda.util.progress.ProgressListener;
-import megan.accessiondb.AccessAccessionMappingDatabase;
+import megan.accessiondb.AccessionMappingDBFactory;
 import megan.classification.Classification;
 import megan.classification.ClassificationManager;
 import megan.classification.IdParser;
@@ -73,6 +73,7 @@ class DAAReferencesAnnotator {
 				System.err.println("Annotating DAA file using FAST mode (accession database and first accession per line)");
 				progress.setSubtask("Annotating references");
 
+
 				final var chunkSize = ProgramProperties.get("AccessionChunkSize", 5000); // don't make this too big, query will exceed SQLITE size limitation
 
 				final var numberOfTasks = (int) Math.ceil((double) header.getNumberOfReferences() / chunkSize);
@@ -90,8 +91,8 @@ class DAAReferencesAnnotator {
 				for (var t = 0; t < numberOfThreads; t++) {
 					final var task = t;
 					service.submit(() -> {
-						try (final var accessAccessionMappingDatabase = new AccessAccessionMappingDatabase(ClassificationManager.getMeganMapDBFile())) {
-							final var mapClassificationId2DatabaseRank = accessAccessionMappingDatabase.setupMapClassificationId2DatabaseRank(cNames);
+						try (final var accessionDB = AccessionMappingDBFactory.open(ClassificationManager.getMeganMapDBFile())) {
+							final var mapClassificationId2DatabaseRank = accessionDB.setupMapClassificationId2DatabaseRank(cNames);
 
 							final var queries = new String[chunkSize];
 							for (var r = task * chunkSize; r < header.getNumberOfReferences(); r += numberOfThreads * chunkSize) {
@@ -106,7 +107,7 @@ class DAAReferencesAnnotator {
 											break;
 									}
 									final var size = Math.min(chunkSize, header.getNumberOfReferences() - r);
-									final var query2ids = accessAccessionMappingDatabase.getValues(queries, size);
+									final var query2ids = accessionDB.getValues(queries, size);
 									for (var q = 0; q < size; q++) {
 										final var ids = query2ids.get(queries[q]);
 										if (ids != null) {

@@ -23,7 +23,7 @@ import jloda.swing.commands.CommandManager;
 import jloda.swing.util.ArgsOptions;
 import jloda.util.*;
 import jloda.util.progress.ProgressPercentage;
-import megan.accessiondb.AccessAccessionMappingDatabase;
+import megan.accessiondb.AccessionMappingDB;
 import megan.accessiondb.ConfigRequests;
 import megan.classification.Classification;
 import megan.classification.ClassificationManager;
@@ -202,7 +202,7 @@ public class DaaMeganizer {
 		if (StringUtils.notBlank(contaminantsFile))
 			FileUtils.checkFileReadableNonEmpty(contaminantsFile);
 
-		final var mapDBClassifications = AccessAccessionMappingDatabase.getContainedClassificationsIfDBExists(mapDBFile);
+		final var mapDBClassifications = AccessionMappingDB.getContainedClassificationsIfDBExists(mapDBFile);
 		if (!mapDBClassifications.isEmpty() && (StringUtils.hasPositiveLengthValue(class2AccessionFile) || StringUtils.hasPositiveLengthValue(class2SynonymsFile)))
 			throw new UsageException("Illegal to use both --mapDB and ---acc2... or --syn2... options");
 

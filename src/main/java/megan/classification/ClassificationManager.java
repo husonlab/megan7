@@ -23,6 +23,7 @@ import jloda.util.FileUtils;
 import jloda.util.StringUtils;
 import jloda.util.progress.ProgressListener;
 import jloda.util.progress.ProgressSilent;
+import megan.accessiondb.AccessAccessionAdapter;
 
 import java.io.IOException;
 import java.util.*;
@@ -183,6 +184,9 @@ public class ClassificationManager {
 	public static void setMeganMapDBFile(String meganMapDBFile) throws IOException {
 		if (meganMapDBFile != null && !FileUtils.fileExistsAndIsNonEmpty(meganMapDBFile))
 			throw new IOException("File not found or not readable: " + meganMapDBFile);
+		if (!AccessAccessionAdapter.FILE_FILTER.apply(meganMapDBFile))
+			throw new IOException("Mapping file " + FileUtils.getFileNameWithoutPath(meganMapDBFile) + " is intended for use with MEGAN Ultimate Edition, it is not compatible with MEGAN Community Edition");
+
 		ClassificationManager.meganMapDBFile = meganMapDBFile;
 		if (meganMapDBFile != null)
 			setUseFastAccessionMappingMode(true);

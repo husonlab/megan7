@@ -24,7 +24,7 @@ import jloda.swing.util.ArgsOptions;
 import jloda.util.*;
 import jloda.util.progress.ProgressListener;
 import jloda.util.progress.ProgressPercentage;
-import megan.accessiondb.AccessAccessionMappingDatabase;
+import megan.accessiondb.AccessionMappingDB;
 import megan.accessiondb.ConfigRequests;
 import megan.classification.Classification;
 import megan.classification.ClassificationManager;
@@ -192,7 +192,7 @@ public class Sam2Rma {
 		if (StringUtils.notBlank(contaminantsFile))
 			FileUtils.checkFileReadableNonEmpty(contaminantsFile);
 
-		final Collection<String> mapDBClassifications = AccessAccessionMappingDatabase.getContainedClassificationsIfDBExists(mapDBFile);
+		final Collection<String> mapDBClassifications = AccessionMappingDB.getContainedClassificationsIfDBExists(mapDBFile);
 		if (mapDBClassifications.size() > 0 && (StringUtils.hasPositiveLengthValue(class2AccessionFile) || StringUtils.hasPositiveLengthValue(class2SynonymsFile)))
 			throw new UsageException("Illegal to use both --mapDB and ---acc2... or --syn2... options");
 

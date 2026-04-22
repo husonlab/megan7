@@ -31,40 +31,55 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * Modify SQLITE database
- * Daniel Huson, 212.2019
+ * Modify mapping database (SQLite or DuckDB)
+ * Daniel Huson, 12.2019; extended for DuckDB 2.2026
  */
 public class ModifyAccessionMappingDatabase {
 	protected final String databaseFile;
 
+	// SQLite-only config (null for DuckDB)
 	protected final SQLiteConfig config;
+
+	protected final AccessionMappingDBFactory.DbType dbType;
 
 	/**
 	 * constructor
 	 */
 	public ModifyAccessionMappingDatabase(String databaseFile) throws IOException, SQLException {
 		this.databaseFile = databaseFile;
+		this.dbType = AccessionMappingDBFactory.detect(databaseFile);
 
 		System.err.println("Database '" + databaseFile + "', current contents: ");
-		try (AccessAccessionMappingDatabase accessAccessionMappingDatabase = new AccessAccessionMappingDatabase(databaseFile)) {
-			System.err.println(accessAccessionMappingDatabase.getInfo());
+		try (var accessionDB = AccessionMappingDBFactory.open(databaseFile)) {
+			System.err.println(accessionDB.getInfo());
 		}
 
-		config = new SQLiteConfig();
-		config.setCacheSize(10000);
-		config.setLockingMode(SQLiteConfig.LockingMode.EXCLUSIVE);
-		config.setSynchronous(SQLiteConfig.SynchronousMode.NORMAL);
-		config.setJournalMode(SQLiteConfig.JournalMode.WAL);
+		if (dbType == AccessionMappingDBFactory.DbType.SQLITE) {
+			config = new SQLiteConfig();
+			config.setCacheSize(10000);
+			config.setLockingMode(SQLiteConfig.LockingMode.EXCLUSIVE);
+			config.setSynchronous(SQLiteConfig.SynchronousMode.NORMAL);
+			config.setJournalMode(SQLiteConfig.JournalMode.WAL);
+		} else {
+			config = null;
+		}
+	}
+
+	private Connection openWriteConnection() throws SQLException {
+		return switch (dbType) {
+			case SQLITE -> config.createConnection("jdbc:sqlite:" + this.databaseFile);
+			// case DUCKDB -> DriverManager.getConnection("jdbc:duckdb:" + this.databaseFile);
+			default -> null;
+		};
 	}
 
 	/**
 	 * executes a list of commands
 	 *
 	 * @param commands String[] of complete queries
-	 * @throws SQLException if something goes wrong with the database
 	 */
 	private void execute(String... commands) throws SQLException {
-		try (Connection connection = config.createConnection("jdbc:sqlite:" + this.databaseFile);
+		try (Connection connection = openWriteConnection();
 			 Statement statement = connection.createStatement()) {
 			for (String q : commands) {
 				statement.execute(q);
@@ -76,35 +91,55 @@ public class ModifyAccessionMappingDatabase {
 	 * adds a new column
 	 */
 	public void addNewColumn(String classificationName, String inputFile, String description) throws SQLException, IOException {
-		if (classificationName == null) {
+		if (classificationName == null)
 			throw new NullPointerException("classificationName");
-		}
+
 		int count = 0;
 
-		try (Connection connection = config.createConnection("jdbc:sqlite:" + this.databaseFile); Statement statement = connection.createStatement()) {
-			statement.execute("ALTER TABLE mappings ADD COLUMN '" + classificationName + "' INTEGER;");
+		// NOTE: don't quote identifiers with single quotes (that makes them string literals).
+		// Use bare identifiers (or double quotes if needed).
+		final String alter = "ALTER TABLE mappings ADD COLUMN " + classificationName + " INTEGER;";
+
+		final String updateSql = "UPDATE mappings SET " + classificationName + "=? WHERE Accession=?";
+
+		try (Connection connection = openWriteConnection();
+			 Statement statement = connection.createStatement()) {
+
+			// For DuckDB you may want to avoid preserve insertion order for faster bulk-ish updates
+			if (dbType == AccessionMappingDBFactory.DbType.DUCKDB) {
+				try {
+					statement.execute("SET preserve_insertion_order=false;");
+				} catch (SQLException ignored) {
+				}
+			}
+
+			statement.execute(alter);
+
 			connection.setAutoCommit(false);
 
-			try (PreparedStatement insertStmd = connection.prepareStatement("UPDATE mappings SET '" + classificationName + "'=? WHERE Accession=?")) {
+			try (PreparedStatement update = connection.prepareStatement(updateSql)) {
 				try (FileLineIterator it = new FileLineIterator(inputFile, true)) {
 					while (it.hasNext()) {
 						final String[] tokens = it.next().split("\t");
 						final String accession = tokens[0];
 						final int value = NumberUtils.parseInt(tokens[1]);
 						if (value != 0) {
-							insertStmd.setString(2, accession);
-							insertStmd.setInt(1, value);
-							insertStmd.execute();
+							update.setInt(1, value);
+							update.setString(2, accession);
+							update.executeUpdate();
 							count++;
 						}
 					}
 				}
 			}
+
 			System.err.println("Committing...");
 			connection.commit();
 			connection.setAutoCommit(true);
-			statement.execute("INSERT INTO info VALUES ('" + classificationName + "', '" + description + "', " + count + ");");
+
+			// Insert info row
+			// (Assumes schema: info(id TEXT PRIMARY KEY, info_string TEXT, size BIGINT/INTEGER))
+			statement.execute("INSERT INTO info VALUES ('" + classificationName + "', '" + description.replace("'", "''") + "', " + count + ");");
 		}
 	}
-
 }

@@ -20,7 +20,7 @@
 
 package megan.genes;
 
-import megan.accessiondb.AccessAccessionMappingDatabase;
+import megan.accessiondb.AccessionMappingDB;
 import megan.classification.Classification;
 import megan.classification.IdMapper;
 
@@ -38,7 +38,7 @@ public class GeneItemCreator {
 	private final String[] cNames;
 	private final Map<String, Integer> rank;
 	private final IdMapper[] idMappers;
-	private final AccessAccessionMappingDatabase database;
+	private final AccessionMappingDB database;
 	private final String[] shortTags;
 
 	/**
@@ -62,7 +62,7 @@ public class GeneItemCreator {
 	/**
 	 * constructor
 	 */
-	public GeneItemCreator(String[] cNames, AccessAccessionMappingDatabase database) {
+	public GeneItemCreator(String[] cNames, AccessionMappingDB database) {
 		this.cNames = cNames.clone();
 		this.database = database;
 

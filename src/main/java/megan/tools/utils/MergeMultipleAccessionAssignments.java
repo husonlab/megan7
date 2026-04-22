@@ -23,7 +23,8 @@ import jloda.swing.commands.CommandManager;
 import jloda.swing.util.ArgsOptions;
 import jloda.swing.util.ResourceManager;
 import jloda.util.*;
-import megan.accessiondb.AccessAccessionMappingDatabase;
+import megan.accessiondb.AccessionMappingDB;
+import megan.accessiondb.AccessionMappingDBFactory;
 import megan.classification.Classification;
 import megan.classification.ClassificationManager;
 import megan.classification.IdParser;
@@ -97,132 +98,133 @@ public class MergeMultipleAccessionAssignments {
 
 		ClassificationManager.setMeganMapDBFile(mapDBFile);
 
-		var database = new AccessAccessionMappingDatabase(mapDBFile);
+		try (var accessionDB = AccessionMappingDBFactory.open(mapDBFile)) {
 
-		var supportedCNames = database.getClassificationNames().stream().filter(name -> ClassificationManager.getAllSupportedClassifications().contains(name)).collect(Collectors.toList());
+			var supportedCNames = accessionDB.getClassificationNames().stream().filter(name -> ClassificationManager.getAllSupportedClassifications().contains(name)).collect(Collectors.toList());
 
-		if (StringUtils.containsIgnoreCase(cNames, "all")) {
-			if (cNames.length != 1)
-				throw new UsageException("--classifications: 'ALL' must be only value");
-			cNames = supportedCNames.toArray(new String[0]);
-		} else {
-			for (var name : cNames) {
-				if (!supportedCNames.contains(name))
-					throw new UsageException("--classifications: " + name + " not supported, must be one of: " + StringUtils.toString(supportedCNames, ", "));
+			if (StringUtils.containsIgnoreCase(cNames, "all")) {
+				if (cNames.length != 1)
+					throw new UsageException("--classifications: 'ALL' must be only value");
+				cNames = supportedCNames.toArray(new String[0]);
+			} else {
+				for (var name : cNames) {
+					if (!supportedCNames.contains(name))
+						throw new UsageException("--classifications: " + name + " not supported, must be one of: " + StringUtils.toString(supportedCNames, ", "));
+				}
 			}
-		}
-		if (cNames.length == 0) {
-			throw new UsageException("--classifications: must specify at least one, or ALL");
-		}
-		System.err.println("Classifications: " + StringUtils.toString(cNames, ", "));
+			if (cNames.length == 0) {
+				throw new UsageException("--classifications: must specify at least one, or ALL");
+			}
+			System.err.println("Classifications: " + StringUtils.toString(cNames, ", "));
 
-		final var idParsers = new IdParser[cNames.length];
-		for (var i = 0; i < cNames.length; i++) {
-			final var cName = cNames[i];
-			var idMapper = ClassificationManager.get(cName, true).getIdMapper();
-			idParsers[i] = idMapper.createIdParser();
+			final var idParsers = new IdParser[cNames.length];
+			for (var i = 0; i < cNames.length; i++) {
+				final var cName = cNames[i];
+				var idMapper = ClassificationManager.get(cName, true).getIdMapper();
+				idParsers[i] = idMapper.createIdParser();
 
-			if (cNames[i].equals(Classification.Taxonomy) || cNames[i].equals("GTDB"))
-				idParsers[i].setAlgorithm(IdParser.Algorithm.LCA);
-			else
-				idParsers[i].setAlgorithm(IdParser.Algorithm.Majority);
-		}
+				if (cNames[i].equals(Classification.Taxonomy) || cNames[i].equals("GTDB"))
+					idParsers[i].setAlgorithm(IdParser.Algorithm.LCA);
+				else
+					idParsers[i].setAlgorithm(IdParser.Algorithm.Majority);
+			}
 
-		final var workingData = new WorkingData(accessionsPerQuery);
+			final var workingData = new WorkingData(accessionsPerQuery);
 
-		try (var it = new FileLineIterator(inputFile, true);
-			 var w = new BufferedWriter(FileUtils.getOutputWriterPossiblyZIPorGZIP(outputFile));) {
-			System.err.println("Writing file: " + outputFile);
+			try (var it = new FileLineIterator(inputFile, true);
+				 var w = new BufferedWriter(FileUtils.getOutputWriterPossiblyZIPorGZIP(outputFile));) {
+				System.err.println("Writing file: " + outputFile);
 
-			w.write("#Accession\t" + StringUtils.toString(cNames, "\t") + "\n");
+				w.write("#Accession\t" + StringUtils.toString(cNames, "\t") + "\n");
 
-			var rowCount = 0;
+				var rowCount = 0;
 
-			final var accessionRows = new String[linesPerCall][];
+				final var accessionRows = new String[linesPerCall][];
 
-			{
-				var prevAccession = "";
-				var prevVersion = 1;
-				var collectedTokens = new ArrayList<String>();
+				{
+					var prevAccession = "";
+					var prevVersion = 1;
+					var collectedTokens = new ArrayList<String>();
 
-				while (it.hasNext()) {
-					final var line = it.next().trim();
+					while (it.hasNext()) {
+						final var line = it.next().trim();
 
-					var tokens = line.split("\\s");
-					if (tokens.length > 0) {
-						var accession = getAccession(tokens[0]);
-						var version = getVersion(tokens[0]);
-						if (accession.equals(prevAccession)) { // same as previous
-							if (version != prevVersion) {
-								collectedTokens.clear(); // is other version, clear
-							}
-							for (var i = 1; i < tokens.length; i++) { // copy accessions
-								collectedTokens.add(tokens[i].replaceAll("\\.[0-9]*$", ""));
-							}
-						} else { // not same as previous
-							if (!prevAccession.isBlank()) { // if previous set, flush
-								var row = new String[collectedTokens.size() + 1];
-								row[0] = prevAccession;
-								var i = 1;
-								for (var acc : collectedTokens) {
-									row[i++] = acc;
+						var tokens = line.split("\\s");
+						if (tokens.length > 0) {
+							var accession = getAccession(tokens[0]);
+							var version = getVersion(tokens[0]);
+							if (accession.equals(prevAccession)) { // same as previous
+								if (version != prevVersion) {
+									collectedTokens.clear(); // is other version, clear
 								}
-								accessionRows[rowCount++] = row;
-
-								if (rowCount >= linesPerCall) { // time to process what we have
-									writeOutput(w, database, idParsers, accessionRows, rowCount, cNames, workingData);
-									rowCount = 0;
+								for (var i = 1; i < tokens.length; i++) { // copy accessions
+									collectedTokens.add(tokens[i].replaceAll("\\.[0-9]*$", ""));
 								}
-							}
-							// copy to previous
-							prevAccession = accession;
-							prevVersion = version;
-							collectedTokens.clear();
-							for (var i = 1; i < tokens.length; i++) {
-								collectedTokens.add(tokens[i].replaceAll("\\.[0-9]*$", ""));
+							} else { // not same as previous
+								if (!prevAccession.isBlank()) { // if previous set, flush
+									var row = new String[collectedTokens.size() + 1];
+									row[0] = prevAccession;
+									var i = 1;
+									for (var acc : collectedTokens) {
+										row[i++] = acc;
+									}
+									accessionRows[rowCount++] = row;
+
+									if (rowCount >= linesPerCall) { // time to process what we have
+										writeOutput(w, accessionDB, idParsers, accessionRows, rowCount, cNames, workingData);
+										rowCount = 0;
+									}
+								}
+								// copy to previous
+								prevAccession = accession;
+								prevVersion = version;
+								collectedTokens.clear();
+								for (var i = 1; i < tokens.length; i++) {
+									collectedTokens.add(tokens[i].replaceAll("\\.[0-9]*$", ""));
+								}
 							}
 						}
 					}
-				}
-				if (!prevAccession.isBlank()) { // if previous set, flush
-					var nextRow = new String[collectedTokens.size() + 1];
-					nextRow[0] = prevAccession;
-					var i = 1;
-					for (var acc : collectedTokens) {
-						nextRow[i++] = acc;
-					}
-					accessionRows[rowCount++] = nextRow;
-				}
-				if (rowCount > 0) {
-					writeOutput(w, database, idParsers, accessionRows, rowCount, cNames, workingData);
-				}
-			}
-
-			if (false) {
-				while (it.hasNext()) {
-					final var line = it.next().trim();
-
-
-					final var nextRow = Arrays.stream(line.split("\\s+")).map(s -> s.replaceAll("\\.[0-9]*$", "")).toArray(String[]::new);
-
-					if (nextRow.length > 0) {
+					if (!prevAccession.isBlank()) { // if previous set, flush
+						var nextRow = new String[collectedTokens.size() + 1];
+						nextRow[0] = prevAccession;
+						var i = 1;
+						for (var acc : collectedTokens) {
+							nextRow[i++] = acc;
+						}
 						accessionRows[rowCount++] = nextRow;
-
-						if (rowCount >= linesPerCall) { // time to process what we have
-							writeOutput(w, database, idParsers, accessionRows, rowCount, cNames, workingData);
-							rowCount = 0;
-						}
+					}
+					if (rowCount > 0) {
+						writeOutput(w, accessionDB, idParsers, accessionRows, rowCount, cNames, workingData);
 					}
 				}
 
-				if (rowCount > 0) {
-					writeOutput(w, database, idParsers, accessionRows, rowCount, cNames, workingData);
+				if (false) {
+					while (it.hasNext()) {
+						final var line = it.next().trim();
+
+
+						final var nextRow = Arrays.stream(line.split("\\s+")).map(s -> s.replaceAll("\\.[0-9]*$", "")).toArray(String[]::new);
+
+						if (nextRow.length > 0) {
+							accessionRows[rowCount++] = nextRow;
+
+							if (rowCount >= linesPerCall) { // time to process what we have
+								writeOutput(w, accessionDB, idParsers, accessionRows, rowCount, cNames, workingData);
+								rowCount = 0;
+							}
+						}
+					}
+
+					if (rowCount > 0) {
+						writeOutput(w, accessionDB, idParsers, accessionRows, rowCount, cNames, workingData);
+					}
 				}
 			}
 		}
 	}
 
-	private static void writeOutput(final BufferedWriter w, final AccessAccessionMappingDatabase database, final IdParser[] idParsers,
+	private static void writeOutput(final BufferedWriter w, final AccessionMappingDB database, final IdParser[] idParsers,
 									final String[][] accessionRows, final int rowCount, final String[] cNames, WorkingData workingData) throws SQLException, IOException {
 
 		final int[][] accessionClassesMap;

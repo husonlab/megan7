@@ -20,10 +20,14 @@
 package megan.rma6;
 
 import jloda.seq.BlastMode;
-import jloda.util.*;
+import jloda.util.FileLineBytesIterator;
+import jloda.util.FileUtils;
+import jloda.util.Single;
+import jloda.util.StringUtils;
 import jloda.util.progress.ProgressListener;
 import jloda.util.progress.ProgressPercentage;
-import megan.accessiondb.AccessAccessionMappingDatabase;
+import megan.accessiondb.AccessionMappingDB;
+import megan.accessiondb.AccessionMappingDBFactory;
 import megan.classification.Classification;
 import megan.classification.ClassificationManager;
 import megan.classification.IdParser;
@@ -80,7 +84,7 @@ public class RMA6FromBlastCreator {
 		this.doc = doc;
 		doc.getMeganFile().setFile(rma6File, MeganFile.Type.RMA6_FILE);
 
-		if (doc.getActiveViewers().size() > 0)
+		if (!doc.getActiveViewers().isEmpty())
 			cNames = doc.getActiveViewers().toArray(new String[0]);
 		else
 			cNames = new String[]{Classification.Taxonomy};
@@ -118,7 +122,7 @@ public class RMA6FromBlastCreator {
 	/**
 	 * parse the files
 	 */
-	public void parseFiles(final ProgressListener progress) throws IOException, CanceledException, SQLException {
+	public void parseFiles(final ProgressListener progress) throws IOException, SQLException {
 		progress.setTasks("Generating RMA6 file", "Parsing matches");
 
 		final HashMap<String, Long> read2PairedReadLocation;
@@ -142,15 +146,15 @@ public class RMA6FromBlastCreator {
 		long totalNumberOfMatches = 0;
 
 		// setup use of accession mapping database, if provided
-		final AccessAccessionMappingDatabase accessAccessionMappingDatabase;
+		final AccessionMappingDB accessionDB;
 		final int[] mapClassificationId2DatabaseRank;
 		if (ClassificationManager.canUseMeganMapDBFile()) {
 			System.err.println("Annotating RMA6 file using FAST mode (accession database and first accession per line)");
-			accessAccessionMappingDatabase = new AccessAccessionMappingDatabase(ClassificationManager.getMeganMapDBFile());
-			mapClassificationId2DatabaseRank = accessAccessionMappingDatabase.setupMapClassificationId2DatabaseRank(cNames);
+			accessionDB = AccessionMappingDBFactory.open(ClassificationManager.getMeganMapDBFile());
+			mapClassificationId2DatabaseRank = accessionDB.setupMapClassificationId2DatabaseRank(cNames);
 		} else {
 			System.err.println("Annotating RMA6 file using EXTENDED mode");
-			accessAccessionMappingDatabase = null;
+			accessionDB = null;
 			mapClassificationId2DatabaseRank = null;
 		}
 
@@ -253,7 +257,7 @@ public class RMA6FromBlastCreator {
 							offset = Utilities.nextNewLine(matchesText, offset) + 1;
 						}
 
-						final Map<String, int[]> query2ids = accessAccessionMappingDatabase.getValues(queries, queries.length);
+						final Map<String, int[]> query2ids = accessionDB.getValues(queries, queries.length);
 						for (int matchCount = 0; matchCount < queries.length; matchCount++) {
 							final int[] ids = query2ids.get(queries[matchCount]);
 							if (ids != null) {
@@ -304,8 +308,9 @@ public class RMA6FromBlastCreator {
 				} // end of iterator
 			} // end of files
 		} finally {
-			if (accessAccessionMappingDatabase != null)
-				accessAccessionMappingDatabase.close();
+			if (accessionDB != null) {
+				accessionDB.close();
+			}
 		}
 
 		rma6FileCreator.endAddingQueries();

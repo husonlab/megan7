@@ -23,14 +23,18 @@ package megan.accessiondb;
 import megan.classification.data.IString2IntegerMap;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.function.Function;
+import java.util.function.IntUnaryOperator;
 
 /**
  * adapts database accession mapping
  * Daniel Huson, 9.2019
  */
 public class AccessAccessionAdapter implements IString2IntegerMap {
-	private final AccessAccessionMappingDatabase accessAccessionMappingDatabase;
+	public static IntUnaryOperator ACCESSION_FILTER = x -> (x > -1000 ? x : 0);
+	public static Function<String, Boolean> FILE_FILTER = x -> !x.contains("-ue-") && !x.contains("_UE");
+
+	private final AccessionMappingDB accessionDB;
 	private final String classificationName;
 	private final int size;
 
@@ -39,17 +43,17 @@ public class AccessAccessionAdapter implements IString2IntegerMap {
 	/**
 	 * constructor
 	 */
-	public AccessAccessionAdapter(final String mappingDBFile, final String classificationName) throws IOException, SQLException {
+	public AccessAccessionAdapter(final String mappingDBFile, final String classificationName) throws IOException {
 		this.mappingDBFile = mappingDBFile;
-		accessAccessionMappingDatabase = new AccessAccessionMappingDatabase(mappingDBFile);
+		accessionDB = AccessionMappingDBFactory.open(mappingDBFile);
 		this.classificationName = classificationName;
-		size = accessAccessionMappingDatabase.getSize(classificationName);
+		size = accessionDB.getSize(classificationName);
 	}
 
 	@Override
 	public int get(String accession) {
 		try {
-			return accessAccessionMappingDatabase.getValue(classificationName, accession);
+			return accessionDB.getValue(classificationName, accession);
 		} catch (Exception e) {
 			return 0;
 		}
@@ -62,14 +66,17 @@ public class AccessAccessionAdapter implements IString2IntegerMap {
 
 	@Override
 	public void close() {
-		accessAccessionMappingDatabase.close();
+		try {
+			accessionDB.close();
+		} catch (IOException ignored) {
+		}
 	}
 
 	public String getMappingDBFile() {
 		return mappingDBFile;
 	}
 
-	public AccessAccessionMappingDatabase getAccessAccessionMappingDatabase() {
-		return accessAccessionMappingDatabase;
+	public AccessionMappingDB getAccessAccessionMappingDatabase() {
+		return accessionDB;
 	}
 }

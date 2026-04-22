@@ -61,7 +61,7 @@ public class MeganizeDAADialog extends ImportBlastDialog {
 	public void apply() {
 		ClassificationManager.get(Classification.Taxonomy, true).getIdMapper().setUseTextParsing(isParseTaxonNames());
 		final String daaFileNames = getBlastFileName();
-		if (daaFileNames.length() > 0) {
+		if (!daaFileNames.isEmpty()) {
 			ProgramProperties.put(MeganProperties.BLASTFILE, new File(StringUtils.getLinesFromString(daaFileNames).get(0)));
 
 			final StringBuilder buf = new StringBuilder();

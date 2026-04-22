@@ -1,5 +1,5 @@
 /*
- * AccessAccessionMappingDatabase.java Copyright (C) 2024 Daniel H. Huson
+ * AccessionMappingDB.java Copyright (C) 2024 Daniel H. Huson
  *
  *  (Some files contain contributions from other authors, who are then mentioned separately.)
  *
@@ -27,35 +27,31 @@ import jloda.util.FileUtils;
 import jloda.util.StringUtils;
 import org.sqlite.SQLiteConfig;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.IntUnaryOperator;
+
+import static megan.accessiondb.AccessAccessionAdapter.ACCESSION_FILTER;
+import static megan.accessiondb.AccessAccessionAdapter.FILE_FILTER;
 
 /**
  * Access to accession mapping database
  * Original implementation: Syliva Siegel, 2019
  * Modified and extended by Daniel Huson, 9.2019
  */
-public class AccessAccessionMappingDatabase implements Closeable {
+public class AccessSQLiteMappingDB implements AccessionMappingDB {
 	public enum ValueType {TEXT, INT}
 
 	private final Connection connection;
-
-	public static IntUnaryOperator accessionFilter = x -> (x > -1000 ? x : 0);
-	public static Function<String, Boolean> fileFilter = x -> !x.endsWith("_UE");
-
 	private static final Set<String> seenDatabases = new HashSet<>();
 
 	/**
 	 * constructor, opens and maintains connection to database
 	 */
-	public AccessAccessionMappingDatabase(String dbFile) throws IOException, SQLException {
+	public AccessSQLiteMappingDB(String dbFile) throws IOException, SQLException {
 		if (!FileUtils.fileExistsAndIsNonEmpty(dbFile))
 			throw new IOException("File not found or unreadable: " + dbFile);
 
@@ -74,7 +70,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 
 		{
 			var result = executeQueryString("SELECT info_string FROM info WHERE id = 'general';", 1);
-			if (!result.isEmpty() && !fileFilter.apply(result.get(0)))
+			if (!result.isEmpty() && !FILE_FILTER.apply(result.get(0)))
 				throw new IOException("Mapping file " + FileUtils.getFileNameWithoutPath(dbFile) + " is intended for use with MEGAN Ultimate Edition, it is not compatible with MEGAN Community Edition");
 		}
 	}
@@ -140,25 +136,6 @@ public class AccessAccessionMappingDatabase implements Closeable {
 	}
 
 	/**
-	 * get the type for a given classification index
-	 *
-	 * @param classificationIndex index to be considered
-	 * @return the ValueType of the index (either String or integer)
-	 */
-	public ValueType getType(int classificationIndex) throws SQLException {
-		final var query = "SELECT * FROM mappings LIMIT 1;";
-
-		final var metaData = getMetaData(query);
-		final var typeName = metaData.getColumnTypeName(classificationIndex);
-		if (typeName.equals("TEXT")) {
-			return ValueType.TEXT;
-		} else if (typeName.equals("INT") || typeName.equals("NUM")) {
-			return ValueType.INT;
-		}
-		return null;
-	}
-
-	/**
 	 * get the size for a given classification index
 	 *
 	 * @return size for a given classification index or -1 if the classification was not found
@@ -206,7 +183,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 		while (rs.next()) {
 			final var value = rs.getInt(classificationName);
 			if (value != 0)
-				return accessionFilter.applyAsInt(value);
+				return ACCESSION_FILTER.applyAsInt(value);
 		}
 		return 0;
 	}
@@ -238,7 +215,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 			final var values = new int[columnCount];
 			for (var i = 2; i <= columnCount; i++) {
 				// database index starts with 1; 1 is the accession everything else is result
-				values[i - 2] = accessionFilter.applyAsInt(rs.getInt(i));
+				values[i - 2] = ACCESSION_FILTER.applyAsInt(rs.getInt(i));
 			}
 			results.put(rs.getString(1), values);
 		}
@@ -275,7 +252,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 				//System.err.println(resultSet.getString(1));
 				for (var c = 1; c < columnCount; c++) {
 					// database index starts with 1; 1 is the accession everything else is result
-					array[c - 1] = accessionFilter.applyAsInt(resultSet.getInt(c + 1));
+					array[c - 1] = ACCESSION_FILTER.applyAsInt(resultSet.getInt(c + 1));
 				}
 			}
 		}
@@ -298,7 +275,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 		while (rs.next()) {
 			for (var i = 1; i < columnCount; i++) {
 				// database index starts with 1; 1 is the accession everything else is result
-				result[r++] = accessionFilter.applyAsInt(rs.getInt(i + 1));
+				result[r++] = ACCESSION_FILTER.applyAsInt(rs.getInt(i + 1));
 			}
 		}
 	}
@@ -322,7 +299,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 		while (rs.next()) {
 			for (var i = 0; i < columnCount; i++) {
 				// database index starts with 1; 1 is the accession everything else is result
-				result[r++] = accessionFilter.applyAsInt(rs.getInt(i + 1));
+				result[r++] = ACCESSION_FILTER.applyAsInt(rs.getInt(i + 1));
 			}
 		}
 		return result;
@@ -405,7 +382,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 
 	public static Collection<String> getContainedClassificationsIfDBExists(String fileName) {
 		if (FileUtils.fileExistsAndIsNonEmpty(fileName)) {
-			try (AccessAccessionMappingDatabase accessAccessionMappingDatabase = new AccessAccessionMappingDatabase(fileName)) {
+			try (AccessSQLiteMappingDB accessAccessionMappingDatabase = new AccessSQLiteMappingDB(fileName)) {
 				return accessAccessionMappingDatabase.getClassificationNames();
 			} catch (IOException | SQLException ex) {
 				// ignore
@@ -414,7 +391,7 @@ public class AccessAccessionMappingDatabase implements Closeable {
 		return Collections.emptySet();
 	}
 
-	private boolean isCorrectVersion() throws SQLException {
+	private boolean isCorrectVersion() {
 		try {
 			var rs = connection.createStatement().executeQuery("SELECT info_string FROM info WHERE id='megan'");
 			if (rs.next()) {
