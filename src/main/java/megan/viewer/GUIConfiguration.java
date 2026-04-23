@@ -43,7 +43,7 @@ public class GUIConfiguration {
 
 		menuConfig.defineMenu("Server", "Set Server Credentials...;|;Add User...;Add Metadata...;");
 		menuConfig.defineMenu("Open Recent", ";");
-		menuConfig.defineMenu("Export", "Text (CSV) Format...;BIOM1 Format...;STAMP Format...;|;Metadata...;|;Tree...;|;" +
+		menuConfig.defineMenu("Export", "Text (CSV) Format...;BIOM1 Format...;STAMP Format...;|;Export to SQLITE...;Metadata...;|;Tree...;|;" +
 										ProgramProperties.getIfEnabled("enable-taxon-parent-mapping", "Taxon-Parent Mapping...;|;") +
 										"Annotations in GFF Format...;Export Read Lengths and Coverage...;Export Frame-Shift Corrected Reads...;"
 										+ "Export Segmentation of Reads...;|;Reads...;Matches...;Alignments...;Overlap Graph...;Gene-Centric Assembly...;|;All Individual Samples...;MEGAN Summary File...;");

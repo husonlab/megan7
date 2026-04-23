@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ DataDBView.fxml Copyright (C) 2024. Daniel H. Huson
+  ~  
+  ~  No usage, copying or distribution without explicit permission.
+  ~   
+  ~  This program is distributed in the hope that it will be useful,
+  ~  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  ~
+  -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="megan.dialogs.datadb.DataDBViewController">
+    <children>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <Label text="Export data to SQLITE database file" BorderPane.alignment="CENTER">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                </Label>
+            </top>
+            <center>
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Separator/>
+                        <GridPane hgap="10.0" vgap="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <CheckBox fx:id="mediumCheckBox" mnemonicParsing="false" text="Medium"
+                                          GridPane.rowIndex="4">
+                                    <tooltip>
+                                        <Tooltip text="For each classification, save table of reads and assignments"/>
+                                    </tooltip>
+                                </CheckBox>
+                                <CheckBox fx:id="smallCheckBox" mnemonicParsing="false" text="Small">
+                                    <tooltip>
+                                        <Tooltip text="For each classification, save a table of counts"/>
+                                    </tooltip>
+                                </CheckBox>
+                                <Label prefHeight="17.0" prefWidth="248.0" style="-fx-text-fill: gray;"
+                                       text="For each classification, table of counts" GridPane.columnIndex="1"/>
+                                <Label style="-fx-text-fill: gray;" text="For each classification, all read assignments"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                <CheckBox fx:id="largeCheckBox" mnemonicParsing="false" text="Large"
+                                          GridPane.rowIndex="5">
+                                    <tooltip>
+                                        <Tooltip text="Export a table containing all reads and their matches"/>
+                                    </tooltip>
+                                </CheckBox>
+                                <Label style="-fx-text-fill: gray;" text="For each read, all matched accessions"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                                <CheckBox mnemonicParsing="false" text="X-Large" GridPane.rowIndex="6"
+                                          fx:id="xLargeCheckBox">
+                                    <tooltip>
+                                        <Tooltip text="Export reads and their sequences"/>
+                                    </tooltip>
+                                </CheckBox>
+                                <Label style="-fx-text-fill: gray;" text="All  read sequences" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="6"/>
+                                <CheckBox fx:id="smallUseSelectionCheckBox" mnemonicParsing="false"
+                                          text="Selected Nodes" GridPane.rowIndex="2">
+                                    <GridPane.margin>
+                                        <Insets/>
+                                    </GridPane.margin>
+                                    <tooltip>
+                                        <Tooltip text="Export  data only for reads associated with selected nodes"/>
+                                    </tooltip>
+                                </CheckBox>
+                                <Separator GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                <Separator GridPane.rowIndex="3"/>
+                                <CheckBox fx:id="selectedOnlyCheckBox" mnemonicParsing="false" text="Selected Nodes"
+                                          GridPane.rowIndex="8">
+                                    <tooltip>
+                                        <Tooltip text="Export  data only for reads associated with selected nodes"/>
+                                    </tooltip>
+                                </CheckBox>
+                                <Label fx:id="selectedNodesLabel" style="-fx-text-fill: gray;"
+                                       text="Number of selected nodes" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                                <Label fx:id="smallSelectionLabel" style="-fx-text-fill: gray;"
+                                       text="This can take a long time" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                            </children>
+                        </GridPane>
+                        <Separator layoutX="20.0" layoutY="20.0"/>
+                        <GridPane hgap="10.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="NEVER" minWidth="10.0"/>
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints vgrow="NEVER"/>
+                                <RowConstraints/>
+                            </rowConstraints>
+                            <children>
+                                <MenuButton fx:id="classificationsMenuButton" mnemonicParsing="false"
+                                            text="Classifications">
+                                    <items>
+                                        <MenuItem fx:id="allMenuItem" mnemonicParsing="false" text="All"/>
+                                        <MenuItem fx:id="noneMenuItem" mnemonicParsing="false" text="None"/>
+                                        <SeparatorMenuItem mnemonicParsing="false"/>
+                                    </items>
+                                </MenuButton>
+                                <Label fx:id="classificationsLabel" style="-fx-text-fill: gray;"
+                                       text="Number of classifications" GridPane.columnIndex="1"/>
+                            </children>
+                        </GridPane>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                </VBox>
+            </center>
+            <bottom>
+                <VBox spacing="10.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <Separator/>
+                        <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="NEVER">
+                            <children>
+                                <Label text="Output file:"/>
+                                <TextField fx:id="outputFileTextField" HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="browseButton" mnemonicParsing="false" text="Browse..."/>
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                            </padding>
+                        </HBox>
+                        <ButtonBar prefHeight="40.0" styleClass="tool-bar" VBox.vgrow="NEVER">
+                            <buttons>
+                                <Button fx:id="cancelButton" cancelButton="true" mnemonicParsing="false" text="Cancel"/>
+                                <Button fx:id="applyButton" defaultButton="true" layoutX="525.0" layoutY="11.0"
+                                        mnemonicParsing="false" text="Apply"/>
+                            </buttons>
+                        </ButtonBar>
+                    </children>
+                </VBox>
+            </bottom>
+        </BorderPane>
+    </children>
+</AnchorPane>

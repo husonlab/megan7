@@ -148,4 +148,10 @@ module megan {
 	exports megan.ms.server;
 	exports megan.ms.clientdialog.service;
 	exports megan.tools.utils;
+
+	exports megan.tools_updating;
+	opens megan.tools_updating;
+
+	opens megan.dialogs.datadb;
+
 }
