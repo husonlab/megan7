@@ -25,11 +25,14 @@ import jloda.swing.commands.ICommand;
 import jloda.swing.director.IDirector;
 import jloda.swing.director.ProjectManager;
 import jloda.swing.util.ResourceManager;
+import jloda.util.ProgramProperties;
 import jloda.util.parse.NexusStreamParser;
-import megan.main.CheckForUpdate;
+import megan.main.Version;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.net.URI;
 
 /**
  * show the message window
@@ -81,7 +84,14 @@ public class ShowCheckForUpdateCommand extends CommandBase implements ICommand {
 	@Override
 	public void apply(NexusStreamParser np) throws Exception {
 		np.matchIgnoreCase(getSyntax());
-		CheckForUpdate.apply();
+		if (ProgramProperties.isUseGUI())
+			show(getViewer().getFrame());
+		else {
+			System.err.printf("""
+					%s updates have moved to GitHub.
+					Please download the latest release from:
+					%s/releases/latest%n""", Version.NAME, Version.HOME_URL);
+		}
 	}
 
 	/**
@@ -130,5 +140,48 @@ public class ShowCheckForUpdateCommand extends CommandBase implements ICommand {
 	 */
 	public String getUndo() {
 		return null;
+	}
+
+	private static void show(Component parent) {
+		var panel = new JPanel(new BorderLayout(0, 10));
+		var text = """
+				%s updates have moved to GitHub.
+				Please download the latest release from:
+				""".formatted(Version.NAME);
+		var textArea = new JTextArea(text);
+		textArea.setEditable(false);
+		textArea.setOpaque(false);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+
+		System.err.println(Version.NAME);
+		System.err.println(Version.HOME_URL);
+
+		var url = Version.HOME_URL + "/releases/latest";
+
+		var urlField = new JTextField(url);
+		urlField.setEditable(false);
+		urlField.setBorder(BorderFactory.createEmptyBorder());
+		panel.add(textArea, BorderLayout.NORTH);
+		panel.add(new JLabel("  "), BorderLayout.WEST);
+		panel.add(new JLabel("  "), BorderLayout.EAST);
+		panel.add(urlField, BorderLayout.CENTER);
+		var openButton = new JButton("Open Release Page");
+
+		openButton.addActionListener(e -> {
+			try {
+				var uri = new URI(url);
+				System.err.println(uri);
+				Desktop.getDesktop().browse(uri);
+			} catch (Exception ignored) {
+			}
+		});
+
+		JOptionPane.showOptionDialog(parent, panel, "%s Updates".formatted(Version.NAME),
+				JOptionPane.DEFAULT_OPTION,
+				JOptionPane.INFORMATION_MESSAGE, null,
+				new Object[]{openButton, "Close"},
+				openButton
+		);
 	}
 }
