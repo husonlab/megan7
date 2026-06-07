@@ -178,10 +178,7 @@ public class ShowCheckForUpdateCommand extends CommandBase implements ICommand {
 		});
 
 		JOptionPane.showOptionDialog(parent, panel, "%s Updates".formatted(Version.NAME),
-				JOptionPane.DEFAULT_OPTION,
-				JOptionPane.INFORMATION_MESSAGE, null,
-				new Object[]{openButton, "Close"},
-				openButton
-		);
+				JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null,
+				new Object[]{openButton, "Close"}, openButton);
 	}
 }
