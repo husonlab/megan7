@@ -51,6 +51,15 @@ public class Megan7 {
      * runs MEGAN7
      */
     public static void main(String[] args) {
+        if (jloda.util.ProgramProperties.isMacOS()) {
+            System.setProperty("apple.laf.useScreenMenuBar", "true");
+            System.setProperty("apple.awt.application.name", "MEGAN7");
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (Exception ignored) {
+            }
+        }
+
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
                 if (MessageWindow.getInstance() != null)
