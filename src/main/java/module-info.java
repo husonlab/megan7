@@ -3,7 +3,6 @@ module megan {
 	requires javafx.controls;
 	requires javafx.fxml;
 
-	requires com.install4j.runtime;
 	requires java.sql;
 	requires jdk.httpserver;
 
@@ -16,6 +15,7 @@ module megan {
 	requires jloda_swing;
 	requires jloda_core;
 	requires jloda_fx;
+	requires de.mkammerer.argon2;
 	requires de.mkammerer.argon2.nolibs;
 	requires java.smartcardio;
 

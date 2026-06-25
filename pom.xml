@@ -92,7 +92,8 @@
         <dependency>
             <groupId>de.mkammerer</groupId>
             <artifactId>argon2-jvm</artifactId>
-            <version>2.11</version>
+            <version>2.12</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>net.java.dev.jna</groupId>
@@ -118,11 +119,6 @@
             <groupId>de.erichseifert.vectorgraphics2d</groupId>
             <artifactId>VectorGraphics2D</artifactId>
             <version>0.13</version>
-        </dependency>
-        <dependency>
-            <groupId>com.install4j</groupId>
-            <artifactId>install4j-runtime</artifactId>
-            <version>11.0.4</version>
         </dependency>
 
         <dependency>
@@ -215,10 +211,6 @@
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
-        </repository>
-        <repository>
-            <id>ej-technologies</id>
-            <url>https://maven.ej-technologies.com/repository</url>
         </repository>
         <repository>
             <id>maven2</id>
