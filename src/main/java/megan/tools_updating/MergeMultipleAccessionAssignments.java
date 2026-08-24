@@ -72,7 +72,6 @@ public class MergeMultipleAccessionAssignments {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setAuthors("Daniel H. Huson");
 		options.setLicense("Copyright (C) 2026. This program comes with ABSOLUTELY NO WARRANTY.");
-		options.setLatexDescription("This is used to merge multiple accession asignments from cluster members to single assignments for the cluster representation.");
 
 		final var inputFile = options.getOptionMandatory("-i", "in", "Input file, each line containing a cluster accession followed  member accessions (stdin, .gz ok)", "");
 		var outputFile = options.getOption("-o", "out", "Output file, each line containing first accession and merged assignments (stdout or .gz ok)", "stdout");

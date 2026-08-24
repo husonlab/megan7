@@ -83,12 +83,6 @@ public class Daa2Rma {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This takes a DAA alignment file produced by DIAMOND, performs taxonomic and classification of reads
-				based on the alignments, and writes out the reads and alignments, together with the classifications
-				and indices to file in RMA (read-match archive) format that can then be opened in MEGAN.
-				Do not use this legacy program, rather use the \\verb^daa-meganizer^ program instead.
-				""");
 
 		options.comment("Input");
 		final String[] daaFiles = options.getOptionMandatory("-i", "in", "Input DAA file", new String[0]);

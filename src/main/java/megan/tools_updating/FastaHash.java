@@ -70,7 +70,6 @@ public class FastaHash {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2026. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("This is used to hash sequences provided in FastA records.");
 
 		options.comment("Input and Output:");
 		var inputFiles = options.getOptionMandatory("-i", "input", "Input file(s) (or directory)", new String[0]);

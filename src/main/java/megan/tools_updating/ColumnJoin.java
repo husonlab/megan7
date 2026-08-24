@@ -61,7 +61,6 @@ public class ColumnJoin {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2026. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("This is used to join tables on a common column.");
 
 		final var inputFileA = options.getOptionMandatory("-a", "inputA", "First input mapping file", "");
 		final var inputFileB = options.getOptionMandatory("-b", "inputB", "Second input mapping file", "");

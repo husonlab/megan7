@@ -70,16 +70,6 @@ public class MeganServer {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This can serve files that are hosted on a
-				server to instances of MEGAN running on personal computers, over the web \\citep{MeganServer}. This uses
-				a lightweight Representational State Transfer - Application Programming Interface (REST-API)-based
-				framework written in Java. This allows researchers to analyze files produced by the DIAMOND+MEGAN
-				pipeline on their local computer, without any need to download data from a server directory.
-				Data is sent and received via REST which makes reuse of HTTP technology. While users can access the
-				files using a web browser, they will usually access the files via the MEGAN,
-				which acts as a client and communicates with instances of MeganServer.
-				""");
 
 		options.comment("Input");
 		final String inputDirectory = options.getOptionMandatory("-i", "input", "Input directory", "");

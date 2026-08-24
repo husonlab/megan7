@@ -68,10 +68,6 @@ public class ComputeComparison {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This is run on a collection of RMA files, MEGAN files and/or meganized DAA files, to obtain a MEGAN file
-				that contains a comparison of the data in the input files.
-				""");
 
 		options.comment("Input and Output:");
 		final var inputFiles = new ArrayList<>(Arrays.asList(options.getOptionMandatory("-i", "in", "Input RMA and/or meganized DAA files (single directory ok)", new String[0])));

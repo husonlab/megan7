@@ -65,7 +65,6 @@ public class MergeMappings {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setAuthors("Daniel H. Huson");
 		options.setLicense("Copyright (C) 2026. This program comes with ABSOLUTELY NO WARRANTY.");
-		options.setLatexDescription("This is used to merge multiple mapping tables in to a single table in preparation of creating a mapping database for MEGAN.");
 
 		options.comment("Input");
 		final var classificationNames = options.getOptionMandatory("-c", "classifications", "List of names of classifications", new String[0]);

@@ -83,12 +83,6 @@ public class Sam2Rma {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This takes an alignment file in SAM format, produced by MALT,
-				as input (can also run on multiple input files), classifies the taxonomic
-				and functional content and then writes out the reads and alignments, together with the classifications
-				and indices to file in RMA (read-match archive) format that can then be opened in MEGAN.
-				""");
 
 
 		options.comment("Input");

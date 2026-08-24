@@ -66,7 +66,6 @@ public class FastaExtractByHash {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2026. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("This is used to extract FastA records from a set of files based on sequence hashes.");
 
 		options.comment("Input and Output");
 		var inputFiles = options.getOptionMandatory("-i", "input", "FastA input file(s) (or directory)", new String[0]);

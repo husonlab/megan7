@@ -82,7 +82,6 @@ public class TaxdumpTree {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setAuthors("Daniel H. Huson");
 		options.setLicense("Copyright (C) 2026. This program comes with ABSOLUTELY NO WARRANTY.");
-		options.setLatexDescription("This is used to create the ncbi.tre and ncbi.map tree and mapping files from an NCBI taxdump file.");
 
 		var taxDumpFile = options.getOptionMandatory("-i", "input", "taxdump file (Zip file, usually from:  ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip)", "");
 		var treeFile = options.getOption("-t", "tree", "Output tree file", FileUtils.getFilePath(taxDumpFile, "ncbi.tre"));

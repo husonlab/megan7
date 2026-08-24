@@ -81,13 +81,6 @@ public class GCAssembler {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This can be used to perform gene-centric
-				assembly, also called protein-alignment-guided assembly \\citep{Huson2017}. Genes are assembled
-				on-the-fly, based on the alignment of all reads against a protein reference database such as NCBI-nr.
-				Specifically, the user selects a gene family based on a classification such as KEGG and all reads binned
-				 to that gene family are assembled.
-				""");
 
 		options.comment("Input and output");
 		final var inputFile = options.getOptionMandatory("-i", "input", "Input DAA or RMA6 file", "");

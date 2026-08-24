@@ -71,11 +71,6 @@ public class ReadExtractor {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This can be used to extract reads from meganized DAA files or RMA files
-				based on their assignment to taxonomic or functional classes. In the case of long reads or contigs,
-				it can also be used to extract frame-shift corrected versions of the sequences \\citep{Arumugametal2019}.
-				""");
 
 		options.comment("Input and Output");
 		final var inputFiles = new ArrayList<>(Arrays.asList(options.getOptionMandatory("-i", "input", "Input DAA and/or RMA file(s)", new String[0])));

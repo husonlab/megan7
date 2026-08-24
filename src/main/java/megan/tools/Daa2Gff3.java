@@ -62,10 +62,6 @@ public class Daa2Gff3 {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This produces an annotation of long reads or contigs, given a meganized DAA file as input. The output
-				is in GFF3 format.
-				""");
 
 		options.comment("Input and Output");
 		final String daaFile = options.getOptionMandatory("-i", "in", "Input meganized DAA file", "");

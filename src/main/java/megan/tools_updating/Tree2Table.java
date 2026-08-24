@@ -63,7 +63,6 @@ public class Tree2Table {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setAuthors("Daniel H. Huson");
 		options.setLicense("Copyright (C) 2026. This program comes with ABSOLUTELY NO WARRANTY.");
-		options.setLatexDescription("Writes a rooted tree as a parent table.");
 
 		var whichTaxonomy = options.getOption("-t", "taxonomy", "Which taxonomy", List.of("NCBI", "GTDB"), "GTDB");
 

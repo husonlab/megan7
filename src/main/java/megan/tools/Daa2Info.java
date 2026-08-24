@@ -69,10 +69,6 @@ public class Daa2Info {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This is run on a single DAA file computed by DIAMOND and possibly meganized, to obtain information or to
-				 extract data such as reads, alignments or classifications.
-				""");
 
 		options.comment("Input and Output");
 		final var daaFile = options.getOptionMandatory("-i", "in", "Input DAA file", "");

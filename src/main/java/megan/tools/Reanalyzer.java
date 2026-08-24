@@ -64,9 +64,6 @@ public class Reanalyzer {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This is used to rerun taxonomic and functional binning on an RMA or meganized DAA file.
-				""");
 
 		final String[] inputFiles = options.getOptionMandatory("-i", "input", "Input  file", new String[0]);
 

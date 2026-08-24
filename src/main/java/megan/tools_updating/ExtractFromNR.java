@@ -63,7 +63,6 @@ public class ExtractFromNR {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2026. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("This is used to extract a nr90 or n50 database from the full NCBI-nr database.");
 
 		options.comment("Input and Output:");
 		var inputFile = options.getOptionMandatory("-i", "input", "Input file (usually nr.gz)", "");

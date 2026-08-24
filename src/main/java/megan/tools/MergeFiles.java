@@ -66,10 +66,6 @@ public class MergeFiles {
 		options.setVersion(ProgramProperties.getProgramVersion());
 		options.setLicense("Copyright (C) 2025. This program comes with ABSOLUTELY NO WARRANTY.");
 		options.setAuthors("Daniel H. Huson");
-		options.setLatexDescription("""
-				This takes multiple RMA or meganized DAA files as input and produces a single MEGAN file as output that
-				represents the merged set of all reads in the input files.
-				""");
 
 		options.comment("Input and Output:");
 		final ArrayList<String> inputFiles = new ArrayList<>(Arrays.asList(options.getOptionMandatory("-i", "in", "Input RMA and/or meganized DAA files (single directory ok)", new String[0])));
